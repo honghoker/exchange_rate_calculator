@@ -28,7 +28,7 @@ class ExchangeViewModel: ObservableObject {
                 print("데이터스트림 완료")
             }, receiveValue: { receiveValue in
                 print("@@@@@@@@@@@2 receiveValue : \(receiveValue)")
-//                exchangeModels = receiveValue
+                self.exchangeModels = receiveValue
             }).store(in: &subscription)
     }
 }
