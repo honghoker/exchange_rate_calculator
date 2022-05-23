@@ -88,3 +88,12 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# DS_Store
+.DS_Store
+._.DS_Store
+.**/DS_Sotre
+.**/_.DS_Store
+
+# ApiKey
+ApiKey.swift
