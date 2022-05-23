@@ -22,6 +22,7 @@
 		51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */; };
 		51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */; };
 		51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB431283B8D1100EA2764 /* KoreaExim.swift */; };
+		51CAB436283B8E5E00EA2764 /* Apikey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* Apikey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
 		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51CAB431283B8D1100EA2764 /* KoreaExim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreaExim.swift; sourceTree = "<group>"; };
+		51CAB435283B8E5E00EA2764 /* Apikey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apikey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				51CAB431283B8D1100EA2764 /* KoreaExim.swift */,
+				51CAB435283B8E5E00EA2764 /* Apikey.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */,
 				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
 				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
+				51CAB436283B8E5E00EA2764 /* Apikey.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
