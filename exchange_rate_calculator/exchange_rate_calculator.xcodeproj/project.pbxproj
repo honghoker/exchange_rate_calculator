@@ -36,6 +36,7 @@
 		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51CAB431283B8D1100EA2764 /* KoreaExim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreaExim.swift; sourceTree = "<group>"; };
 		51CAB435283B8E5E00EA2764 /* Apikey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apikey.swift; sourceTree = "<group>"; };
+		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 		51CAB406283B8A1500EA2764 /* exchange_rate_calculator */ = {
 			isa = PBXGroup;
 			children = (
+				51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */,
 				51CAB430283B8D0500EA2764 /* Api */,
 				51CAB428283B8CBB00EA2764 /* Model */,
 				51CAB42B283B8CD000EA2764 /* View */,
@@ -357,6 +359,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"exchange_rate_calculator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "exchange-rate-calculator-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -385,6 +388,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"exchange_rate_calculator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "exchange-rate-calculator-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

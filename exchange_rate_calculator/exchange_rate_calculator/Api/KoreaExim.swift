@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 
-
 // https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=AUTHKEY1234567890&searchdate=20180102&data=AP01
 let BaseURL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON"
 
@@ -32,7 +31,7 @@ enum KoreaExim: URLRequestConvertible {
         var params = Parameters()
         switch self {
         case .getExchangeRate:
-            params["authkey"] = ""
+            params["authkey"] = ApiKey().key
             params["searchdate"] = "20220523"
             params["data"] = "AP01"
             return params
