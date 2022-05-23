@@ -12,8 +12,16 @@ struct ContentView: View {
     @ObservedObject var exchangeViewModel = ExchangeViewModel()
     
     var body: some View {
-        Text("Hello, world!")
+        Text("result :  \(exchangeViewModel.exchangeModels.count)")
+        List(exchangeViewModel.exchangeModels) { exchange in
+            HStack {
+                Text("\(exchange.cur_nm)")
+                    .fontWeight(.bold)
+                    .font(.system(size : 26))
+                    .foregroundColor(.black)
+            }
             .padding()
+        }
     }
 }
 

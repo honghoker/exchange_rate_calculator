@@ -22,7 +22,7 @@
 		51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */; };
 		51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */; };
 		51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB431283B8D1100EA2764 /* KoreaExim.swift */; };
-		51CAB436283B8E5E00EA2764 /* Apikey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* Apikey.swift */; };
+		51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* ApiKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
 		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51CAB431283B8D1100EA2764 /* KoreaExim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreaExim.swift; sourceTree = "<group>"; };
-		51CAB435283B8E5E00EA2764 /* Apikey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apikey.swift; sourceTree = "<group>"; };
+		51CAB435283B8E5E00EA2764 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				51CAB431283B8D1100EA2764 /* KoreaExim.swift */,
-				51CAB435283B8E5E00EA2764 /* Apikey.swift */,
+				51CAB435283B8E5E00EA2764 /* ApiKey.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 				51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */,
 				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
 				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
-				51CAB436283B8E5E00EA2764 /* Apikey.swift in Sources */,
+				51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +365,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -374,7 +375,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -394,6 +395,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -403,7 +405,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
