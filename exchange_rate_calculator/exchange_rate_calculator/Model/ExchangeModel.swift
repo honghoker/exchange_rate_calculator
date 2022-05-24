@@ -8,6 +8,7 @@
 import Foundation
 
 struct ExchangeModel: Codable, Identifiable {
+    
     let id = UUID()
     let result: Int // 1 : 성공, 2 : DATA코드 오류, 3 : 인증코드 오류, 4 : 일일제한횟수 마감
     let cur_unit: String // 통화코드 ex) "AED"
@@ -30,5 +31,8 @@ struct ExchangeModel: Codable, Identifiable {
              yy_efee_r, ten_dd_efee_r,
              kftc_bkpr, kftc_deal_bas_r,
              cur_nm
+    }
+    static func getDummy() -> Self {
+        return ExchangeModel(result: 1, cur_unit: "", ttb: "", tts: "", deal_bas_r: "", bkpr: "", yy_efee_r: "", ten_dd_efee_r: "", kftc_bkpr: "", kftc_deal_bas_r: "", cur_nm: "")
     }
 }
