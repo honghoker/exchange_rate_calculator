@@ -36,7 +36,6 @@ struct ExchangeCalCellView: View {
                         print("new Value \(newValue)")
                     })
                     .multilineTextAlignment(.trailing)
-//                TestView(test: $inputValue)
                 Text("\(exchangeModel.cur_nm)")
             }.onTapGesture {
                 print("tap tap")

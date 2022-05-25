@@ -25,6 +25,7 @@
 		51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* ApiKey.swift */; };
 		BC123468283C9F270032FC56 /* ExchangeCalCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123467283C9F270032FC56 /* ExchangeCalCellView.swift */; };
 		BC12346A283D087E0032FC56 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123469283D087E0032FC56 /* TestView.swift */; };
+		BCA75211283DE6780008D930 /* TeseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA75210283DE6780008D930 /* TeseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BC123467283C9F270032FC56 /* ExchangeCalCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCalCellView.swift; sourceTree = "<group>"; };
 		BC123469283D087E0032FC56 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		BCA75210283DE6780008D930 /* TeseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				51CAB409283B8A1500EA2764 /* ContentView.swift */,
 				BC123467283C9F270032FC56 /* ExchangeCalCellView.swift */,
 				BC123469283D087E0032FC56 /* TestView.swift */,
+				BCA75210283DE6780008D930 /* TeseViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */,
+				BCA75211283DE6780008D930 /* TeseViewModel.swift in Sources */,
 				51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */,
 				BC123468283C9F270032FC56 /* ExchangeCalCellView.swift in Sources */,
 				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,

@@ -10,13 +10,26 @@ import Combine
 
 struct ContentView: View {
     @ObservedObject var exchangeViewModel = ExchangeViewModel()
-    @State var inputValue = ""
-    //    @Binding var testValue: String
+    @State var inputString = ""
+    @State var inputValue = 0
+    @State var check = 0
     
     var body: some View {
-       // 어차피 이거 램 써서 내부 디비 count 로 작업할거라 foreach 써야함 이렇게 작업하면 가능할지도 ?
+        TextField("init ?", text: $inputString)
+            .onChange(of: inputString, perform: { newValue in
+                if newValue == "" {
+                    inputValue = 0
+                } else if newValue.count > 10 {
+                    // 10 글자까지 제한
+                    inputString = String(newValue.prefix(10))
+                } else {
+                    inputValue = Int(newValue)!
+                }
+            })
+            .multilineTextAlignment(.trailing)
+            .padding()
         List {
-            ForEach(0..<5) { number in
+            ForEach(1..<6) { number in
                 HStack (alignment: .center, spacing: 15) {
                     Image("testFlag")
                         .resizable()
@@ -29,20 +42,16 @@ struct ContentView: View {
                         .font(.system(size: 30))
                     Spacer()
                     VStack (alignment: .trailing){
-                        TextField("init ?", text: $inputValue)
-                            .onChange(of: inputValue, perform: { newValue in
-                                print("new Value \(newValue)")
-                            })
-                            .multilineTextAlignment(.trailing)
-                        TestView(test: $inputValue, number: number)
-                        Text("대한민국")
+                        TestView(test: $inputValue, number)
+                        check == number ? Text("대한민국") : Text("미국")
                     }.onTapGesture {
-                        print("tap tap")
+                        check = number
+                        print("tap tap \(number)")
                     }
                 }
                 .frame(height: 100)
                 .background(Color.white)
-                .overlay(RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.gray))
+//                .overlay(RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.gray))
             } .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
         }.listStyle(PlainListStyle())
         

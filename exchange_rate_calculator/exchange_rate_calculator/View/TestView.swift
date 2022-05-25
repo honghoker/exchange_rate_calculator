@@ -9,17 +9,20 @@ import Foundation
 import SwiftUI
 
 struct TestView: View {
-    
-    @Binding var test: String
-//    @State var test2: Int
+    @ObservedObject var testViewModel = TestViewModel()
+    @Binding var test: Int
     var number: Int
+    var result = 0
 
-//    init(test: Binding<String> = .constant(""), _ number: Int) {
-//        _test = test
-//        self.number = number
-//    }
+    init(test: Binding<Int>, _ number: Int) {
+        self._test = test
+        self.number = number
+        testViewModel.chagne(number)
+    }
     
     var body: some View {
-        Text("number \(number) test \(test + String(describing: number))")
+        Text("number \(number) test \(test * testViewModel.viewModelValue)")
+            .lineLimit(1)
     }
 }
+
