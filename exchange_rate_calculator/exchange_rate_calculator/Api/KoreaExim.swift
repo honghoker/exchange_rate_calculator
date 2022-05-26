@@ -32,14 +32,13 @@ enum KoreaExim: URLRequestConvertible {
         switch self {
         case .getExchangeRate:
             params["authkey"] = ApiKey().key
-            params["searchdate"] = "20220523"
+            params["searchdate"] = "20220526"
             params["data"] = "AP01"
             return params
         default:
             return Parameters()
         }
     }
-    
     
     func asURLRequest() throws -> URLRequest {
         var request = URLRequest(url: baseURL)

@@ -27,7 +27,6 @@ class ExchangeViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 print("데이터스트림 완료")
             }, receiveValue: { receiveValue in
-                print("@@@@@@@@@@@2 receiveValue : \(receiveValue)")
                 self.exchangeModels = receiveValue
             }).store(in: &subscription)
     }
