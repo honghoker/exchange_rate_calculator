@@ -21,8 +21,8 @@ struct TestView: View {
     }
     
     var body: some View {
-        Text("number \(number) test \(test * testViewModel.viewModelValue)")
-            .lineLimit(1)
+        Text("\(test * testViewModel.viewModelValue)")
+//            .lineLimit(1)
     }
 }
 

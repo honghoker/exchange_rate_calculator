@@ -25,6 +25,8 @@
 		51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* ApiKey.swift */; };
 		BC123468283C9F270032FC56 /* ExchangeCalCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123467283C9F270032FC56 /* ExchangeCalCellView.swift */; };
 		BC12346A283D087E0032FC56 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123469283D087E0032FC56 /* TestView.swift */; };
+		BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */; };
+		BC801A692840B4C400F3D5D2 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC801A682840B4C400F3D5D2 /* NavigationView.swift */; };
 		BCA75211283DE6780008D930 /* TeseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA75210283DE6780008D930 /* TeseViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BC123467283C9F270032FC56 /* ExchangeCalCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCalCellView.swift; sourceTree = "<group>"; };
 		BC123469283D087E0032FC56 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountryModel.swift; sourceTree = "<group>"; };
+		BC801A682840B4C400F3D5D2 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		BCA75210283DE6780008D930 /* TeseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */,
+				BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				BC123467283C9F270032FC56 /* ExchangeCalCellView.swift */,
 				BC123469283D087E0032FC56 /* TestView.swift */,
 				BCA75210283DE6780008D930 /* TeseViewModel.swift */,
+				BC801A682840B4C400F3D5D2 /* NavigationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,10 +240,12 @@
 			files = (
 				51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */,
 				BCA75211283DE6780008D930 /* TeseViewModel.swift in Sources */,
+				BC801A692840B4C400F3D5D2 /* NavigationView.swift in Sources */,
 				51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */,
 				BC123468283C9F270032FC56 /* ExchangeCalCellView.swift in Sources */,
 				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
 				BC12346A283D087E0032FC56 /* TestView.swift in Sources */,
+				BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */,
 				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
 				51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
