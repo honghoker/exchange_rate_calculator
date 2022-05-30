@@ -10,112 +10,130 @@ import Combine
 import RealmSwift
 
 struct ContentView: View {
-    @StateObject var exchangeViewModel = ExchangeViewModel()
-    @State var inputString = ""
-    @State var inputValue = 1000
-    @State var check = 0
-    @State var draggedCountry: MyCountryModel = MyCountryModel()
+    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
     
-    @State var text = "환율 계산기"
-    @State var checkTest = true
-    @State var destination: AnyView? = nil
+    @State var inputString = "" // textField String value
+//    @State var inputValue = 1000 // textField Int value
     
-    let textSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect()
+    @State var draggedCountry: MyCountryModel = MyCountryModel() // drag 상태인 국가 (realm)
     
+    @State var destination: AnyView? = nil // set page 로 이동하는 View
+    
+    @State private var isShowing = false // calculate keyboard on off
+    
+    @State var mainTextSwitchCheck = true // 메인 앱 이름 <> 업데이트 날짜 바꿔주는 값
+    let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간
+
     var body: some View {
         NavigationView {
-            VStack {
-                HStack {
-                    if checkTest {
-                        Text("환율 계산기")
-                            .font(.system(size: 25))
-                            .fontWeight(.black)
-                            .transition(.opacity)
-                            .onReceive(textSwitchTimer) { _ in
-                                withAnimation (.easeInOut(duration: 1.0)) {
-                                    checkTest.toggle()
+            ZStack {
+                VStack {
+                    HStack {
+                        if mainTextSwitchCheck {
+                            Text("환율 계산기")
+                                .font(.system(size: 25))
+                                .fontWeight(.black)
+                                .transition(.opacity)
+                                .onReceive(mainTextSwitchTimer) { _ in
+                                    withAnimation (.easeInOut(duration: 1.0)) {
+                                        mainTextSwitchCheck.toggle()
+                                    }
                                 }
-                            }
-                    } else {
-                        Text("업데이트 날짜")
-                            .font(.system(size: 25))
-                            .fontWeight(.black)
-                            .transition(.opacity)
-                            .onReceive(textSwitchTimer) { _ in
-                                withAnimation (.easeInOut(duration: 1.0)) {
-                                    checkTest.toggle()
-                                }
-                            }
-                    }
-                    Spacer()
-                    NavigationLink(destination: MYNavigationView()) {
-                        Image(systemName: "line.horizontal.3")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                    }
-                }
-                .padding()
-                TextField("1,000", text: $inputString)
-                    .keyboardType(.numberPad)
-                    .onChange(of: inputString, perform: { newValue in
-                        if newValue == "" {
-                            inputValue = 1000
-                        } else if newValue.count > 10 {
-                            // 10 글자까지 제한
-                            inputString = String(newValue.prefix(10))
                         } else {
-                            inputValue = Int(newValue)!
-                        }
-                    })
-                    .multilineTextAlignment(.trailing)
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 20))
-                Rectangle().frame(height: 1)
-                    .padding(.horizontal, 20).foregroundColor(Color.black)
-                ScrollView {
-                    LazyVStack {
-                        ForEach(0..<exchangeViewModel.myCountry.count) { number in
-                            HStack (alignment: .center, spacing: 15) {
-                                Image("testFlag")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color.yellow, lineWidth: 3))
-                                Text("\(exchangeViewModel.myCountry[number].cur_unit)")
-                                    .fontWeight(.light)
-                                    .font(.system(size: 30))
-                                Spacer()
-                                VStack (alignment: .trailing){
-                                    TestView(test: $inputValue, number)
-                                    Text("\(exchangeViewModel.myCountry[number].cur_nm)")
-                                    //                        check == number ? Text("대한민국") : Text("미국")
-                                }.onTapGesture {
-                                    check = number
-                                    print("tap tap \(exchangeViewModel.myCountry[number])")
+                            Text("업데이트 날짜")
+                                .font(.system(size: 25))
+                                .fontWeight(.black)
+                                .transition(.opacity)
+                                .onReceive(mainTextSwitchTimer) { _ in
+                                    withAnimation (.easeInOut(duration: 1.0)) {
+                                        mainTextSwitchCheck.toggle()
+                                    }
                                 }
-                            }
-                            .onDrag{
-                                print("drag drag")
-                                print("exchangeViewModel.myCountry[number] \(exchangeViewModel.myCountry[number])")
-                                print("$exchangeViewModel.myCountry count \($exchangeViewModel.myCountry.count)")
-                                self.draggedCountry = exchangeViewModel.myCountry[number]
-                                print("number \(number)")
-                                return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].cur_nm)
-                            }
-                            .onDrop(of: [exchangeViewModel.myCountry[number].cur_nm], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry))
-                            .frame(height: 100)
-                            .background(Color.white)
                         }
-                        .padding(.horizontal, 20)
+                        Spacer()
+                        NavigationLink(destination: SettingView()) {
+                            Image(systemName: "line.horizontal.3")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.black)
+                        }
+                    }
+                    .padding()
+                    // 1차 완성 추후에 이거 보완 수정
+                    TextField("1000", text: $inputString)
+                        .onTapGesture {
+                            // 기본 textField 이용시 사용하는 키보드 사용을 중지하도록 제어할 수 있는 항목에게 요청 -> https://seons-dev.tistory.com/4 참고 에뮬에서는 확인 불가능
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            withAnimation {
+                                self.isShowing.toggle()
+                            }
+                        }
+                        .onChange(of: inputString, perform: { newValue in
+                            if String(describing:newValue).count == 0 {
+//                                inputValue = 0
+                                inputString = "0"
+                            } else if String(describing:newValue).count > 10 {
+                                // 10 글자까지 제한
+                                inputString = String(newValue.prefix(10))
+//                                inputValue = Int(newValue.prefix(10))!
+                            } else {
+                                print("newValue \(newValue)")
+                                inputString = newValue
+//                                inputValue = Int(newValue)!
+                            }
+                        })
+                        .multilineTextAlignment(.trailing)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 20))
+                    Rectangle().frame(height: 1)
+                        .padding(.horizontal, 20).foregroundColor(Color.black)
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(0..<exchangeViewModel.myCountry.count, id: \.self) { number in
+                                HStack (alignment: .center, spacing: 15) {
+                                    Image("testFlag")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 60, height: 60)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().stroke(Color.yellow, lineWidth: 3))
+                                    Text("\(exchangeViewModel.myCountry[number].cur_unit)")
+                                        .fontWeight(.light)
+                                        .font(.system(size: 30))
+                                    Spacer()
+                                    VStack (alignment: .trailing){
+                                        ExchangeTextView(inputValue: $inputString, number)
+                                        Text("\(exchangeViewModel.myCountry[number].cur_nm)")
+                                    }.onTapGesture {
+                                        // 국가 tap
+                                    }
+                                }
+                                .onDrag{
+                                    print("Drag")
+                                    self.draggedCountry = exchangeViewModel.myCountry[number]
+                                    return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].cur_nm)
+                                }
+                                .onDrop(of: [exchangeViewModel.myCountry[number].cur_nm], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry))
+                                .frame(height: 100)
+                                .background(Color.white)
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                    }
+                    if self.isShowing {
+                        CalCulateKeyboardView($inputString, $isShowing)
+                            .frame(
+                                width: UIScreen.main.bounds.width,
+                                height: UIScreen.main.bounds.height / 2.5,
+                                alignment: .center
+                            )
+                            .transition(.move(edge: .bottom).animation(.easeInOut(duration:0.5)))
+                            .edgesIgnoringSafeArea(.bottom)
                     }
                 }
+                .navigationTitle("")
+                .navigationBarHidden(true)
+                
             }
-            .navigationTitle("")
-            .navigationBarHidden(true)
         }
-        
-        
-        
         //                List (exchangeViewModel.exchangeModels){ exchange in
         //                    ExchangeCalCellView(exchange)
         //                        .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
@@ -131,44 +149,30 @@ struct MyDropDelegate: DropDelegate {
     
     // 드랍 처리
     func performDrop(info: DropInfo) -> Bool {
-        print("performDrop performDrop")
+        myCountry = Array(realm.objects(MyCountryModel.self))
         return true
     }
     
     // 드랍에서 벗어났을 때
     func dropExited(info: DropInfo) {
-        print("dropExited dropExited")
     }
     
     // 드랍 시작
     func dropEntered(info: DropInfo) {
-        print("dropEntered dropEntered")
-        print("draggedCountry \(draggedCountry)")
-        print("currentCountry \(currentCountry)")
         if draggedCountry != currentCountry {
             let from = myCountry.firstIndex(of: draggedCountry)!
             let to = myCountry.firstIndex(of: currentCountry)!
-            print("before from \(from)")
-            print("before to \(to)")
-            //            ExchangeViewModel().changeRealmView(from, to)
-            withAnimation {
-                print("withAnimation")
-                print("after from \(from)")
-                print("after to \(to)")
-                self.myCountry.move(fromOffsets: IndexSet(integer: from), toOffset: (to > from ? to + 1 : to))
-            }
+            ExchangeViewModel().changeRealmView(from, to)
         }
     }
     
     // 드랍 변경
     func dropUpdated(info: DropInfo) -> DropProposal? {
-        //        print("dropUpdated dropUpdated")
         return DropProposal(operation: .move)
     }
     
     // 드랍 유효 여부
     func validateDrop(info: DropInfo) -> Bool {
-        print("validateDrop validateDrop")
         return true
     }
 }

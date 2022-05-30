@@ -7,10 +7,10 @@
 
 import Foundation
 
-class TestViewModel: ObservableObject {
+class ExchangeTextViewModel: ObservableObject {
     @Published var viewModelValue = 0
 
     func chagne(_ value: Int) {
-        viewModelValue =  10 * value
+        viewModelValue = 10 * value
     }
 }

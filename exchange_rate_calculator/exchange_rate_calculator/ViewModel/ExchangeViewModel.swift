@@ -71,32 +71,14 @@ class ExchangeViewModel: ObservableObject {
     }
     
     func changeRealmView(_ from: Int, _ to: Int) {
-        let testCountry = realm.objects(MyCountryModel.self)
-        let tempA = testCountry[from].cur_unit
-        let tempB = testCountry[from].cur_nm
+        let realmCountry = realm.objects(MyCountryModel.self)
+        let tempCur_unit = realmCountry[from].cur_unit
+        let tempCur_nm = realmCountry[from].cur_nm
         try! realm.write {
-            testCountry[from].cur_unit = testCountry[to].cur_unit
-            testCountry[from].cur_nm = testCountry[to].cur_nm
-            testCountry[to].cur_unit = tempA
-            testCountry[to].cur_nm = tempB
+            realmCountry[from].cur_unit = realmCountry[to].cur_unit
+            realmCountry[from].cur_nm = realmCountry[to].cur_nm
+            realmCountry[to].cur_unit = tempCur_unit
+            realmCountry[to].cur_nm = tempCur_nm
         }
-        
-        //        let testCountry = realm.objects(MyCountryModel.self)
-        //        for i in 0..<tempRealmCountry.count {
-        //            print("i \(i)")
-        //            //                print("after tempRealmCountry \(tempRealmCountry)")
-        //            //            print("testCountry[i].cur_unit \(testCountry[i].cur_unit)")
-        //            //            print("myCountry[i].cur_unit \(myCountry[i].cur_unit)")
-        //
-        //            try! realm.write {
-        //                //                    realm.add(myCountryModel, update: .modified)
-        //                //                realm.add(a, update: .)
-        //                testCountry[i].cur_unit = tempRealmCountry[i].cur_unit
-        //                testCountry[i].cur_nm = tempRealmCountry[i].cur_nm
-        //            }
-        //        }
-        
-        
-        
     }
 }

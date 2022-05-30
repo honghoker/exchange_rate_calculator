@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct MYNavigationView: View {
+struct SettingView: View {
     var body: some View {
-        Text("hi")
+        Text("설정 페이지")
     }
 }
 
-struct MYNavigationView_Previews: PreviewProvider {
+struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        MYNavigationView()
+        SettingView()
     }
 }
