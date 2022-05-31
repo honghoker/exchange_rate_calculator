@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5139A4B628451DC000910525 /* DunamuRowView.swift */; };
+		5151DAA0283F0C9000943B14 /* FlagKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5151DA9F283F0C9000943B14 /* FlagKit */; };
+		5151DAA2283F582400943B14 /* Dunamu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA1283F582300943B14 /* Dunamu.swift */; };
+		5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA5283F5FCB00943B14 /* DunamuModel.swift */; };
+		5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA7283F63BB00943B14 /* DunamuMainView.swift */; };
+		5151DAAA283F643500943B14 /* Country.json in Resources */ = {isa = PBXBuildFile; fileRef = 5151DAA9283F643500943B14 /* Country.json */; };
+		5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAAB283F65B000943B14 /* CountryModel.swift */; };
+		5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAAD283F686C00943B14 /* DunamuViewModel.swift */; };
 		51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */; };
 		51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB409283B8A1500EA2764 /* ContentView.swift */; };
 		51CAB40C283B8A1600EA2764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB40B283B8A1600EA2764 /* Assets.xcassets */; };
@@ -28,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5139A4B628451DC000910525 /* DunamuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuRowView.swift; sourceTree = "<group>"; };
+		5151DAA1283F582300943B14 /* Dunamu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dunamu.swift; sourceTree = "<group>"; };
+		5151DAA5283F5FCB00943B14 /* DunamuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuModel.swift; sourceTree = "<group>"; };
+		5151DAA7283F63BB00943B14 /* DunamuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuMainView.swift; sourceTree = "<group>"; };
+		5151DAA9283F643500943B14 /* Country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Country.json; sourceTree = "<group>"; };
+		5151DAAB283F65B000943B14 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		5151DAAD283F686C00943B14 /* DunamuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuViewModel.swift; sourceTree = "<group>"; };
 		51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchange_rate_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exchange_rate_calculatorApp.swift; sourceTree = "<group>"; };
 		51CAB409283B8A1500EA2764 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51CAB425283B8C9800EA2764 /* Realm in Frameworks */,
+				5151DAA0283F0C9000943B14 /* FlagKit in Frameworks */,
 				51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */,
 				51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */,
 				51CAB41D283B8BFC00EA2764 /* FirebaseFunctions in Frameworks */,
@@ -105,6 +121,9 @@
 		51CAB428283B8CBB00EA2764 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5151DAA5283F5FCB00943B14 /* DunamuModel.swift */,
+				5151DAA9283F643500943B14 /* Country.json */,
+				5151DAAB283F65B000943B14 /* CountryModel.swift */,
 				BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */,
 			);
 			path = Model;
@@ -114,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				51CAB409283B8A1500EA2764 /* ContentView.swift */,
+				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
+				5139A4B628451DC000910525 /* DunamuRowView.swift */,
 				BC123469283D087E0032FC56 /* ExchangeTextView.swift */,
 				BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */,
 				BC801A682840B4C400F3D5D2 /* SettingView.swift */,
@@ -125,7 +146,7 @@
 		51CAB42C283B8CE500EA2764 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */,
+				5151DAAD283F686C00943B14 /* DunamuViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -140,6 +161,7 @@
 		51CAB430283B8D0500EA2764 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				5151DAA1283F582300943B14 /* Dunamu.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -168,6 +190,7 @@
 				51CAB421283B8C1700EA2764 /* Alamofire */,
 				51CAB424283B8C9800EA2764 /* Realm */,
 				51CAB426283B8C9800EA2764 /* RealmSwift */,
+				5151DA9F283F0C9000943B14 /* FlagKit */,
 			);
 			productName = exchange_rate_calculator;
 			productReference = 51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */;
@@ -201,6 +224,7 @@
 				51CAB417283B8BFC00EA2764 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				51CAB420283B8C1700EA2764 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				51CAB423283B8C9800EA2764 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */,
 			);
 			productRefGroup = 51CAB405283B8A1500EA2764 /* Products */;
 			projectDirPath = "";
@@ -219,6 +243,7 @@
 				51CAB40F283B8A1600EA2764 /* Preview Assets.xcassets in Resources */,
 				51CAB416283B8BA500EA2764 /* GoogleService-Info.plist in Resources */,
 				51CAB40C283B8A1600EA2764 /* Assets.xcassets in Resources */,
+				5151DAAA283F643500943B14 /* Country.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
+				5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */,
+				5151DAA2283F582400943B14 /* Dunamu.swift in Sources */,
+				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
+				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
+				5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */,
 				BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */,
 				BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */,
 				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
@@ -237,6 +268,7 @@
 				BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */,
 				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
+				5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +397,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"exchange_rate_calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 6R725M7WWC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "exchange-rate-calculator-Info.plist";
@@ -395,6 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"exchange_rate_calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 6R725M7WWC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "exchange-rate-calculator-Info.plist";
@@ -441,6 +475,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/madebybowtie/FlagKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		51CAB417283B8BFC00EA2764 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -468,6 +510,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5151DA9F283F0C9000943B14 /* FlagKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */;
+			productName = FlagKit;
+		};
 		51CAB418283B8BFC00EA2764 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 51CAB417283B8BFC00EA2764 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FlagKit
 import RealmSwift
 
 struct ContentView: View {
@@ -173,6 +174,7 @@ struct MyDropDelegate: DropDelegate {
             let to = myCountry.firstIndex(of: currentCountry)!
             ExchangeViewModel().changeRealmView(from, to)
         }
+>>>>>>> main
     }
     
     // 드랍 변경

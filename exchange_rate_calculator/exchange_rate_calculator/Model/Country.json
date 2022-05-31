@@ -1,0 +1,296 @@
+[
+ {
+    "key": 1,
+    "currencyCode": "USD",
+    "currencyName": "달러",
+    "country": "미국"
+},
+ {
+    "key": 2,
+    "currencyCode": "JPY",
+    "currencyName": "100엔",
+    "country": "일본"
+},
+ {
+    "key": 3,
+    "currencyCode": "EUR",
+    "currencyName": "유로",
+    "country": "유로"
+},
+ {
+    "key": 4,
+    "currencyCode": "CNY",
+    "currencyName": "위안",
+    "country": "중국"
+},
+ {
+    "key": 5,
+    "currencyCode": "HKD",
+    "currencyName": "달러",
+    "country": "홍콩"
+},
+ {
+    "key": 6,
+    "currencyCode": "THB",
+    "currencyName": "바트",
+    "country": "태국"
+},
+ {
+    "key": 7,
+    "currencyCode": "TWD",
+    "currencyName": "달러",
+    "country": "대만"
+},
+ {
+    "key": 8,
+    "currencyCode": "PHP",
+    "currencyName": "페소",
+    "country": "필리핀"
+},
+ {
+    "key": 9,
+    "currencyCode": "SGD",
+    "currencyName": "달러",
+    "country": "싱가포르"
+},
+ {
+    "key": 10,
+    "currencyCode": "AUD",
+    "currencyName": "달러",
+    "country": "호주"
+},
+ {
+    "key": 11,
+    "currencyCode": "VND",
+    "currencyName": "100동",
+    "country": "베트남"
+},
+ {
+    "key": 12,
+    "currencyCode": "GBP",
+    "currencyName": "파운드",
+    "country": "영국"
+},
+ {
+    "key": 13,
+    "currencyCode": "CAD",
+    "currencyName": "달러",
+    "country": "캐나다"
+},
+ {
+    "key": 14,
+    "currencyCode": "MYR",
+    "currencyName": "링기트",
+    "country": "말레이지아"
+},
+ {
+    "key": 15,
+    "currencyCode": "RUB",
+    "currencyName": "루블",
+    "country": "러시아"
+},
+ {
+    "key": 16,
+    "currencyCode": "ZAR",
+    "currencyName": "랜드",
+    "country": "남아공화국"
+},
+ {
+    "key": 17,
+    "currencyCode": "NOK",
+    "currencyName": "크로나",
+    "country": "노르웨이"
+},
+ {
+    "key": 18,
+    "currencyCode": "NZD",
+    "currencyName": "달러",
+    "country": "뉴질랜드"
+},
+ {
+    "key": 19,
+    "currencyCode": "DKK",
+    "currencyName": "크로나",
+    "country": "덴마크"
+},
+ {
+    "key": 20,
+    "currencyCode": "MXN",
+    "currencyName": "페소",
+    "country": "멕시코"
+},
+ {
+    "key": 21,
+    "currencyCode": "MNT",
+    "currencyName": "투그릭",
+    "country": "몽골"
+},
+ {
+    "key": 22,
+    "currencyCode": "BHD",
+    "currencyName": "디나르",
+    "country": "바레인"
+},
+ {
+    "key": 23,
+    "currencyCode": "BDT",
+    "currencyName": "타카",
+    "country": "방글라데시"
+},
+ {
+    "key": 24,
+    "currencyCode": "BRL",
+    "currencyName": "헤알",
+    "country": "브라질"
+},
+ {
+    "key": 25,
+    "currencyCode": "BND",
+    "currencyName": "달러",
+    "country": "브루나이"
+},
+ {
+    "key": 26,
+    "currencyCode": "SAR",
+    "currencyName": "리얄",
+    "country": "사우디아라비아"
+},
+ {
+    "key": 27,
+    "currencyCode": "LKR",
+    "currencyName": "루피",
+    "country": "스리랑카"
+},
+ {
+    "key": 28,
+    "currencyCode": "SEK",
+    "currencyName": "크로나",
+    "country": "스웨덴"
+},
+ {
+    "key": 29,
+    "currencyCode": "CHF",
+    "currencyName": "프랑",
+    "country": "스위스"
+},
+ {
+    "key": 30,
+    "currencyCode": "AED",
+    "currencyName": "디르함",
+    "country": "아랍에미리트공화국"
+},
+ {
+    "key": 31,
+    "currencyCode": "DZD",
+    "currencyName": "알제리 디나르",
+    "country": "알제리"
+},
+ {
+    "key": 32,
+    "currencyCode": "OMR",
+    "currencyName": "리얄",
+    "country": "오만"
+},
+ {
+    "key": 33,
+    "currencyCode": "JOD",
+    "currencyName": "디나르",
+    "country": "요르단"
+},
+ {
+    "key": 34,
+    "currencyCode": "ILS",
+    "currencyName": "셰켈",
+    "country": "이스라엘"
+},
+ {
+    "key": 35,
+    "currencyCode": "EGP",
+    "currencyName": "파운드",
+    "country": "이집트"
+},
+ {
+    "key": 36,
+    "currencyCode": "INR",
+    "currencyName": "루피",
+    "country": "인도"
+},
+ {
+    "key": 37,
+    "currencyCode": "IDR",
+    "currencyName": "100루피아",
+    "country": "인도네시아"
+},
+ {
+    "key": 38,
+    "currencyCode": "CZK",
+    "currencyName": "코루나",
+    "country": "체코"
+},
+ {
+    "key": 39,
+    "currencyCode": "CLP",
+    "currencyName": "페소",
+    "country": "칠레"
+},
+ {
+    "key": 40,
+    "currencyCode": "KZT",
+    "currencyName": "텡게",
+    "country": "카자흐스탄"
+},
+ {
+    "key": 41,
+    "currencyCode": "QAR",
+    "currencyName": "리얄",
+    "country": "카타르"
+},
+ {
+    "key": 42,
+    "currencyCode": "KES",
+    "currencyName": "실링",
+    "country": "케냐"
+},
+ {
+    "key": 43,
+    "currencyCode": "COP",
+    "currencyName": "페소",
+    "country": "콜롬비아"
+},
+ {
+    "key": 44,
+    "currencyCode": "KWD",
+    "currencyName": "디나르",
+    "country": "쿠웨이트"
+},
+ {
+    "key": 45,
+    "currencyCode": "TZS",
+    "currencyName": "실링",
+    "country": "탄자니아"
+},
+ {
+    "key": 46,
+    "currencyCode": "TRY",
+    "currencyName": "리라",
+    "country": "터키"
+},
+ {
+    "key": 47,
+    "currencyCode": "PKR",
+    "currencyName": "루피",
+    "country": "파키스탄"
+},
+ {
+    "key": 48,
+    "currencyCode": "PLN",
+    "currencyName": "즈워티",
+    "country": "폴란드"
+},
+ {
+    "key": 49,
+    "currencyCode": "HUF",
+    "currencyName": "포린트",
+    "country": "헝가리"
+}
+]
