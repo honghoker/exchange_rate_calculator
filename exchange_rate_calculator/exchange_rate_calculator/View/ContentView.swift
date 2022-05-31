@@ -174,7 +174,6 @@ struct MyDropDelegate: DropDelegate {
             let to = myCountry.firstIndex(of: currentCountry)!
             ExchangeViewModel().changeRealmView(from, to)
         }
->>>>>>> main
     }
     
     // 드랍 변경
