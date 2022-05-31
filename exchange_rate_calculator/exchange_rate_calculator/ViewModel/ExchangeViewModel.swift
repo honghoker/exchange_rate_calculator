@@ -1,10 +1,3 @@
-//
-//  ExchangeViewModel.swift
-//  exchange_rate_calculator
-//
-//  Created by 홍은표 on 2022/05/23.
-//
-
 import Foundation
 import Alamofire
 import Combine
@@ -14,9 +7,9 @@ class ExchangeViewModel: ObservableObject {
     let realm = try! Realm()
     var subscription = Set<AnyCancellable>()
     var realmCheck = false
-    
+
     @Published var myCountry = [MyCountryModel]()
-    
+
     init() {
         print(#fileID, #function, #line, "")
         fetchExchangeRate()
@@ -54,7 +47,7 @@ class ExchangeViewModel: ObservableObject {
         //            realm.add(myCountryModel4)
         //        }
     }
-    
+
     fileprivate func fetchExchangeRate() {
         print(#fileID, #function, #line, "")
         myCountry = Array(realm.objects(MyCountryModel.self))
@@ -68,7 +61,7 @@ class ExchangeViewModel: ObservableObject {
         //                self.exchangeModels = receiveValue
         //            }).store(in: &subscription)
     }
-    
+
     func changeRealmView(_ from: Int, _ to: Int) {
         let realmCountry = realm.objects(MyCountryModel.self)
         let tempCur_unit = realmCountry[from].cur_unit
