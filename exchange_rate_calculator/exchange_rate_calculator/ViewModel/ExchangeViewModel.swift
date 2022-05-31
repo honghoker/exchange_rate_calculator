@@ -15,7 +15,6 @@ class ExchangeViewModel: ObservableObject {
     var subscription = Set<AnyCancellable>()
     var realmCheck = false
     
-    @Published var exchangeModels = [ExchangeModel]()
     @Published var myCountry = [MyCountryModel]()
     
     init() {

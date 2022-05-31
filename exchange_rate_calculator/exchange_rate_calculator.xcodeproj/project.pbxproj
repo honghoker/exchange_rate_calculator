@@ -19,10 +19,7 @@
 		51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB421283B8C1700EA2764 /* Alamofire */; };
 		51CAB425283B8C9800EA2764 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB424283B8C9800EA2764 /* Realm */; };
 		51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB426283B8C9800EA2764 /* RealmSwift */; };
-		51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */; };
 		51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */; };
-		51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB431283B8D1100EA2764 /* KoreaExim.swift */; };
-		51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* ApiKey.swift */; };
 		BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123469283D087E0032FC56 /* ExchangeTextView.swift */; };
 		BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */; };
 		BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */; };
@@ -37,10 +34,7 @@
 		51CAB40B283B8A1600EA2764 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51CAB40E283B8A1600EA2764 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51CAB415283B8BA500EA2764 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
 		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
-		51CAB431283B8D1100EA2764 /* KoreaExim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreaExim.swift; sourceTree = "<group>"; };
-		51CAB435283B8E5E00EA2764 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BC123469283D087E0032FC56 /* ExchangeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTextView.swift; sourceTree = "<group>"; };
 		BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateKeyboardView.swift; sourceTree = "<group>"; };
@@ -111,7 +105,6 @@
 		51CAB428283B8CBB00EA2764 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */,
 				BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */,
 			);
 			path = Model;
@@ -147,8 +140,6 @@
 		51CAB430283B8D0500EA2764 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB431283B8D1100EA2764 /* KoreaExim.swift */,
-				51CAB435283B8E5E00EA2764 /* ApiKey.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -238,16 +229,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */,
 				BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */,
 				BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */,
-				51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */,
 				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
 				BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */,
 				BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */,
 				BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */,
 				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
-				51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,8 @@ struct ContentView: View {
     @State var inputString = "" // textField String value
 //    @State var inputValue = 1000 // textField Int value
     
+    @State var calculateValueText = ""
+    
     @State var draggedCountry: MyCountryModel = MyCountryModel() // drag 상태인 국가 (realm)
     
     @State var destination: AnyView? = nil // set page 로 이동하는 View
@@ -58,6 +60,13 @@ struct ContentView: View {
                         }
                     }
                     .padding()
+                    HStack{
+                        Spacer()
+                        Text("\(calculateValueText)")
+                    }
+                    .foregroundColor(.gray)
+                    .font(.system(size: 15))
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                     // 1차 완성 추후에 이거 보완 수정
                     TextField("1000", text: $inputString)
                         .onTapGesture {
@@ -71,9 +80,9 @@ struct ContentView: View {
                             if String(describing:newValue).count == 0 {
 //                                inputValue = 0
                                 inputString = "0"
-                            } else if String(describing:newValue).count > 10 {
-                                // 10 글자까지 제한
-                                inputString = String(newValue.prefix(10))
+                            } else if String(describing:newValue).count > 20 {
+                                // 20 글자까지 제한
+                                inputString = String(newValue.prefix(20))
 //                                inputValue = Int(newValue.prefix(10))!
                             } else {
                                 print("newValue \(newValue)")
@@ -119,7 +128,7 @@ struct ContentView: View {
                         }
                     }
                     if self.isShowing {
-                        CalCulateKeyboardView($inputString, $isShowing)
+                        CalCulateKeyboardView($inputString, $isShowing, $calculateValueText)
                             .frame(
                                 width: UIScreen.main.bounds.width,
                                 height: UIScreen.main.bounds.height / 2.5,
