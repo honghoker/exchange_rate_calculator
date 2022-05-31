@@ -27,6 +27,12 @@
 		51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB421283B8C1700EA2764 /* Alamofire */; };
 		51CAB425283B8C9800EA2764 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB424283B8C9800EA2764 /* Realm */; };
 		51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB426283B8C9800EA2764 /* RealmSwift */; };
+		51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */; };
+		BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123469283D087E0032FC56 /* ExchangeTextView.swift */; };
+		BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */; };
+		BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */; };
+		BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC801A682840B4C400F3D5D2 /* SettingView.swift */; };
+		BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +49,13 @@
 		51CAB40B283B8A1600EA2764 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51CAB40E283B8A1600EA2764 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51CAB415283B8BA500EA2764 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BC123469283D087E0032FC56 /* ExchangeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTextView.swift; sourceTree = "<group>"; };
+		BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateKeyboardView.swift; sourceTree = "<group>"; };
+		BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountryModel.swift; sourceTree = "<group>"; };
+		BC801A682840B4C400F3D5D2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTextViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +124,7 @@
 				5151DAA5283F5FCB00943B14 /* DunamuModel.swift */,
 				5151DAA9283F643500943B14 /* Country.json */,
 				5151DAAB283F65B000943B14 /* CountryModel.swift */,
+				BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +135,10 @@
 				51CAB409283B8A1500EA2764 /* ContentView.swift */,
 				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
 				5139A4B628451DC000910525 /* DunamuRowView.swift */,
+				BC123469283D087E0032FC56 /* ExchangeTextView.swift */,
+				BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */,
+				BC801A682840B4C400F3D5D2 /* SettingView.swift */,
+				BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +260,13 @@
 				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
 				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
 				5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */,
+				BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */,
+				BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */,
+				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
+				BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */,
+				BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */,
+				BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */,
+				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 				5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */,
 			);
