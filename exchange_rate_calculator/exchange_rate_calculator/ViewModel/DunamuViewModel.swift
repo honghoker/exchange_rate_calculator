@@ -14,12 +14,29 @@ class DunamuViewModel: ObservableObject {
     
     @Published var dunamuModels = [DunamuModel]()
     
+    private var contryModels = [CountryModel]()
+    
     init() {
         print(#fileID, #function, #line, "")
+        jsonInit()
         fetchAllDunamu()
+//        fetchMyDunamu()
+    }
+    func jsonInit() {
+        guard
+            let jsonData = loadJson(),
+            let contryModels = try? JSONDecoder().decode([CountryModel].self, from: jsonData)
+        else { return }
+        
+        self.contryModels = contryModels
+        
+        let resultMap = contryModels.map({  String("FRX.KRW\($0.currencyCode)") })
+        let codes = resultMap.joined(separator: ",")
+        
+        print(codes)
     }
     
-    func load() -> Data? {
+    func loadJson() -> Data? {
         // 1. 불러올 파일 이름
         let fileNm: String = "Country"
         // 2. 불러올 파일의 확장자명
@@ -38,14 +55,12 @@ class DunamuViewModel: ObservableObject {
         }
     }
     
-    fileprivate func fetchAllDunamu() {
+    fileprivate func fetchAllDunamu() { // 모든
         print(#fileID, #function, #line, "")
-        guard
-            let jsonData = load(),
-            let userList = try? JSONDecoder().decode([CountryModel].self, from: jsonData)
-        else { return }
-
-        let resultMap = userList.map({  String("FRX.KRW\($0.currencyCode)") })
+        // MARK: - realm으로 기준나라코드 가져오기
+        let baseCountryCode = "KRW"
+        // MARK: - FRX.(기준나라)(대상나라)
+        let resultMap = self.contryModels.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") })
         let codes = resultMap.joined(separator: ",")
         
         print(codes)
@@ -59,4 +74,24 @@ class DunamuViewModel: ObservableObject {
             }).store(in: &subsription)
     }
     
+    fileprivate func fetchMyDunamu() { // 사용자가 추가한 나라만
+        print(#fileID, #function, #line, "")
+        // MARK: - realm으로 기준나라코드 가져오기
+        let baseCountryCode = "KRW"
+        // MARK: - realm으로 저장된 나라들 가져오기
+        let myCountryCode = ["USD", "JPY", "EUR"]
+        
+        let resultMap = myCountryCode.map({  String("FRX.\(baseCountryCode)\($0)") })
+        let codes = resultMap.joined(separator: ",")
+        
+        print(codes)
+        AF.request(Dunamu.getMy(codes: codes))
+            .publishDecodable(type: [DunamuModel].self)
+            .compactMap { $0.value }
+            .sink(receiveCompletion: { completion in
+                print("데이터스트림 완료")
+            }, receiveValue: { receiveValue in
+                self.dunamuModels = receiveValue
+            }).store(in: &subsription)
+    }
 }

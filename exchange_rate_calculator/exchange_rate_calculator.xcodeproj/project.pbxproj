@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5139A4B628451DC000910525 /* DunamuRowView.swift */; };
 		5151DAA0283F0C9000943B14 /* FlagKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5151DA9F283F0C9000943B14 /* FlagKit */; };
 		5151DAA2283F582400943B14 /* Dunamu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA1283F582300943B14 /* Dunamu.swift */; };
 		5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA5283F5FCB00943B14 /* DunamuModel.swift */; };
-		5151DAA8283F63BB00943B14 /* JsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA7283F63BB00943B14 /* JsonTest.swift */; };
+		5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAA7283F63BB00943B14 /* DunamuMainView.swift */; };
 		5151DAAA283F643500943B14 /* Country.json in Resources */ = {isa = PBXBuildFile; fileRef = 5151DAA9283F643500943B14 /* Country.json */; };
 		5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAAB283F65B000943B14 /* CountryModel.swift */; };
 		5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAAD283F686C00943B14 /* DunamuViewModel.swift */; };
@@ -26,16 +27,13 @@
 		51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB421283B8C1700EA2764 /* Alamofire */; };
 		51CAB425283B8C9800EA2764 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB424283B8C9800EA2764 /* Realm */; };
 		51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB426283B8C9800EA2764 /* RealmSwift */; };
-		51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */; };
-		51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */; };
-		51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB431283B8D1100EA2764 /* KoreaExim.swift */; };
-		51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB435283B8E5E00EA2764 /* ApiKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5139A4B628451DC000910525 /* DunamuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuRowView.swift; sourceTree = "<group>"; };
 		5151DAA1283F582300943B14 /* Dunamu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dunamu.swift; sourceTree = "<group>"; };
 		5151DAA5283F5FCB00943B14 /* DunamuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuModel.swift; sourceTree = "<group>"; };
-		5151DAA7283F63BB00943B14 /* JsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTest.swift; sourceTree = "<group>"; };
+		5151DAA7283F63BB00943B14 /* DunamuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuMainView.swift; sourceTree = "<group>"; };
 		5151DAA9283F643500943B14 /* Country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Country.json; sourceTree = "<group>"; };
 		5151DAAB283F65B000943B14 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		5151DAAD283F686C00943B14 /* DunamuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuViewModel.swift; sourceTree = "<group>"; };
@@ -45,10 +43,6 @@
 		51CAB40B283B8A1600EA2764 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51CAB40E283B8A1600EA2764 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51CAB415283B8BA500EA2764 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
-		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
-		51CAB431283B8D1100EA2764 /* KoreaExim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoreaExim.swift; sourceTree = "<group>"; };
-		51CAB435283B8E5E00EA2764 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -115,7 +109,6 @@
 		51CAB428283B8CBB00EA2764 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB429283B8CBB00EA2764 /* ExchangeModel.swift */,
 				5151DAA5283F5FCB00943B14 /* DunamuModel.swift */,
 				5151DAA9283F643500943B14 /* Country.json */,
 				5151DAAB283F65B000943B14 /* CountryModel.swift */,
@@ -127,7 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				51CAB409283B8A1500EA2764 /* ContentView.swift */,
-				5151DAA7283F63BB00943B14 /* JsonTest.swift */,
+				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
+				5139A4B628451DC000910525 /* DunamuRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -135,7 +129,6 @@
 		51CAB42C283B8CE500EA2764 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */,
 				5151DAAD283F686C00943B14 /* DunamuViewModel.swift */,
 			);
 			path = ViewModel;
@@ -151,8 +144,6 @@
 		51CAB430283B8D0500EA2764 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB431283B8D1100EA2764 /* KoreaExim.swift */,
-				51CAB435283B8E5E00EA2764 /* ApiKey.swift */,
 				5151DAA1283F582300943B14 /* Dunamu.swift */,
 			);
 			path = Api;
@@ -246,15 +237,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51CAB42A283B8CBB00EA2764 /* ExchangeModel.swift in Sources */,
-				51CAB432283B8D1100EA2764 /* KoreaExim.swift in Sources */,
-				51CAB42E283B8CE500EA2764 /* ExchangeViewModel.swift in Sources */,
 				51CAB40A283B8A1500EA2764 /* ContentView.swift in Sources */,
 				5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */,
 				5151DAA2283F582400943B14 /* Dunamu.swift in Sources */,
-				51CAB436283B8E5E00EA2764 /* ApiKey.swift in Sources */,
 				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
-				5151DAA8283F63BB00943B14 /* JsonTest.swift in Sources */,
+				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
+				5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 				5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */,
 			);

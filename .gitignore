@@ -94,6 +94,3 @@ iOSInjectionProject/
 ._.DS_Store
 .**/DS_Sotre
 .**/_.DS_Store
-
-# ApiKey
-ApiKey.swift

@@ -9,15 +9,15 @@ import Foundation
 
 struct DunamuModel: Codable, Identifiable {
     let uuid = UUID()
-    let code: String // "FRX.KRWUSD"
-    let currencyCode: String // "USD"
-    let currencyName: String? // "달러"
-    let country: String? // "미국"
-    let name: String? // "미국 (KRW/USD)"
-    let date: String // "2022-05-26"
-    let time: String // "15:26:23"
+    let code: String // 요청 url ex) "FRX.KRWUSD"
+    let currencyCode: String // 통화코드 ex) "USD"
+    let currencyName: String? // 통화이름 ex) "달러"
+    let country: String? // 나라 ex) "미국"
+    let name: String? // 나라이름, 요청코드 "미국 (KRW/USD)"
+    let date: String // 갱신날짜 "2022-05-26"
+    let time: String // 갱신시간 "15:26:23"
     let recurrenceCount: Int // 409
-    let basePrice: Double // 1268.00
+    let basePrice: Double // 매매기준율 ex) 1268.00
     let openingPrice: Double // 1263.30
     let highPrice: Double // 1269.30
     let lowPrice: Double // 1263.30

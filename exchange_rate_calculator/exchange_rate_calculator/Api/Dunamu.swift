@@ -14,7 +14,7 @@ let dunamuBaseURL = "https://quotation-api-cdn.dunamu.com/v1/forex/recent"
 
 enum Dunamu: URLRequestConvertible {
     case getAll(codes: String)
-    case getMy
+    case getMy(codes: String)
     
     var baseURL: URL {
         return URL(string: dunamuBaseURL)!
@@ -33,13 +33,10 @@ enum Dunamu: URLRequestConvertible {
         switch self {
         case let .getAll(codes):
             params["codes"] = codes
-//            params["searchdate"] = "20220526"
-//            params["data"] = "AP01"
             return params
-        case .getMy:
+        case let .getMy(codes):
+            params["codes"] = codes
             return params
-        default:
-            return Parameters()
         }
     }
     
@@ -64,8 +61,6 @@ enum Dunamu: URLRequestConvertible {
         case .getMy:
             request = try URLEncoding.default.encode(request, with: parameters)
             print("@@@@@@@@ getMy url : \(request.url)")
-        default:
-            return request
         }
         return request
     }
