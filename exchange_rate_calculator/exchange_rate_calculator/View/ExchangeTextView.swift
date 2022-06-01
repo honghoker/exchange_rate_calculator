@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ExchangeTextView: View {
+
     @ObservedObject var exchangeTextViewModel = ExchangeTextViewModel()
     @Binding var inputValue: String
     var number: Int // 국가 순서 (리스트) 번호
@@ -17,11 +18,11 @@ struct ExchangeTextView: View {
     init(inputValue: Binding<String>, _ number: Int) {
         self._inputValue = inputValue
         self.number = number
-        exchangeTextViewModel.chagne(number)
+        exchangeTextViewModel.chagne(Double(number))
     }
     
     var body: some View {
-        Text("\(Int(inputValue == "" ? "1000" : inputValue)! * exchangeTextViewModel.viewModelValue)")
+        Text("\(Double(inputValue == "" ? "0" : inputValue)! * exchangeTextViewModel.viewModelValue, specifier: "%.4f")")
 //            .lineLimit(1)
     }
 }

@@ -10,6 +10,22 @@ import Combine
 import FlagKit
 import RealmSwift
 
+// MARK: extenstion
+extension NumberFormatter {
+    static var decimal: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 3
+        formatter.numberStyle = .decimal
+        return formatter
+    }
+}
+
+extension Double {
+    var cleanValue: String {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+}
+
 struct ContentView: View {
     @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
     
@@ -68,8 +84,7 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 15))
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
-                    // 1차 완성 추후에 이거 보완 수정
-                    TextField("1000", text: $inputString)
+                    TextField("0", text: $inputString)
                         .onTapGesture {
                             // 기본 textField 이용시 사용하는 키보드 사용을 중지하도록 제어할 수 있는 항목에게 요청 -> https://seons-dev.tistory.com/4 참고 에뮬에서는 확인 불가능
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -150,6 +165,8 @@ struct ContentView: View {
         //                }.listStyle(PlainListStyle())
     }
 }
+
+
 
 struct MyDropDelegate: DropDelegate {
     let realm = try! Realm()

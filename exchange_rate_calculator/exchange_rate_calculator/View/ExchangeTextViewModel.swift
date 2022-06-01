@@ -8,9 +8,9 @@
 import Foundation
 
 class ExchangeTextViewModel: ObservableObject {
-    @Published var viewModelValue = 0
+    @Published var viewModelValue = 0.0
 
-    func chagne(_ value: Int) {
+    func chagne(_ value: Double) {
         viewModelValue = 10 * value
     }
 }
