@@ -22,7 +22,7 @@ struct DunamuRowView: View {
         let result = String(dunamu.currencyCode[...endIdx])
         let flag = Flag(countryCode: result)
         let originalImage = flag?.originalImage
-        
+
         Button(action: {
             print(dunamu.currencyCode)
         }, label: {
