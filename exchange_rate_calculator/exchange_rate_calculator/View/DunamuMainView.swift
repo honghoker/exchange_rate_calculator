@@ -9,6 +9,7 @@ import SwiftUI
 import FlagKit
 import Introspect
 import UIKit
+import RealmSwift
 
 class EditHelper: ObservableObject {
     @Published var currencyEdit: Bool = false
@@ -42,55 +43,79 @@ class RefreshControlHelper {
 struct DunamuMainView: View {
     @ObservedObject var dunamuViewModel = DunamuViewModel()
     @ObservedObject var editHelper = EditHelper()
+    @ObservedObject var myCountryList = BindableResults(results: try! Realm().objects(MyCountryModel.self))
+    
+    //    myCountryList.results
+    
+    init() {
+        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
+    }
     
     let refreshControlHelper = RefreshControlHelper()
     
     var body: some View {
-        VStack {
-            HStack() {
-                Text("하나은행")
-                    .font(.system(size: 16))
+//        NavigationView {
+            
+            
+            VStack {
+//                Rectangle().frame(height: 0)
+//                HStack(spacing: 0) {
+//                    Text("하나은행")
+//                        .font(.system(size: 16))
+//                        .foregroundColor(.black)
+//                        .fontWeight(.bold)
+//                        .frame(alignment: .center)
+//                }
+//                .background(Color.red)
+                Spacer().frame(height : 4)
+                if dunamuViewModel.dunamuModels.isEmpty == false {
+                    HStack {
+                        Text("\(dunamuViewModel.dunamuModels[0].date)")
+                            .font(.system(size: 14))
+                            .foregroundColor(.black)
+                            .fontWeight(.medium)
+                        Text("\(dunamuViewModel.dunamuModels[0].time) 기준")
+                            .font(.system(size: 14))
+                            .foregroundColor(.black)
+                            .fontWeight(.medium)
+                    } // HStack
+                }
+                Spacer().frame(height : 12)
+                Section(header: DunamuMainViewHeader()) {
+                    List(dunamuViewModel.dunamuModels) { dunamu in
+                        DunamuRowView(dunamu, $editHelper.currencyEdit, $myCountryList.results)
+                            .listRowInsets(EdgeInsets())
+                    } // List
+                    .listStyle(.plain)
+                    .introspectTableView {
+                        self.configureRefreshControl($0)
+                    }
+                }
+            } // VStack
+            .padding(0)
+            .navigationTitle("하나은행")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                trailing:
+                    Text(editHelper.currencyEdit ? "취소" : "편집")
+                    .font(.system(size: 14))
                     .foregroundColor(.black)
-                    .fontWeight(.bold)
-                Spacer().frame(width: 10)
-                Text(editHelper.currencyEdit ? "취소" : "편집")
-                    .font(.system(size: 16))
-                    .foregroundColor(.black)
-                    .fontWeight(.bold)
+                    .fontWeight(.medium)
+                    .frame(alignment: .trailing)
                     .onTapGesture {
                         editHelper.toggleEdit()
                     }
-            }
-            Spacer().frame(height : 4)
-            if dunamuViewModel.dunamuModels.isEmpty == false {
-                HStack {
-                    Text("\(dunamuViewModel.dunamuModels[0].date)")
-                        .font(.system(size: 14))
-                        .foregroundColor(.black)
-                        .fontWeight(.medium)
-                    Text("\(dunamuViewModel.dunamuModels[0].time) 기준")
-                        .font(.system(size: 14))
-                        .foregroundColor(.black)
-                        .fontWeight(.medium)
-                } // HStack
-            }
-            Spacer().frame(height : 12)
-            Section(header: DunamuMainViewHeader()) {
-                List(dunamuViewModel.dunamuModels) { dunamu in
-                    DunamuRowView(dunamu, $editHelper.currencyEdit)
-                        .listRowInsets(EdgeInsets())
-                } // List
-                .listStyle(.plain)
-                .introspectTableView {
-                    self.configureRefreshControl($0)
-                }
-            }
-        } // VStack
-        .padding(0)
+            )
+//        } // NavigationView
     } // body
 }
 
 extension DunamuMainView {
+    func checkRealm(_ currencyCode: String) {
+        print(currencyCode)
+        print(myCountryList.results.filter { $0.currencyCode == currencyCode })
+    }
+    
     fileprivate func configureRefreshControl(_ tableView: UITableView) {
         print(#fileID, #function, #line, "")
         let myRefresh = UIRefreshControl()

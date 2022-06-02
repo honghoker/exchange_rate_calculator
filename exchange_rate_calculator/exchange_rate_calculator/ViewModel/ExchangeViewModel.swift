@@ -48,18 +48,10 @@ class ExchangeViewModel: ObservableObject {
     func changeRealmView(_ from: Int, _ to: Int) {
         let realmCountry = realm.objects(MyCountryModel.self)
         let tempCur_currencyCode = realmCountry[from].currencyCode
-        let tempCur_country = realmCountry[from].country
-        let tempCur_currencyName = realmCountry[from].currencyName
-        let tempCur_basePrice = realmCountry[from].basePrice
+
         try! realm.write {
             realmCountry[from].currencyCode = realmCountry[to].currencyCode
-            realmCountry[from].country = realmCountry[to].country
-            realmCountry[from].currencyName = realmCountry[to].currencyName
-            realmCountry[from].basePrice = realmCountry[to].basePrice
             realmCountry[to].currencyCode = tempCur_currencyCode
-            realmCountry[to].country = tempCur_country
-            realmCountry[to].currencyName = tempCur_currencyName
-            realmCountry[to].basePrice = tempCur_basePrice
         }
     }
 }

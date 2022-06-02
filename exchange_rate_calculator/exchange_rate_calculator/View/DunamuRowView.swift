@@ -18,7 +18,7 @@ struct CheckboxStyle: ToggleStyle {
                 .frame(width: 24, height: 24)
                 .foregroundColor(configuration.isOn ? .blue : .gray)
                 .font(.system(size: 20, weight: .regular, design: .default))
-                configuration.label
+            configuration.label
         }
         .onTapGesture {
             withAnimation { configuration.isOn.toggle() }
@@ -27,17 +27,23 @@ struct CheckboxStyle: ToggleStyle {
 }
 
 struct DunamuRowView: View {
-    
     var dunamu: DunamuModel
     
     let realm = try! Realm()
     
     @State var checked: Bool = false
     @Binding var editEnable: Bool
+    @Binding var myCountryList: Results<MyCountryModel>
     
-    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false)) {
+    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ myCountryList: Binding<Results<MyCountryModel>>) {
         self.dunamu = dunamu
         _editEnable = editEnable
+        _myCountryList = myCountryList
+        _checked = State(initialValue: checkListEmpty())
+    }
+    
+    func checkListEmpty() -> Bool {
+        !myCountryList.filter { $0.currencyCode == dunamu.currencyCode }.isEmpty
     }
     
     @ViewBuilder func checkBox() -> some View {
@@ -46,21 +52,22 @@ struct DunamuRowView: View {
             Toggle("", isOn: $checked)
                 .toggleStyle(CheckboxStyle())
                 .padding(.leading, 16)
-                .onReceive([self.checked].publisher.first()) { (value) in
-                    let currencyCode = dunamu.currencyCode
+                .onChange(of: checked){ value in
                     // MARK: - realm에 추가, 삭제
-                    
                     if value == true {
                         // MARK: - 추가
-//                        try! realm.write {
-//                            realm.add(currencyCode)
-//                        }
-                    
+                        let myCountry = MyCountryModel()
+                        myCountry.currencyCode = dunamu.currencyCode
+                        try! realm.write {
+                            realm.add(myCountry)
+                        }
                     } else {
                         // MARK: - 삭제
-//                        try! realm.write {
-//                            realm.delete(currencyCode)
-//                        }
+                        if let data = realm.objects(MyCountryModel.self).filter({$0.currencyCode == dunamu.currencyCode}) .first {
+                            try! realm.write {
+                                realm.delete(data)
+                            }
+                        }
                     }
                 }
         }
@@ -161,23 +168,19 @@ struct DunamuRowView: View {
     }
     
     var body: some View {
-        Button(action: {
-            print(dunamu.currencyCode)
-        }, label: {
-            GeometryReader { proxy in
-                HStack(spacing: 0) {
-                    checkBox()
-                        .frame(width: proxy.size.width * 0.10)
-                    currency()
-                        .frame(minWidth: proxy.size.width * 0.50, maxWidth: proxy.size.width * 0.60, alignment: .leading)
-                    basePrice()
-                        .frame(width: proxy.size.width * 0.20)
-                    changePrice()
-                        .frame(width: proxy.size.width * 0.20)
-                } // HStack
-                .padding(.vertical, 12)
-            } // GeometryReader
-            .frame(minHeight: 60)
-        }) // Button
+        GeometryReader { proxy in
+            HStack(spacing: 0) {
+                checkBox()
+                    .frame(width: proxy.size.width * 0.10)
+                currency()
+                    .frame(minWidth: proxy.size.width * 0.50, maxWidth: proxy.size.width * 0.60, alignment: .leading)
+                basePrice()
+                    .frame(width: proxy.size.width * 0.20)
+                changePrice()
+                    .frame(width: proxy.size.width * 0.20)
+            } // HStack
+            .padding(.vertical, 12)
+        } // GeometryReader
+        .frame(minHeight: 60)
     } // View
 }
