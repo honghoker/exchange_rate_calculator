@@ -27,17 +27,23 @@ struct CheckboxStyle: ToggleStyle {
 }
 
 struct DunamuRowView: View {
-    
     var dunamu: DunamuModel
     
     let realm = try! Realm()
     
     @State var checked: Bool = false
     @Binding var editEnable: Bool
+    @Binding var myCountryList: Results<MyCountryModel>
     
-    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false)) {
+    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ myCountryList: Binding<Results<MyCountryModel>>) {
         self.dunamu = dunamu
         _editEnable = editEnable
+        _myCountryList = myCountryList
+        _checked = State(initialValue: checkListEmpty())
+    }
+    
+    func checkListEmpty() -> Bool {
+        !myCountryList.filter { $0.currencyCode == dunamu.currencyCode }.isEmpty
     }
     
     @ViewBuilder func checkBox() -> some View {
@@ -46,21 +52,22 @@ struct DunamuRowView: View {
             Toggle("", isOn: $checked)
                 .toggleStyle(CheckboxStyle())
                 .padding(.leading, 16)
-                .onReceive([self.checked].publisher.first()) { (value) in
-                    let currencyCode = dunamu.currencyCode
+                .onChange(of: checked){ value in
                     // MARK: - realm에 추가, 삭제
-                    
                     if value == true {
                         // MARK: - 추가
-//                        try! realm.write {
-//                            realm.add(currencyCode)
-//                        }
-                    
+                        let myCountry = MyCountryModel()
+                        myCountry.currencyCode = dunamu.currencyCode
+                        try! realm.write {
+                            realm.add(myCountry)
+                        }
                     } else {
                         // MARK: - 삭제
-//                        try! realm.write {
-//                            realm.delete(currencyCode)
-//                        }
+                        if let data = realm.objects(MyCountryModel.self).filter({$0.currencyCode == dunamu.currencyCode}) .first {
+                            try! realm.write {
+                                realm.delete(data)
+                            }
+                        }
                     }
                 }
         }

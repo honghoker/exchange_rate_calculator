@@ -118,7 +118,7 @@ struct ContentView: View {
                                     VStack (alignment: .trailing){
                                         // 여기
                                         ExchangeTextView(inputValue: $inputString,  exchangeViewModel.basePrice[number], number, exchangeViewModel.myCountry[number].currencyCode)
-                                        Text("\(exchangeViewModel.myCountry[number].country)")
+                                        Text("\(exchangeViewModel.myCountry[number].currencyCode)")
                                     }.onTapGesture {
                                         // 국가 tap
                                     }
@@ -126,9 +126,9 @@ struct ContentView: View {
                                 .onDrag{
                                     print("Drag \(exchangeViewModel.myCountry[number])")
                                     self.draggedCountry = exchangeViewModel.myCountry[number]
-                                    return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].country)
+                                    return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].currencyCode)
                                 }
-                                .onDrop(of: [exchangeViewModel.myCountry[number].country], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry
+                                .onDrop(of: [exchangeViewModel.myCountry[number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry
                                                                                                                    ))
                                 .frame(height: 100)
                                 .background(Color.white)
