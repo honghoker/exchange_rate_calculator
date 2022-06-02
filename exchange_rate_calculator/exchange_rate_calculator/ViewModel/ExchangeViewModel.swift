@@ -14,10 +14,9 @@ class ExchangeViewModel: ObservableObject {
     
     init() {
         print(#fileID, #function, #line, "")
-        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
+        print("realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
         fetchExchangeRate()
         fetchExchangeBasePrice(myCountry)
-        
 //                        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
@@ -31,11 +30,6 @@ class ExchangeViewModel: ObservableObject {
         // MARK: - realm으로 기준나라코드 가져오기
         let baseCountryCode = "KRW"
         // MARK: - realm으로 저장된 나라들 가져오기
-//        let myCountryCode = currencyCode
-        print("@@@@@@@@ fetchExchangeBasePrice before \(currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") }))")
-        
-//        let resultMap = myCountryCode.map({  String("FRX.\(baseCountryCode)\($0)") })
-//        let codes = resultMap.joined(separator: ",")
         let resultMap = currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") })
         let codes = resultMap.joined(separator: ",")
         
@@ -49,7 +43,6 @@ class ExchangeViewModel: ObservableObject {
                 print("receiveValue \(receiveValue)")
                 self.basePrice = receiveValue
             }).store(in: &subscription)
-        print("@@@@@@@@ fetchExchangeBasePrice after \(currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") }))")
     }
     
     func changeRealmView(_ from: Int, _ to: Int) {
