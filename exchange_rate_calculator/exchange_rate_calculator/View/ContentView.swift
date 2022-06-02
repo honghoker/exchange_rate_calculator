@@ -47,7 +47,7 @@ struct ContentView: View {
         
         ZStack{
             VStack {
-                HStack {
+                HStack (alignment: .center, spacing: 0){
                     if mainTextSwitchCheck {
                         Text("환율 계산기")
                             .font(.system(size: 25))
@@ -76,7 +76,7 @@ struct ContentView: View {
                             .foregroundColor(Color.black)
                     }
                 }
-                .padding()
+                    .padding()
                 HStack{
                     Spacer()
                     Text("\(calculateValueText)")
@@ -118,13 +118,13 @@ struct ContentView: View {
                                 Spacer()
                                 VStack (alignment: .trailing){
                                     // 여기
-                                    
-                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number, exchangeViewModel.myCountry[number].currencyCode)
-                                    Text("\(exchangeViewModel.myCountry[number].currencyCode)")
-                                    
+                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number)
+                                    HStack (spacing: 5){
+                                        Text("\(exchangeViewModel.basePrice[number].country!)")
+                                        Text("\(exchangeViewModel.basePrice[number].currencyName!)")
+                                    }
                                 }.onTapGesture {
                                     // 국가 tap
-                                    
                                 }
                             }
                             .onDrag{
@@ -133,10 +133,8 @@ struct ContentView: View {
                                 return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].currencyCode)
                             }
                             
-                            //                            .onDrop(of: [exchangeViewModel.myCountry[number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry
-                            
                             .onDrop(of: [exchangeViewModel.myCountry[number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel
-                                                                                                               ))
+                                                                                                                    ))
                             .frame(height: 100)
                             .background(Color.white)
                         }
@@ -181,7 +179,6 @@ struct MyDropDelegate: DropDelegate {
     // 드랍 시작
     func dropEntered(info: DropInfo) {
         if draggedCountry != currentCountry {
-            print("drop")
             print("draggedCountry \(draggedCountry)")
             print("currentCountry \(currentCountry)")
             let from = myCountry.firstIndex(of: draggedCountry)!

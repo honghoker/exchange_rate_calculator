@@ -35,7 +35,6 @@
 		BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */; };
 		BC66920E2848846E0046DC92 /* ExchangeFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */; };
 		BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC801A682840B4C400F3D5D2 /* SettingView.swift */; };
-		BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */; };
 		BCD5947C28491CE3002D4A05 /* TabBarViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD5947B28491CE3002D4A05 /* TabBarViewTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +61,6 @@
 		BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountryModel.swift; sourceTree = "<group>"; };
 		BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFlagView.swift; sourceTree = "<group>"; };
 		BC801A682840B4C400F3D5D2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTextViewModel.swift; sourceTree = "<group>"; };
 		BCD5947B28491CE3002D4A05 /* TabBarViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,7 +151,6 @@
 				51CAB409283B8A1500EA2764 /* ContentView.swift */,
 				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
 				5139A4B628451DC000910525 /* DunamuRowView.swift */,
-				BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */,
 				BC123469283D087E0032FC56 /* ExchangeTextView.swift */,
 				BC801A682840B4C400F3D5D2 /* SettingView.swift */,
 				BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */,
@@ -288,7 +285,6 @@
 				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
 				5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */,
 				BC66920E2848846E0046DC92 /* ExchangeFlagView.swift in Sources */,
-				BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */,
 				BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */,
 				BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */,
 				BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */,
