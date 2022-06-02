@@ -14,6 +14,8 @@ struct CalCulateKeyboardView: View {
     @Binding var isShowing: Bool
     @Binding var calculateValueText: String
     
+    @State var dotCheck = false
+    
     init(_ inputValue: Binding<String>, _ isShowing: Binding<Bool>, _ calculateValueText: Binding<String>) {
         self._inputValue = inputValue
         self._isShowing = isShowing
@@ -34,7 +36,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "7"
                         }
                         calculateValueText += "7"
@@ -44,7 +48,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "8"
                         }
                         calculateValueText += "8"
@@ -54,7 +60,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "9"
                         }
                         calculateValueText += "9"
@@ -64,8 +72,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText != "" && calculateValueText.last != " " {
+                        if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 20 {
                             calculateValueText += " + "
+                            dotCheck = false
                             inputValue = String(describing: calculate(calculateValueText))
                         }
                     }
@@ -75,7 +84,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "4"
                         }
                         calculateValueText += "4"
@@ -85,7 +96,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "5"
                         }
                         calculateValueText += "5"
@@ -95,7 +108,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "6"
                         }
                         calculateValueText += "6"
@@ -105,9 +120,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText != "" && calculateValueText.last != " " {
-                            print("minus ???")
+                        if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 20 {
                             calculateValueText += " - "
+                            dotCheck = false
                             inputValue = String(describing: calculate(calculateValueText))
                         }
                     }
@@ -117,7 +132,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "1"
                         }
                         calculateValueText += "1"
@@ -127,7 +144,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "2"
                         }
                         calculateValueText += "2"
@@ -137,7 +156,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText == "" {
+                        if calculateValueText.count > 20 {
+                            calculateValueText = String(calculateValueText.prefix(20))
+                        } else if calculateValueText == "" {
                             inputValue += "3"
                         }
                         calculateValueText += "3"
@@ -147,8 +168,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText != "" && calculateValueText.last != " " {
+                        if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 20 {
                             calculateValueText += " * "
+                            dotCheck = false
                             inputValue = String(describing: calculate(calculateValueText))
                         }
                     }
@@ -159,16 +181,16 @@ struct CalCulateKeyboardView: View {
                     .background(Color.white)
                     .onTapGesture {
                         print("calculateValueText \(calculateValueText)")
-                        if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "."{
+                        if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && calculateValueText.count < 20 && !dotCheck{
                             calculateValueText += "."
-//                            inputValue = String(describing: calculateValueText)
+                            dotCheck = true
                         }
                     }
                 Text("0")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if (calculateValueText.last != "0" || calculateValueText.count != 1){
+                        if ((calculateValueText.last != "0" || calculateValueText.count != 1) && calculateValueText.count < 20){
                             calculateValueText += "0"
                             inputValue = String(describing: calculate(calculateValueText))
                         }
@@ -198,8 +220,9 @@ struct CalCulateKeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if calculateValueText != "" && calculateValueText.last != " " {
+                        if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 20 {
                             calculateValueText += " / "
+                            dotCheck = false
                             inputValue = String(describing: calculate(calculateValueText))
                         }
                     }
@@ -224,14 +247,10 @@ func calculate(_ calculateValueText: String) -> String {
 //    return formatter.string(from: result as NSNumber) ?? "n/a"
     
     let calculateValueTexts = calculateValueText.split(separator: " ").map {String($0)}
-    print("test = \(calculateValueTexts)" )
     var result = Double(calculateValueTexts[0])!
     var tempOperation = ""
     for i in 1..<calculateValueTexts.count {
-        print("i = \(i)")
         if calculateValueTexts[i] != "+" && calculateValueTexts[i] != "-" && calculateValueTexts[i] != "*" && calculateValueTexts[i] != "/" {
-            print("if tempOperation \(tempOperation)")
-            print("test[i] \(calculateValueTexts[i])")
             switch tempOperation {
             case "+":
                 result = result + Double(calculateValueTexts[i])!
@@ -246,7 +265,6 @@ func calculate(_ calculateValueText: String) -> String {
             }
         } else {
             tempOperation = calculateValueTexts[i]
-            print("else tempOperation \(tempOperation)")
         }
     }
 

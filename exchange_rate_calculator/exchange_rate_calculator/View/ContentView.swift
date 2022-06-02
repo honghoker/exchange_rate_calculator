@@ -48,7 +48,7 @@ struct ContentView: View {
         
         ZStack{
             VStack {
-                HStack {
+                HStack (alignment: .center, spacing: 0) {
                     Text(mainTextSwitchCheck ? "환율 계산기" : "업데이트 날짜")
                         .font(.system(size: 25))
                         .fontWeight(.black)
@@ -66,7 +66,7 @@ struct ContentView: View {
                             .foregroundColor(Color.black)
                     }
                 }
-                .padding()
+                    .padding()
                 HStack{
                     Spacer()
                     Text("\(calculateValueText)")
@@ -108,13 +108,13 @@ struct ContentView: View {
                                 Spacer()
                                 VStack (alignment: .trailing){
                                     // 여기
-                                    
-                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number, exchangeViewModel.myCountry[number].currencyCode)
-                                    Text("\(exchangeViewModel.myCountry[number].currencyCode)")
-                                    
+                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number)
+                                    HStack (spacing: 5){
+                                        Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.country)
+                                        Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.currencyName)
+                                    }
                                 }.onTapGesture {
                                     // 국가 tap
-                                    
                                 }
                             }
                             .onDrag{
@@ -167,7 +167,6 @@ struct MyDropDelegate: DropDelegate {
     // 드랍 시작
     func dropEntered(info: DropInfo) {
         if draggedCountry != currentCountry {
-            print("drop")
             print("draggedCountry \(draggedCountry)")
             print("currentCountry \(currentCountry)")
             let from = myCountry.firstIndex(of: draggedCountry)!
