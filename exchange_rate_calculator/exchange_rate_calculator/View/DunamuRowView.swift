@@ -8,90 +8,176 @@
 import Foundation
 import SwiftUI
 import FlagKit
- 
+import RealmSwift
+
+struct CheckboxStyle: ToggleStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        return HStack {
+            Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+                .resizable()
+                .frame(width: 24, height: 24)
+                .foregroundColor(configuration.isOn ? .blue : .gray)
+                .font(.system(size: 20, weight: .regular, design: .default))
+                configuration.label
+        }
+        .onTapGesture {
+            withAnimation { configuration.isOn.toggle() }
+        }
+    }
+}
+
 struct DunamuRowView: View {
     
     var dunamu: DunamuModel
     
-    init(_ dunamu: DunamuModel) {
+    let realm = try! Realm()
+    
+    @State var checked: Bool = false
+    @Binding var editEnable: Bool
+    
+    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false)) {
         self.dunamu = dunamu
+        _editEnable = editEnable
     }
     
-    var body: some View {
+    @ViewBuilder func checkBox() -> some View {
+        
+        if editEnable == true {
+            Toggle("", isOn: $checked)
+                .toggleStyle(CheckboxStyle())
+                .padding(.leading, 16)
+                .onReceive([self.checked].publisher.first()) { (value) in
+                    let currencyCode = dunamu.currencyCode
+                    // MARK: - realm에 추가, 삭제
+                    
+                    if value == true {
+                        // MARK: - 추가
+//                        try! realm.write {
+//                            realm.add(currencyCode)
+//                        }
+                    
+                    } else {
+                        // MARK: - 삭제
+//                        try! realm.write {
+//                            realm.delete(currencyCode)
+//                        }
+                    }
+                }
+        }
+    }
+    
+    @ViewBuilder func currency() -> some View {
         let endIdx = dunamu.currencyCode.index(dunamu.currencyCode.startIndex, offsetBy: 1)
         let result = String(dunamu.currencyCode[...endIdx])
         let flag = Flag(countryCode: result)
         let originalImage = flag?.originalImage
         
+        HStack(spacing: 0) {
+            if originalImage != nil {
+                Spacer().frame(width: 16)
+                Image(uiImage: originalImage!)
+                    .resizable()
+                    .clipShape(Circle())
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
+            Spacer().frame(width: 12)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("\(dunamu.currencyCode)")
+                    .fontWeight(.bold)
+                    .font(.system(size : 14))
+                    .foregroundColor(.black)
+                
+                Text("\(countryModelList[dunamu.currencyCode]!.country) \(countryModelList[dunamu.currencyCode]!.currencyName)")
+                    .fontWeight(.medium)
+                    .font(.system(size : 12))
+                    .foregroundColor(.gray)
+            } // VStack
+        }
+    }
+    
+    @ViewBuilder func basePrice() -> some View {
+        Text("\(String(format: "%.2f", dunamu.basePrice))")
+            .fontWeight(.bold)
+            .font(.system(size : 12))
+            .foregroundColor(.black)
+    }
+    
+    func pricePercentage() -> String {
+        if dunamu.change == "RISE" {
+            let startPrice = dunamu.basePrice - dunamu.changePrice
+            let diff =  dunamu.basePrice - startPrice
+            let result = (diff / startPrice) * 100
+            return String(format: "%.2f", result)
+        } else {
+            let startPrice = dunamu.basePrice + dunamu.changePrice
+            let diff = startPrice - dunamu.basePrice
+            let result = (diff / startPrice) * 100
+            return String(format: "%.2f", result)
+        }
+    }
+    
+    @ViewBuilder func changePrice() -> some View {
+        if dunamu.change == "RISE" {
+            VStack(spacing: 2) {
+                HStack(spacing: 2) {
+                    Image(systemName: "arrowtriangle.up.fill")
+                        .foregroundColor(.red)
+                        .font(.system(size: 10))
+                    Text("\(String(format: "%.2f", dunamu.changePrice))")
+                        .fontWeight(.medium)
+                        .font(.system(size: 12))
+                        .foregroundColor(.red)
+                }
+                Text("(+\(pricePercentage())%)")
+                    .fontWeight(.medium)
+                    .font(.system(size: 12))
+                    .foregroundColor(.red)
+            }
+        } else if dunamu.change == "FALL" {
+            VStack(spacing: 2) {
+                HStack(spacing: 2) {
+                    Image(systemName: "arrowtriangle.down.fill")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 10))
+                    Text("\(String(format: "%.2f", dunamu.changePrice))")
+                        .fontWeight(.medium)
+                        .font(.system(size: 12))
+                        .foregroundColor(.blue)
+                }
+                Text("(-\(pricePercentage())%)")
+                    .fontWeight(.medium)
+                    .font(.system(size: 12))
+                    .foregroundColor(.blue)
+            }
+        } else {
+            HStack(spacing: 2) {
+                Text("\(String(format: "%.2f", dunamu.changePrice))")
+                    .fontWeight(.medium)
+                    .font(.system(size: 12))
+                    .foregroundColor(.black)
+            }
+        }
+    }
+    
+    var body: some View {
         Button(action: {
             print(dunamu.currencyCode)
         }, label: {
-            HStack {
-                if originalImage != nil {
-                    Image(uiImage: originalImage!)
-                        .resizable()
-                        .clipShape(Circle())
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                }
-                Spacer().frame(width: 12)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(dunamu.currencyCode)")
-                        .fontWeight(.bold)
-                        .font(.system(size : 20))
-                        .foregroundColor(.black)
-                    if dunamu.country != nil {
-                        Text("\(dunamu.country!) \(dunamu.currencyName!)")
-                            .fontWeight(.medium)
-                            .font(.system(size : 14))
-                            .foregroundColor(.gray)
-                        Text("\(dunamu.name!)")
-                            .fontWeight(.medium)
-                            .font(.system(size : 14))
-                            .foregroundColor(.gray)
-                    }
-                    
-                } // VStack
-                Spacer()
-                VStack(spacing: 4) {
-                    Text("매매기준율")
-                        .fontWeight(.light)
-                        .font(.system(size : 12))
-                        .foregroundColor(.black)
-                    Text("\(String(format: "%.2f", dunamu.basePrice))")
-                        .fontWeight(.bold)
-                        .font(.system(size : 12))
-                        .foregroundColor(.black)
-                } // VStack
-                VStack(spacing: 4) {
-                    Text("전일대비")
-                        .fontWeight(.light)
-                        .font(.system(size : 12))
-                        .foregroundColor(.black)
-                    if(dunamu.change == "RISE") {
-                        HStack(spacing: 2) {
-                            Image(systemName: "arrowtriangle.up.fill")
-                                .foregroundColor(.red)
-                                .font(.system(size: 10))
-                            Text("\(String(format: "%.2f", dunamu.changePrice))")
-                                .fontWeight(.medium)
-                                .font(.system(size: 12))
-                                .foregroundColor(.red)
-                        }
-                    } else {
-                        HStack(spacing: 2) {
-                            Image(systemName: "arrowtriangle.down.fill")
-                                .foregroundColor(.blue)
-                                .font(.system(size: 10))
-                            Text("\(String(format: "%.2f", dunamu.changePrice))")
-                                .fontWeight(.medium)
-                                .font(.system(size: 12))
-                                .foregroundColor(.blue)
-                        }
-                    }
-                } // VStack
-            } // HStack
-            .padding(.vertical, 12)
+            GeometryReader { proxy in
+                HStack(spacing: 0) {
+                    checkBox()
+                        .frame(width: proxy.size.width * 0.10)
+                    currency()
+                        .frame(minWidth: proxy.size.width * 0.50, maxWidth: proxy.size.width * 0.60, alignment: .leading)
+                    basePrice()
+                        .frame(width: proxy.size.width * 0.20)
+                    changePrice()
+                        .frame(width: proxy.size.width * 0.20)
+                } // HStack
+                .padding(.vertical, 12)
+            } // GeometryReader
+            .frame(minHeight: 60)
         }) // Button
     } // View
 }

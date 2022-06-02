@@ -80,8 +80,8 @@
  {
     "key": 14,
     "currencyCode": "MYR",
-    "currencyName": "링기트",
-    "country": "말레이지아"
+    "currencyName": "링깃",
+    "country": "말레이시아"
 },
  {
     "key": 15,
@@ -98,7 +98,7 @@
  {
     "key": 17,
     "currencyCode": "NOK",
-    "currencyName": "크로나",
+    "currencyName": "크로네",
     "country": "노르웨이"
 },
  {
@@ -110,7 +110,7 @@
  {
     "key": 19,
     "currencyCode": "DKK",
-    "currencyName": "크로나",
+    "currencyName": "크로네",
     "country": "덴마크"
 },
  {
@@ -182,7 +182,7 @@
  {
     "key": 31,
     "currencyCode": "DZD",
-    "currencyName": "알제리 디나르",
+    "currencyName": "디나르",
     "country": "알제리"
 },
  {

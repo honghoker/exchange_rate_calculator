@@ -16,6 +16,8 @@
 		5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAAB283F65B000943B14 /* CountryModel.swift */; };
 		5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5151DAAD283F686C00943B14 /* DunamuViewModel.swift */; };
 		5158F067284614790013ADC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB409283B8A1500EA2764 /* ContentView.swift */; };
+		5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */; };
+		5158F08D2848DB630013ADC6 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 5158F08C2848DB630013ADC6 /* Introspect */; };
 		5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196059A284613F000A245C1 /* ExchangeViewModel.swift */; };
 		51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */; };
 		51CAB40C283B8A1600EA2764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB40B283B8A1600EA2764 /* Assets.xcassets */; };
@@ -43,6 +45,7 @@
 		5151DAA9283F643500943B14 /* Country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Country.json; sourceTree = "<group>"; };
 		5151DAAB283F65B000943B14 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		5151DAAD283F686C00943B14 /* DunamuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuViewModel.swift; sourceTree = "<group>"; };
+		5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuMainViewHeader.swift; sourceTree = "<group>"; };
 		5196059A284613F000A245C1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchange_rate_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exchange_rate_calculatorApp.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51CAB425283B8C9800EA2764 /* Realm in Frameworks */,
+				5158F08D2848DB630013ADC6 /* Introspect in Frameworks */,
 				5151DAA0283F0C9000943B14 /* FlagKit in Frameworks */,
 				51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */,
 				51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */,
@@ -149,6 +153,7 @@
 				BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */,
 				BC801A682840B4C400F3D5D2 /* SettingView.swift */,
 				BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */,
+				5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				51CAB424283B8C9800EA2764 /* Realm */,
 				51CAB426283B8C9800EA2764 /* RealmSwift */,
 				5151DA9F283F0C9000943B14 /* FlagKit */,
+				5158F08C2848DB630013ADC6 /* Introspect */,
 			);
 			productName = exchange_rate_calculator;
 			productReference = 51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */;
@@ -236,6 +242,7 @@
 				51CAB420283B8C1700EA2764 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				51CAB423283B8C9800EA2764 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */,
+				5158F08B2848DB630013ADC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 51CAB405283B8A1500EA2764 /* Products */;
 			projectDirPath = "";
@@ -267,6 +274,7 @@
 			files = (
 				5158F067284614790013ADC6 /* ContentView.swift in Sources */,
 				5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */,
+				5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */,
 				5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */,
 				5151DAA2283F582400943B14 /* Dunamu.swift in Sources */,
 				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
@@ -493,6 +501,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		5158F08B2848DB630013ADC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 		51CAB417283B8BFC00EA2764 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -524,6 +540,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */;
 			productName = FlagKit;
+		};
+		5158F08C2848DB630013ADC6 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5158F08B2848DB630013ADC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 		51CAB418283B8BFC00EA2764 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
