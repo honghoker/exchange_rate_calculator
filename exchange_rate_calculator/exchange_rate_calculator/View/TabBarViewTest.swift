@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct mainTabView: View {
+    @State var isNavigationBarHidden: Bool = false
     
     var body: some View {
         NavigationView {
@@ -20,5 +21,6 @@ struct mainTabView: View {
             .navigationBarTitle("")
             .navigationBarHidden(true)
         }.navigationViewStyle(StackNavigationViewStyle())
+        
     }
 }

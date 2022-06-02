@@ -180,6 +180,7 @@ struct DunamuRowView: View {
                     .frame(width: proxy.size.width * 0.20)
             } // HStack
             .padding(.vertical, 12)
+            .background(Color.clear)
         } // GeometryReader
         .frame(minHeight: 60)
     } // View

@@ -41,34 +41,24 @@ struct ContentView: View {
     @State private var isShowing = false // calculate keyboard on off
     
     @State var mainTextSwitchCheck = true // 메인 앱 이름 <> 업데이트 날짜 바꿔주는 값
+    
     let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간
     
     var body: some View {
         
         ZStack{
             VStack {
-                HStack (alignment: .center, spacing: 0){
-                    if mainTextSwitchCheck {
-                        Text("환율 계산기")
-                            .font(.system(size: 25))
-                            .fontWeight(.black)
-                            .transition(.opacity)
-                            .onReceive(mainTextSwitchTimer) { _ in
-                                withAnimation (.easeInOut(duration: 1.0)) {
-                                    mainTextSwitchCheck.toggle()
-                                }
+                HStack (alignment: .center, spacing: 0) {
+                    Text(mainTextSwitchCheck ? "환율 계산기" : "업데이트 날짜")
+                        .font(.system(size: 25))
+                        .fontWeight(.black)
+                        .transition(.opacity)
+                        .onReceive(mainTextSwitchTimer) { _ in
+                            withAnimation (.easeInOut(duration: 1.0)) {
+                                mainTextSwitchCheck.toggle()
                             }
-                    } else {
-                        Text("업데이트 날짜")
-                            .font(.system(size: 25))
-                            .fontWeight(.black)
-                            .transition(.opacity)
-                            .onReceive(mainTextSwitchTimer) { _ in
-                                withAnimation (.easeInOut(duration: 1.0)) {
-                                    mainTextSwitchCheck.toggle()
-                                }
-                            }
-                    }
+                        }
+                    
                     Spacer()
                     NavigationLink(destination: SettingView()) {
                         Image(systemName: "line.horizontal.3")
@@ -120,8 +110,8 @@ struct ContentView: View {
                                     // 여기
                                     ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number)
                                     HStack (spacing: 5){
-                                        Text("\(exchangeViewModel.basePrice[number].country!)")
-                                        Text("\(exchangeViewModel.basePrice[number].currencyName!)")
+                                        Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.country)
+                                        Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.currencyName)
                                     }
                                 }.onTapGesture {
                                     // 국가 tap
@@ -132,9 +122,8 @@ struct ContentView: View {
                                 self.draggedCountry = exchangeViewModel.myCountry[number]
                                 return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].currencyCode)
                             }
-                            
-                            .onDrop(of: [exchangeViewModel.myCountry[number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel
-                                                                                                                    ))
+                            .onDrop(of: [exchangeViewModel.myCountry[number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel)
+                            )
                             .frame(height: 100)
                             .background(Color.white)
                         }
@@ -153,8 +142,7 @@ struct ContentView: View {
                 }
             }
         }
-        
-    }
+    } // body
 }
 
 
