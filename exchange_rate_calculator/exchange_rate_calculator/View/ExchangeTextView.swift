@@ -10,16 +10,13 @@ import SwiftUI
 
 struct ExchangeTextView: View {
     @Binding var inputValue: String
-    var result = 0
     @Binding var basePrices: [DunamuModel]
     var number = 0
-    var currencyCode = ""
     
-    init(inputValue: Binding<String>, _ basePrice: Binding<[DunamuModel]>, _ number: Int, _ currencyCode: String) {
+    init(inputValue: Binding<String>, _ basePrice: Binding<[DunamuModel]>, _ number: Int) {
         self._inputValue = inputValue
         self._basePrices = basePrice
         self.number = number
-        self.currencyCode = currencyCode
     }
     
     var body: some View {
