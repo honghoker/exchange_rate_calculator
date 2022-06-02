@@ -28,7 +28,8 @@ extension Double {
 }
 
 struct ContentView: View {
-    @ObservedObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
+    //    @ObservedObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
+    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
     @State var inputString = "" // textField String value
     
     @State var calculateValueText = ""
@@ -43,8 +44,8 @@ struct ContentView: View {
     let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간
     
     var body: some View {
-        NavigationView {
-            ZStack {
+        
+            ZStack{
                 VStack {
                     HStack {
                         if mainTextSwitchCheck {
@@ -117,10 +118,12 @@ struct ContentView: View {
                                     Spacer()
                                     VStack (alignment: .trailing){
                                         // 여기
-                                        ExchangeTextView(inputValue: $inputString,  exchangeViewModel.basePrice[number], number, exchangeViewModel.myCountry[number].currencyCode)
+                                        ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number, exchangeViewModel.myCountry[number].currencyCode)
                                         Text("\(exchangeViewModel.myCountry[number].country)")
+                                        
                                     }.onTapGesture {
                                         // 국가 tap
+                                        
                                     }
                                 }
                                 .onDrag{
@@ -128,7 +131,7 @@ struct ContentView: View {
                                     self.draggedCountry = exchangeViewModel.myCountry[number]
                                     return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].country)
                                 }
-                                .onDrop(of: [exchangeViewModel.myCountry[number].country], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry
+                                .onDrop(of: [exchangeViewModel.myCountry[number].country], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel
                                                                                                                    ))
                                 .frame(height: 100)
                                 .background(Color.white)
@@ -147,10 +150,8 @@ struct ContentView: View {
                             .edgesIgnoringSafeArea(.bottom)
                     }
                 }
-                .navigationTitle("")
-                .navigationBarHidden(true)
             }
-        }
+
     }
 }
 
@@ -160,11 +161,12 @@ struct MyDropDelegate: DropDelegate {
     let currentCountry: MyCountryModel
     @Binding var myCountry: [MyCountryModel]
     @Binding var draggedCountry: MyCountryModel
+    @ObservedObject var exchangeViewModel: ExchangeViewModel
     
     // 드랍 처리
     func performDrop(info: DropInfo) -> Bool {
         myCountry = Array(realm.objects(MyCountryModel.self))
-        //        ExchangeViewModel().fetchExchangeBasePrice(myCountry)
+        exchangeViewModel.fetchExchangeBasePrice(myCountry)
         return true
     }
     
