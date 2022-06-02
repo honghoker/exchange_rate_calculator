@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import FlagKit
 import RealmSwift
+import Alamofire
 
 // MARK: extenstion
 extension NumberFormatter {
@@ -27,10 +28,8 @@ extension Double {
 }
 
 struct ContentView: View {
-    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
-    
+    @ObservedObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
     @State var inputString = "" // textField String value
-//    @State var inputValue = 1000 // textField Int value
     
     @State var calculateValueText = ""
     
@@ -42,7 +41,7 @@ struct ContentView: View {
     
     @State var mainTextSwitchCheck = true // 메인 앱 이름 <> 업데이트 날짜 바꿔주는 값
     let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -94,16 +93,13 @@ struct ContentView: View {
                         }
                         .onChange(of: inputString, perform: { newValue in
                             if String(describing:newValue).count == 0 {
-//                                inputValue = 0
                                 inputString = "0"
                             } else if String(describing:newValue).count > 20 {
                                 // 20 글자까지 제한
                                 inputString = String(newValue.prefix(20))
-//                                inputValue = Int(newValue.prefix(10))!
                             } else {
                                 print("newValue \(newValue)")
                                 inputString = newValue
-//                                inputValue = Int(newValue)!
                             }
                         })
                         .multilineTextAlignment(.trailing)
@@ -112,31 +108,28 @@ struct ContentView: View {
                         .padding(.horizontal, 20).foregroundColor(Color.black)
                     ScrollView {
                         LazyVStack {
-                            ForEach(0..<exchangeViewModel.myCountry.count, id: \.self) { number in
+                            ForEach(0..<exchangeViewModel.basePrice.count, id: \.self) { number in
                                 HStack (alignment: .center, spacing: 15) {
-                                    Image("testFlag")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(Circle())
-                                        .overlay(Circle().stroke(Color.yellow, lineWidth: 3))
-                                    Text("\(exchangeViewModel.myCountry[number].cur_unit)")
+                                    ExchangeFlagView(exchangeViewModel.myCountry[number].currencyCode)
+                                    Text("\(exchangeViewModel.myCountry[number].currencyCode)")
                                         .fontWeight(.light)
                                         .font(.system(size: 30))
                                     Spacer()
                                     VStack (alignment: .trailing){
-                                        ExchangeTextView(inputValue: $inputString, number)
-                                        Text("\(exchangeViewModel.myCountry[number].cur_nm)")
+                                        // 여기
+                                        ExchangeTextView(inputValue: $inputString,  exchangeViewModel.basePrice[number], number, exchangeViewModel.myCountry[number].currencyCode)
+                                        Text("\(exchangeViewModel.myCountry[number].country)")
                                     }.onTapGesture {
                                         // 국가 tap
                                     }
                                 }
                                 .onDrag{
-                                    print("Drag")
+                                    print("Drag \(exchangeViewModel.myCountry[number])")
                                     self.draggedCountry = exchangeViewModel.myCountry[number]
-                                    return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].cur_nm)
+                                    return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].country)
                                 }
-                                .onDrop(of: [exchangeViewModel.myCountry[number].cur_nm], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry))
+                                .onDrop(of: [exchangeViewModel.myCountry[number].country], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry
+                                                                                                                   ))
                                 .frame(height: 100)
                                 .background(Color.white)
                             }
@@ -156,16 +149,10 @@ struct ContentView: View {
                 }
                 .navigationTitle("")
                 .navigationBarHidden(true)
-                
             }
         }
-        //                List (exchangeViewModel.exchangeModels){ exchange in
-        //                    ExchangeCalCellView(exchange)
-        //                        .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-        //                }.listStyle(PlainListStyle())
     }
 }
-
 
 
 struct MyDropDelegate: DropDelegate {
@@ -177,6 +164,7 @@ struct MyDropDelegate: DropDelegate {
     // 드랍 처리
     func performDrop(info: DropInfo) -> Bool {
         myCountry = Array(realm.objects(MyCountryModel.self))
+        //        ExchangeViewModel().fetchExchangeBasePrice(myCountry)
         return true
     }
     
@@ -187,6 +175,9 @@ struct MyDropDelegate: DropDelegate {
     // 드랍 시작
     func dropEntered(info: DropInfo) {
         if draggedCountry != currentCountry {
+            print("drop")
+            print("draggedCountry \(draggedCountry)")
+            print("currentCountry \(currentCountry)")
             let from = myCountry.firstIndex(of: draggedCountry)!
             let to = myCountry.firstIndex(of: currentCountry)!
             ExchangeViewModel().changeRealmView(from, to)

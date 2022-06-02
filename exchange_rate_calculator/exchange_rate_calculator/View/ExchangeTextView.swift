@@ -9,21 +9,30 @@ import Foundation
 import SwiftUI
 
 struct ExchangeTextView: View {
-
-    @ObservedObject var exchangeTextViewModel = ExchangeTextViewModel()
+   
     @Binding var inputValue: String
-    var number: Int // 국가 순서 (리스트) 번호
     var result = 0
-
-    init(inputValue: Binding<String>, _ number: Int) {
+    var basePrices: DunamuModel
+//    @Binding var basePrices: [DunamuModel]
+//    @ObservedObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
+    var number = 0
+    var currencyCode = ""
+    
+    init(inputValue: Binding<String>, _ basePrice: DunamuModel, _ number: Int, _ currencyCode: String) {
         self._inputValue = inputValue
+        self.basePrices = basePrice
+//        self._basePrices = basePrice
         self.number = number
-        exchangeTextViewModel.chagne(Double(number))
+        self.currencyCode = currencyCode
     }
     
     var body: some View {
-        Text("\(Double(inputValue == "" ? "0" : inputValue)! * exchangeTextViewModel.viewModelValue, specifier: "%.4f")")
-//            .lineLimit(1)
+        Text("\(basePrices.basePrice)")
+//        if !basePrices.isEmpty {
+//            Text("\(basePrices[number].basePrice)")
+////            Text("\(exchangeViewModel.basePrice[number].basePrice)")
+////            Text("\(Double(inputValue == "" ? "0" : inputValue)! / basePrices[number].basePrice, specifier: "%.4f")")
+//        }
     }
 }
 

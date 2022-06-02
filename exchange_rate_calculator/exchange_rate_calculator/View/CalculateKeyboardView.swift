@@ -18,7 +18,6 @@ struct CalCulateKeyboardView: View {
         self._inputValue = inputValue
         self._isShowing = isShowing
         self._calculateValueText = calculateValueText
-//        sunghun = calculateValueText.split(separator: " ").map {String($0)}
     }
     
     var body: some View {
