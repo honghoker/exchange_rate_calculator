@@ -14,9 +14,10 @@ class ExchangeViewModel: ObservableObject {
     
     init() {
         print(#fileID, #function, #line, "")
+        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
         fetchExchangeRate()
         fetchExchangeBasePrice(myCountry)
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
 //                        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
