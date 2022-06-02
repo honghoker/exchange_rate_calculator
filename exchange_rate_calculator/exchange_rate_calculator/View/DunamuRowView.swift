@@ -18,7 +18,7 @@ struct CheckboxStyle: ToggleStyle {
                 .frame(width: 24, height: 24)
                 .foregroundColor(configuration.isOn ? .blue : .gray)
                 .font(.system(size: 20, weight: .regular, design: .default))
-                configuration.label
+            configuration.label
         }
         .onTapGesture {
             withAnimation { configuration.isOn.toggle() }
@@ -168,23 +168,19 @@ struct DunamuRowView: View {
     }
     
     var body: some View {
-        Button(action: {
-            print(dunamu.currencyCode)
-        }, label: {
-            GeometryReader { proxy in
-                HStack(spacing: 0) {
-                    checkBox()
-                        .frame(width: proxy.size.width * 0.10)
-                    currency()
-                        .frame(minWidth: proxy.size.width * 0.50, maxWidth: proxy.size.width * 0.60, alignment: .leading)
-                    basePrice()
-                        .frame(width: proxy.size.width * 0.20)
-                    changePrice()
-                        .frame(width: proxy.size.width * 0.20)
-                } // HStack
-                .padding(.vertical, 12)
-            } // GeometryReader
-            .frame(minHeight: 60)
-        }) // Button
+        GeometryReader { proxy in
+            HStack(spacing: 0) {
+                checkBox()
+                    .frame(width: proxy.size.width * 0.10)
+                currency()
+                    .frame(minWidth: proxy.size.width * 0.50, maxWidth: proxy.size.width * 0.60, alignment: .leading)
+                basePrice()
+                    .frame(width: proxy.size.width * 0.20)
+                changePrice()
+                    .frame(width: proxy.size.width * 0.20)
+            } // HStack
+            .padding(.vertical, 12)
+        } // GeometryReader
+        .frame(minHeight: 60)
     } // View
 }

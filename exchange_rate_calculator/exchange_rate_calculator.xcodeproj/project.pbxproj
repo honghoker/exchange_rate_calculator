@@ -36,6 +36,7 @@
 		BC66920E2848846E0046DC92 /* ExchangeFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */; };
 		BC801A692840B4C400F3D5D2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC801A682840B4C400F3D5D2 /* SettingView.swift */; };
 		BCA75211283DE6780008D930 /* ExchangeTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */; };
+		BCD5947C28491CE3002D4A05 /* TabBarViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD5947B28491CE3002D4A05 /* TabBarViewTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFlagView.swift; sourceTree = "<group>"; };
 		BC801A682840B4C400F3D5D2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		BCA75210283DE6780008D930 /* ExchangeTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTextViewModel.swift; sourceTree = "<group>"; };
+		BCD5947B28491CE3002D4A05 /* TabBarViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */,
 				5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */,
 				BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */,
+				BCD5947B28491CE3002D4A05 /* TabBarViewTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */,
 				5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */,
 				5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */,
+				BCD5947C28491CE3002D4A05 /* TabBarViewTest.swift in Sources */,
 				5151DAA2283F582400943B14 /* Dunamu.swift in Sources */,
 				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
 				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,

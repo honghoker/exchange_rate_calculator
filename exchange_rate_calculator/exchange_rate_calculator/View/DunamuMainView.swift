@@ -54,7 +54,7 @@ struct DunamuMainView: View {
     let refreshControlHelper = RefreshControlHelper()
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             
             
             VStack {
@@ -106,7 +106,7 @@ struct DunamuMainView: View {
                         editHelper.toggleEdit()
                     }
             )
-        } // NavigationView
+//        } // NavigationView
     } // body
 }
 
