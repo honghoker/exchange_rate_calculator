@@ -9,10 +9,8 @@ import Foundation
 import RealmSwift
 
 class MyCountryModel: Object {
-    @objc dynamic var cur_unit = ""
-    @objc dynamic var cur_nm = ""
-    
-//    override static func primaryKey() -> String? {
-//        return "cur_unit"
-//    }
+    @objc dynamic var currencyCode = "" // 통화코드 ex) "USD"
+    @objc dynamic var country = "" // 나라 ex) "미국"
+    @objc dynamic var currencyName = "" // 통화이름 ex) "달러"
+    @objc dynamic var basePrice = 0.0 // 매매기준율 ex) 1268.00
 }

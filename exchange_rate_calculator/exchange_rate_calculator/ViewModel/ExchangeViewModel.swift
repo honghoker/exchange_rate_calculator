@@ -2,75 +2,71 @@ import Foundation
 import Alamofire
 import Combine
 import RealmSwift
+import FlagKit
 
 class ExchangeViewModel: ObservableObject {
     let realm = try! Realm()
     var subscription = Set<AnyCancellable>()
     var realmCheck = false
-
+    
     @Published var myCountry = [MyCountryModel]()
-
+    @Published var basePrice = [DunamuModel]()
+    
     init() {
         print(#fileID, #function, #line, "")
+        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
         fetchExchangeRate()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        //        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
+        fetchExchangeBasePrice(myCountry)
         
-        //        let myCountryModel = MyCountryModel()
-        //        myCountryModel.cur_nm = "대한민국"
-        //        myCountryModel.cur_unit = "KOR"
-        //        try! realm.write {
-        //            realm.add(myCountryModel)
-        //        }
-        //        let myCountryModel1 = MyCountryModel()
-        //        myCountryModel1.cur_nm = "미국"
-        //        myCountryModel1.cur_unit = "USA"
-        //        try! realm.write {
-        //            realm.add(myCountryModel1)
-        //        }
-        //        let myCountryModel2 = MyCountryModel()
-        //        myCountryModel2.cur_nm = "일본"
-        //        myCountryModel2.cur_unit = "JAP"
-        //        try! realm.write {
-        //            realm.add(myCountryModel2)
-        //        }
-        //        let myCountryModel3 = MyCountryModel()
-        //        myCountryModel3.cur_nm = "중국"
-        //        myCountryModel3.cur_unit = "CHI"
-        //        try! realm.write {
-        //            realm.add(myCountryModel3)
-        //        }
-        //        let myCountryModel4 = MyCountryModel()
-        //        myCountryModel4.cur_nm = "인도"
-        //        myCountryModel4.cur_unit = "IND"
-        //        try! realm.write {
-        //            realm.add(myCountryModel4)
-        //        }
+//                        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
     }
-
+    
     fileprivate func fetchExchangeRate() {
         print(#fileID, #function, #line, "")
         myCountry = Array(realm.objects(MyCountryModel.self))
-        //        AF.request(KoreaExim.getExchangeRate)
-        //            .publishDecodable(type: [ExchangeModel].self)
-        //            .compactMap { $0.value }
-        //            .sink(receiveCompletion: { completion in
-        //                print("데이터스트림 완료")
-        //            }, receiveValue: { receiveValue in
-        //                print("@@@@@@@@@@@2 receiveValue : \(receiveValue)")
-        //                self.exchangeModels = receiveValue
-        //            }).store(in: &subscription)
     }
-
+    
+    func fetchExchangeBasePrice(_ currencyCode: [MyCountryModel]) { // 사용자가 추가한 나라만
+        print(#fileID, #function, #line, "")
+        // MARK: - realm으로 기준나라코드 가져오기
+        let baseCountryCode = "KRW"
+        // MARK: - realm으로 저장된 나라들 가져오기
+//        let myCountryCode = currencyCode
+        print("@@@@@@@@ fetchExchangeBasePrice before \(currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") }))")
+        
+//        let resultMap = myCountryCode.map({  String("FRX.\(baseCountryCode)\($0)") })
+//        let codes = resultMap.joined(separator: ",")
+        let resultMap = currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") })
+        let codes = resultMap.joined(separator: ",")
+        
+        print(codes)
+        AF.request(Dunamu.getMy(codes: codes))
+            .publishDecodable(type: [DunamuModel].self)
+            .compactMap { $0.value }
+            .sink(receiveCompletion: { completion in
+                print("데이터스트림 완료")
+            }, receiveValue: { receiveValue in
+                print("receiveValue \(receiveValue)")
+                self.basePrice = receiveValue
+            }).store(in: &subscription)
+        print("@@@@@@@@ fetchExchangeBasePrice after \(currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") }))")
+    }
+    
     func changeRealmView(_ from: Int, _ to: Int) {
         let realmCountry = realm.objects(MyCountryModel.self)
-        let tempCur_unit = realmCountry[from].cur_unit
-        let tempCur_nm = realmCountry[from].cur_nm
+        let tempCur_currencyCode = realmCountry[from].currencyCode
+        let tempCur_country = realmCountry[from].country
+        let tempCur_currencyName = realmCountry[from].currencyName
+        let tempCur_basePrice = realmCountry[from].basePrice
         try! realm.write {
-            realmCountry[from].cur_unit = realmCountry[to].cur_unit
-            realmCountry[from].cur_nm = realmCountry[to].cur_nm
-            realmCountry[to].cur_unit = tempCur_unit
-            realmCountry[to].cur_nm = tempCur_nm
+            realmCountry[from].currencyCode = realmCountry[to].currencyCode
+            realmCountry[from].country = realmCountry[to].country
+            realmCountry[from].currencyName = realmCountry[to].currencyName
+            realmCountry[from].basePrice = realmCountry[to].basePrice
+            realmCountry[to].currencyCode = tempCur_currencyCode
+            realmCountry[to].country = tempCur_country
+            realmCountry[to].currencyName = tempCur_currencyName
+            realmCountry[to].basePrice = tempCur_basePrice
         }
     }
 }
