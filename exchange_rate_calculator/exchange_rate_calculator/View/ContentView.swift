@@ -28,8 +28,12 @@ extension Double {
 }
 
 struct ContentView: View {
+    let realm = try! Realm()
+    
     //    @ObservedObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
-    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
+    //    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
+    @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
+    
     @State var inputString = "" // textField String value
     
     @State var calculateValueText = ""
@@ -45,20 +49,30 @@ struct ContentView: View {
     let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간
     
     var body: some View {
-        
         ZStack{
             VStack {
                 HStack (alignment: .center, spacing: 0) {
-                    Text(mainTextSwitchCheck ? "환율 계산기" : "업데이트 날짜")
-                        .font(.system(size: 25))
-                        .fontWeight(.black)
-                        .transition(.opacity)
-                        .onReceive(mainTextSwitchTimer) { _ in
-                            withAnimation (.easeInOut(duration: 1.0)) {
-                                mainTextSwitchCheck.toggle()
+                    if mainTextSwitchCheck {
+                        Text("환율 계산기")
+                            .font(.system(size: 25))
+                            .fontWeight(.black)
+                            .transition(.opacity)
+                            .onReceive(mainTextSwitchTimer) { _ in
+                                withAnimation (.easeInOut(duration: 1.0)) {
+                                    mainTextSwitchCheck.toggle()
+                                }
                             }
-                        }
-                    
+                    } else {
+                        Text("업데이트 날짜")
+                            .font(.system(size: 25))
+                            .fontWeight(.black)
+                            .transition(.opacity)
+                            .onReceive(mainTextSwitchTimer) { _ in
+                                withAnimation (.easeInOut(duration: 1.0)) {
+                                    mainTextSwitchCheck.toggle()
+                                }
+                            }
+                    }
                     Spacer()
                     NavigationLink(destination: SettingView()) {
                         Image(systemName: "line.horizontal.3")
@@ -66,7 +80,7 @@ struct ContentView: View {
                             .foregroundColor(Color.black)
                     }
                 }
-                    .padding()
+                .padding()
                 HStack{
                     Spacer()
                     Text("\(calculateValueText)")
@@ -101,13 +115,15 @@ struct ContentView: View {
                     LazyVStack {
                         ForEach(0..<exchangeViewModel.basePrice.count, id: \.self) { number in
                             HStack (alignment: .center, spacing: 15) {
+                                // 여기
+                                // realm에 데이터 1개에서 삭제시켜서 0개 되는순간 한번 확인해봐야할듯? -> 밑에 못쓰네 ?, 이거 뷰 모델로 빼든 뭐 하든 밑에 식 가지고 number 처리 어떻게든 하면 될거 같긴함
+//                                exchangeViewModel.myCountry.count <= number ? number = 0 : number
                                 ExchangeFlagView(exchangeViewModel.myCountry[number].currencyCode)
                                 Text("\(exchangeViewModel.myCountry[number].currencyCode)")
                                     .fontWeight(.light)
                                     .font(.system(size: 30))
                                 Spacer()
                                 VStack (alignment: .trailing){
-                                    // 여기
                                     ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number)
                                     HStack (spacing: 5){
                                         Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.country)
