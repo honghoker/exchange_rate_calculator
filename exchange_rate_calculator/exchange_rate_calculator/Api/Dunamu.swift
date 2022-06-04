@@ -57,10 +57,10 @@ enum Dunamu: URLRequestConvertible {
         switch self {
         case .getAll:
             request = try CustomGetEncoding().encode(request, with: parameters)
-            print("@@@@@@@@ getAll url : \(request.url)")
+//            print("@@@@@@@@ getAll url : \(request.url)")
         case .getMy:
             request = try URLEncoding.default.encode(request, with: parameters)
-            print("@@@@@@@@ getMy url : \(request.url)")
+//            print("@@@@@@@@ getMy url : \(request.url)")
         }
         return request
     }

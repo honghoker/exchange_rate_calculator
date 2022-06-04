@@ -113,21 +113,19 @@ struct ContentView: View {
                     .padding(.horizontal, 20).foregroundColor(Color.black)
                 ScrollView {
                     LazyVStack {
-                        ForEach(0..<exchangeViewModel.basePrice.count, id: \.self) { number in
+                        ForEach(0..<(exchangeViewModel.myCountry.count == 0 ? exchangeViewModel.myCountry.count : exchangeViewModel.basePrice.count), id: \.self) { number in
                             HStack (alignment: .center, spacing: 15) {
                                 // 여기
-                                // realm에 데이터 1개에서 삭제시켜서 0개 되는순간 한번 확인해봐야할듯? -> 밑에 못쓰네 ?, 이거 뷰 모델로 빼든 뭐 하든 밑에 식 가지고 number 처리 어떻게든 하면 될거 같긴함
-//                                exchangeViewModel.myCountry.count <= number ? number = 0 : number
-                                ExchangeFlagView(exchangeViewModel.myCountry[number].currencyCode)
-                                Text("\(exchangeViewModel.myCountry[number].currencyCode)")
+                                ExchangeFlagView(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)
+                                Text("\(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)")
                                     .fontWeight(.light)
                                     .font(.system(size: 30))
                                 Spacer()
                                 VStack (alignment: .trailing){
-                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, number)
+                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, exchangeViewModel.myCountry.count <= number ? 0 : number)
                                     HStack (spacing: 5){
-                                        Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.country)
-                                        Text(countryModelList["\(exchangeViewModel.basePrice[number].currencyCode)"]!.currencyName)
+                                        Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.country)
+                                        Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.currencyName)
                                     }
                                 }.onTapGesture {
                                     // 국가 tap
@@ -138,7 +136,7 @@ struct ContentView: View {
                                 self.draggedCountry = exchangeViewModel.myCountry[number]
                                 return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].currencyCode)
                             }
-                            .onDrop(of: [exchangeViewModel.myCountry[number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel)
+                            .onDrop(of: [exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel)
                             )
                             .frame(height: 100)
                             .background(Color.white)
