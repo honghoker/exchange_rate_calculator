@@ -8,13 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct mainTabView: View {
+struct TabBarView: View {
+    
     @State var isNavigationBarHidden: Bool = false
     
     var body: some View {
         NavigationView {
             TabView{
-                ContentView()
+                CalculateMainView()
                 DunamuMainView()
             }
             .tabViewStyle(.page(indexDisplayMode: .never))

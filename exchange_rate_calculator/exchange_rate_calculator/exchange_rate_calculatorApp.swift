@@ -16,8 +16,7 @@ struct exchange_rate_calculatorApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            DunamuMainView()
-            mainTabView().environmentObject(ExchangeViewModel())
+            TabBarView().environmentObject(ExchangeViewModel())
         }
     }
 }

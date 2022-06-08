@@ -11,42 +11,18 @@ import FlagKit
 import RealmSwift
 import Alamofire
 
-// MARK: extenstion
-extension NumberFormatter {
-    static var decimal: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 3
-        formatter.numberStyle = .decimal
-        return formatter
-    }
-}
 
-extension Double {
-    var cleanValue: String {
-        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
-    }
-}
-
-struct ContentView: View {
+struct CalculateMainView: View {
     let realm = try! Realm()
+    let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간 (7초)
     
-    //    @ObservedObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
-    //    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
     @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
     
     @State var inputString = "" // textField String value
-    
-    @State var calculateValueText = ""
-    
+    @State var calculateValueText = "" // keyboard input하면 textField 위에 숫자나 연산자들 보여주는 text
     @State var draggedCountry: MyCountryModel = MyCountryModel() // drag 상태인 국가 (realm)
-    
-    @State var destination: AnyView? = nil // set page 로 이동하는 View
-    
-    @State private var isShowing = false // calculate keyboard on off
-    
+    @State var isShowing = false // calculate keyboard on off
     @State var mainTextSwitchCheck = true // 메인 앱 이름 <> 업데이트 날짜 바꿔주는 값
-    
-    let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간
     
     var body: some View {
         ZStack{
@@ -79,19 +55,21 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .foregroundColor(Color.black)
                     }
-                }
+                } // HStack
                 .padding()
                 HStack{
                     Spacer()
                     Text("\(calculateValueText)")
-                }
+                } // HStack
                 .foregroundColor(.gray)
                 .font(.system(size: 15))
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                 TextField("0", text: $inputString)
                     .onTapGesture {
                         // 기본 textField 이용시 사용하는 키보드 사용을 중지하도록 제어할 수 있는 항목에게 요청 -> https://seons-dev.tistory.com/4 참고 에뮬에서는 확인 불가능
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        //                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        //                        UIApplication.shared.endEditing()
+                        
                         withAnimation {
                             self.isShowing.toggle()
                         }
@@ -100,8 +78,7 @@ struct ContentView: View {
                         if String(describing:newValue).count == 0 {
                             inputString = "0"
                         } else if String(describing:newValue).count > 20 {
-                            // 20 글자까지 제한
-                            inputString = String(newValue.prefix(20))
+                            inputString = String(newValue.prefix(20)) // 20 글자까지 제한
                         } else {
                             print("newValue \(newValue)")
                             inputString = newValue
@@ -111,41 +88,9 @@ struct ContentView: View {
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 20))
                 Rectangle().frame(height: 1)
                     .padding(.horizontal, 20).foregroundColor(Color.black)
-                ScrollView {
-                    LazyVStack {
-                        ForEach(0..<(exchangeViewModel.myCountry.count == 0 ? exchangeViewModel.myCountry.count : exchangeViewModel.basePrice.count), id: \.self) { number in
-                            HStack (alignment: .center, spacing: 15) {
-                                // 여기
-                                ExchangeFlagView(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)
-                                Text("\(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)")
-                                    .fontWeight(.light)
-                                    .font(.system(size: 30))
-                                Spacer()
-                                VStack (alignment: .trailing){
-                                    ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, exchangeViewModel.myCountry.count <= number ? 0 : number)
-                                    HStack (spacing: 5){
-                                        Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.country)
-                                        Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.currencyName)
-                                    }
-                                }.onTapGesture {
-                                    // 국가 tap
-                                }
-                            }
-                            .onDrag{
-                                print("Drag \(exchangeViewModel.myCountry[number])")
-                                self.draggedCountry = exchangeViewModel.myCountry[number]
-                                return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].currencyCode)
-                            }
-                            .onDrop(of: [exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel)
-                            )
-                            .frame(height: 100)
-                            .background(Color.white)
-                        }
-                        .padding(.horizontal, 20)
-                    }
-                }
+                CalculateCountryRowView($draggedCountry, $inputString) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
                 if self.isShowing {
-                    CalCulateKeyboardView($inputString, $isShowing, $calculateValueText)
+                    CalCulateKeyboardView($inputString, $isShowing, $calculateValueText) // custom calculate keyboard
                         .frame(
                             width: UIScreen.main.bounds.width,
                             height: UIScreen.main.bounds.height / 2.5,
@@ -154,12 +99,12 @@ struct ContentView: View {
                         .transition(.move(edge: .bottom).animation(.easeInOut(duration:0.5)))
                         .edgesIgnoringSafeArea(.bottom)
                 }
-            }
-        }
+            } // VStack
+        } // ZStack
     } // body
 }
 
-
+// Drag and Drop
 struct MyDropDelegate: DropDelegate {
     let realm = try! Realm()
     let currentCountry: MyCountryModel
@@ -203,6 +148,6 @@ struct MyDropDelegate: DropDelegate {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CalculateMainView()
     }
 }
