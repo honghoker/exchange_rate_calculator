@@ -19,14 +19,12 @@ enum Operator: String {
 struct CalCulateKeyboardView: View {
     
     @Binding var inputValue: String
-    @Binding var isShowing: Bool
     @Binding var calculateValueText: String
     
     @State var dotCheck = false
     
-    init(_ inputValue: Binding<String>, _ isShowing: Binding<Bool>, _ calculateValueText: Binding<String>) {
+    init(_ inputValue: Binding<String>, _ calculateValueText: Binding<String>) {
         self._inputValue = inputValue
-        self._isShowing = isShowing
         self._calculateValueText = calculateValueText
     }
     
@@ -60,13 +58,6 @@ struct CalCulateKeyboardView: View {
 
     var body: some View {
         VStack (alignment: .trailing){
-            Image(systemName: "keyboard.chevron.compact.down")
-                .frame(width: 100, height: 30)
-                .onTapGesture {
-                    withAnimation {
-                        isShowing = false
-                    }
-                }
             HStack{
                 Text("7")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

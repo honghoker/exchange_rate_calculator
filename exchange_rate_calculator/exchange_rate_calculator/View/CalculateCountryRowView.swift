@@ -46,12 +46,12 @@ struct CalculateCountryRowView: View {
                     }
                     .onDrop(of: [exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode], delegate: MyDropDelegate(currentCountry: exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number], myCountry: $exchangeViewModel.myCountry, draggedCountry: $draggedCountry, exchangeViewModel: exchangeViewModel)
                     )
-                    .frame(height: 100)
+                    .frame(height: 80)
                     .background(Color.white)
-                }
+                } // ForEach
                 .padding(.horizontal, 20)
-            }
-        }
+            } // LazyVStack
+        } // ScrollView
     }
 }
 
