@@ -30,7 +30,7 @@ struct ExchangeFlagView: View {
                 .resizable()
                 .clipShape(Circle())
                 .scaledToFit()
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
         }
         
     }

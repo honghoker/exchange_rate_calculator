@@ -20,7 +20,7 @@ class ExchangeViewModel: ObservableObject {
 //                        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
-    fileprivate func fetchExchangeRate() {
+    func fetchExchangeRate() {
         print(#fileID, #function, #line, "")
         myCountry = Array(realm.objects(MyCountryModel.self))
     }

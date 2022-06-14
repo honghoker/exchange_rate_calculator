@@ -27,6 +27,7 @@ struct CheckboxStyle: ToggleStyle {
 }
 
 struct DunamuRowView: View {
+    
     var dunamu: DunamuModel
     
     let realm = try! Realm()
@@ -34,6 +35,11 @@ struct DunamuRowView: View {
     @State var checked: Bool = false
     @Binding var editEnable: Bool
     @Binding var myCountryList: Results<MyCountryModel>
+    
+//    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
+    @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
+
+//    @Binding var myCountry: [MyCountryModel]
     
     init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ myCountryList: Binding<Results<MyCountryModel>>) {
         self.dunamu = dunamu
@@ -61,12 +67,18 @@ struct DunamuRowView: View {
                         try! realm.write {
                             realm.add(myCountry)
                         }
+                        print("edit add")
+                        exchangeViewModel.fetchExchangeRate()
+                        exchangeViewModel.fetchExchangeBasePrice(Array(realm.objects(MyCountryModel.self)))
                     } else {
                         // MARK: - 삭제
                         if let data = realm.objects(MyCountryModel.self).filter({$0.currencyCode == dunamu.currencyCode}) .first {
                             try! realm.write {
                                 realm.delete(data)
                             }
+                            print("edit delete")
+                            exchangeViewModel.fetchExchangeRate()
+                            exchangeViewModel.fetchExchangeBasePrice(Array(realm.objects(MyCountryModel.self)))
                         }
                     }
                 }
