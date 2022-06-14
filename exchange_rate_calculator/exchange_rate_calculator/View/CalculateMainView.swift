@@ -30,7 +30,7 @@ struct CalculateMainView: View {
                 HStack (alignment: .center, spacing: 0) {
                     if mainTextSwitchCheck {
                         Text("환율 계산기")
-                            .font(.system(size: 20))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 20))
                             .fontWeight(.black)
                             .transition(.opacity)
                             .onReceive(mainTextSwitchTimer) { _ in
@@ -39,7 +39,7 @@ struct CalculateMainView: View {
                                 }
                             }
                     } else {
-                        Text("\(dunamuViewModel.dunamuModels[0].time) 기준")
+                        Text("\(dunamuViewModel.dunamuModels[1].time) 기준")
                             .font(.system(size: 20))
                             .fontWeight(.black)
                             .transition(.opacity)

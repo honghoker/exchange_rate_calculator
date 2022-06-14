@@ -16,6 +16,8 @@ class DunamuViewModel: ObservableObject {
     
     var refreshActionSubject = PassthroughSubject<(), Never>()
     
+    let koreaTemp = DunamuModel(code: "", currencyCode: "KRW", currencyName: "원", country: "대한민국", name: "", date: "", time: "", recurrenceCount: 1, basePrice: 1, openingPrice: 1, highPrice: 1, lowPrice: 1, change: "", changePrice: 1, cashBuyingPrice: 1, cashSellingPrice: 1, ttBuyingPrice: 1, ttSellingPrice: 1, tcBuyingPrice: 1, fcSellingPrice: 1, exchangeCommission: 1, usDollarRate: 1, high52wPrice: 1, high52wDate: "", low52wPrice: 1, low52wDate: "", currencyUnit: 1, provider: "", timestamp: 1, id: -99, createdAt: "", modifiedAt: "", changeRate: 1, signedChangePrice: 1, signedChangeRate: 1)
+    
     init() {
         print(#fileID, #function, #line, "")
         fetchAllDunamu()
@@ -42,7 +44,10 @@ class DunamuViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 print("데이터스트림 완료")
             }, receiveValue: { receiveValue in
-                self.dunamuModels = receiveValue
+                var result = [self.koreaTemp]
+                result += receiveValue
+                print("@@@@@@@ result : \(result)")
+                self.dunamuModels = result
             }).store(in: &subsription)
     }
     
