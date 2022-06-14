@@ -56,8 +56,12 @@ struct DunamuMainView: View {
             HStack(spacing: 0) {
                 Text("")
                     .frame(maxWidth: .infinity)
-                Text("하나은행")
-                    .frame(maxWidth: .infinity)
+                if dunamuViewModel.dunamuModels.isEmpty == false {
+                    Text("\(dunamuViewModel.dunamuModels[1].time) 한국 기준")
+                        .font(.system(size: 14))
+                        .foregroundColor(.black)
+                        .fontWeight(.medium)
+                }
                 Text(editHelper.currencyEdit ? "취소" : "편집")
                     .font(.system(size: 14))
                     .foregroundColor(.black)
@@ -70,13 +74,6 @@ struct DunamuMainView: View {
             .padding(.horizontal, 16)
             .padding(.top, 12)
             Spacer().frame(height : 8)
-            if dunamuViewModel.dunamuModels.isEmpty == false {
-                Text("\(dunamuViewModel.dunamuModels[0].date) \(dunamuViewModel.dunamuModels[0].time) 기준")
-                    .font(.system(size: 14))
-                    .foregroundColor(.black)
-                    .fontWeight(.medium)
-            }
-            Spacer().frame(height : 12)
             
             Section(header: DunamuMainViewHeader()) {
                 List(dunamuViewModel.dunamuModels) { dunamu in

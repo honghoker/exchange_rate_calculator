@@ -19,6 +19,7 @@
 		5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */; };
 		5158F08D2848DB630013ADC6 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 5158F08C2848DB630013ADC6 /* Introspect */; };
 		5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196059A284613F000A245C1 /* ExchangeViewModel.swift */; };
+		51BEEA5328587CCB0014F4DD /* IBMPlexSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51BEEA5228587CCB0014F4DD /* IBMPlexSansKR-Regular.otf */; };
 		51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */; };
 		51CAB40C283B8A1600EA2764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB40B283B8A1600EA2764 /* Assets.xcassets */; };
 		51CAB40F283B8A1600EA2764 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB40E283B8A1600EA2764 /* Preview Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		5151DAAD283F686C00943B14 /* DunamuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuViewModel.swift; sourceTree = "<group>"; };
 		5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunamuMainViewHeader.swift; sourceTree = "<group>"; };
 		5196059A284613F000A245C1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
+		51BEEA5228587CCB0014F4DD /* IBMPlexSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansKR-Regular.otf"; sourceTree = "<group>"; };
 		51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchange_rate_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exchange_rate_calculatorApp.swift; sourceTree = "<group>"; };
 		51CAB409283B8A1500EA2764 /* CalculateMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateMainView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 				51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		51BEEA5128587C950014F4DD /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				51BEEA5228587CCB0014F4DD /* IBMPlexSansKR-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		51CAB3FB283B8A1500EA2764 = {
@@ -191,6 +201,7 @@
 		BC2E538D2850A09700A0F471 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				51BEEA5128587C950014F4DD /* Font */,
 				BC2E538E2850A0CA00A0F471 /* Extensions.swift */,
 			);
 			path = Resources;
@@ -273,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51CAB40F283B8A1600EA2764 /* Preview Assets.xcassets in Resources */,
+				51BEEA5328587CCB0014F4DD /* IBMPlexSansKR-Regular.otf in Resources */,
 				51CAB416283B8BA500EA2764 /* GoogleService-Info.plist in Resources */,
 				51CAB40C283B8A1600EA2764 /* Assets.xcassets in Resources */,
 				5151DAAA283F643500943B14 /* Country.json in Resources */,
