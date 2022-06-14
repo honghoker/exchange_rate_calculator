@@ -50,11 +50,6 @@ struct CalculateMainView: View {
                             }
                     }
                     Spacer()
-                    NavigationLink(destination: SettingView()) {
-                        Image(systemName: "gearshape")
-                        //                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                    }
                 } // HStack
                 .padding()
                 HStack{
