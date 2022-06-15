@@ -40,7 +40,7 @@ struct CalculateMainView: View {
                             }
                     } else {
                         Text("\(dunamuViewModel.dunamuModels[1].time) 기준")
-                            .font(.system(size: 20))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 20))
                             .fontWeight(.black)
                             .transition(.opacity)
                             .onReceive(mainTextSwitchTimer) { _ in
@@ -55,14 +55,15 @@ struct CalculateMainView: View {
                 HStack{
                     Spacer()
                     Text("\(calculateValueText)")
+                        .font(.custom("IBMPlexSansKR-Regular", size: 15))
                 } // HStack
                 .foregroundColor(.gray)
-                .font(.system(size: 15))
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0.5, trailing: 20))
                 HStack {
                     Spacer()
                     Text("\(inputString)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 20))
+                        .font(.custom("IBMPlexSansKR-Regular", size: 15))
                 }
                 Rectangle().frame(height: 1) // underLine
                     .foregroundColor(Color.black)

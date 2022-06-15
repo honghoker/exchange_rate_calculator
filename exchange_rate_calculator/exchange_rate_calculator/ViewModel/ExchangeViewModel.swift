@@ -11,6 +11,7 @@ class ExchangeViewModel: ObservableObject {
     
     @Published var myCountry = [MyCountryModel]()
     @Published var basePrice = [DunamuModel]()
+    @Published var standardCountry = [StandardCountryModel]()
     
     init() {
         print(#fileID, #function, #line, "")
@@ -23,6 +24,34 @@ class ExchangeViewModel: ObservableObject {
     func fetchExchangeRate() {
         print(#fileID, #function, #line, "")
         myCountry = Array(realm.objects(MyCountryModel.self))
+        standardCountry = Array(realm.objects(StandardCountryModel.self))
+        // MARK: realm 아무것도 없을 때 기본 나라 세팅
+        if standardCountry.isEmpty {
+            let tempKRW = StandardCountryModel()
+            tempKRW.currencyCode = "KRW"
+            try! realm.write {
+                realm.add(tempKRW)
+            }
+        }
+        if myCountry.isEmpty {
+            let tempUSD = MyCountryModel()
+            tempUSD.currencyCode = "USD"
+            try! realm.write {
+                realm.add(tempUSD)
+            }
+            let tempJPY = MyCountryModel()
+            tempJPY.currencyCode = "JPY"
+            try! realm.write {
+                realm.add(tempJPY)
+            }
+            let tempEUR = MyCountryModel()
+            tempEUR.currencyCode = "EUR"
+            try! realm.write {
+                realm.add(tempEUR)
+            }
+            myCountry = Array(realm.objects(MyCountryModel.self))
+            standardCountry = Array(realm.objects(StandardCountryModel.self))
+        }
     }
     
     func fetchExchangeBasePrice(_ currencyCode: [MyCountryModel]) { // 사용자가 추가한 나라만

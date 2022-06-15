@@ -26,14 +26,17 @@ struct CalculateCountryRowView: View {
                     HStack (alignment: .center, spacing: 15) {
                         ExchangeFlagView(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)
                         Text("\(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)")
-                            .fontWeight(.light)
-                            .font(.system(size: 30))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 20))
                         Spacer()
                         VStack (alignment: .trailing){
                             ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, exchangeViewModel.myCountry.count <= number ? 0 : number)
                             HStack (spacing: 5){
                                 Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.country)
+                                    .font(.custom("IBMPlexSansKR-Regular", size: 15))
+                                    .foregroundColor(.gray)
                                 Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.currencyName)
+                                    .font(.custom("IBMPlexSansKR-Regular", size: 15))
+                                    .foregroundColor(.gray)
                             }
                         }.onTapGesture {
                             // 국가 tap

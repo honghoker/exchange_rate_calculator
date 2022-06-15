@@ -8,8 +8,11 @@
 import Foundation
 import Alamofire
 import Combine
+import RealmSwift
 
 class DunamuViewModel: ObservableObject {
+    let realm = try! Realm()
+    
     var subsription = Set<AnyCancellable>()
     
     @Published var dunamuModels = [DunamuModel]()
@@ -31,9 +34,17 @@ class DunamuViewModel: ObservableObject {
     fileprivate func fetchAllDunamu() { // 모든
         print(#fileID, #function, #line, "")
         // MARK: - realm으로 기준나라코드 가져오기
-        let baseCountryCode = "KRW"
-        // MARK: - FRX.(기준나라)(대상나라)
+        var testBaseCountryCode = ""
+        let standardCountry = Array(realm.objects(StandardCountryModel.self))
+        if !standardCountry.isEmpty {
+            for item in standardCountry {
+                testBaseCountryCode = item.currencyCode
+                }
+            print("MARK: - realm으로 기준나라코드 가져오기 \(testBaseCountryCode)")
+        }
         
+        // MARK: - FRX.(기준나라)(대상나라)
+        let baseCountryCode = "KRW"
         let resultMap = currencyCodeList.map({ String("FRX.\(baseCountryCode)\($0)") })
         let codes = resultMap.joined(separator: ",")
         

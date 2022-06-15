@@ -32,3 +32,7 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
 class MyCountryModel: Object {
     @objc dynamic var currencyCode = "" // 통화코드 ex) "USD"
 }
+
+class StandardCountryModel: Object {
+    @objc dynamic var currencyCode = "" // 통화코드 ex) "USD"
+}

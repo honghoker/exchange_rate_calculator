@@ -23,7 +23,8 @@ struct ExchangeTextView: View {
     
     var body: some View {
         if !basePrices.isEmpty {
-            Text("\(Double(inputValue == "" ? "0" : inputValue)! / basePrices[number].basePrice, specifier: "%.4f")")
+            Text("\(Double(inputValue == "" ? "0" : inputValue)! / basePrices[number].basePrice, specifier: "%.2f")")
+                .font(.custom("IBMPlexSansKR-Regular", size: 20))
         }
     }
 }
