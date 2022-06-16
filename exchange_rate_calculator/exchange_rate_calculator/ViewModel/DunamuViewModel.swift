@@ -16,6 +16,8 @@ class DunamuViewModel: ObservableObject {
     var subsription = Set<AnyCancellable>()
     
     @Published var dunamuModels = [DunamuModel]()
+    @Published var standardCountry = ""
+    @Published var standardCountryBasePrice = 0.0
     
     var refreshActionSubject = PassthroughSubject<(), Never>()
     
@@ -33,15 +35,6 @@ class DunamuViewModel: ObservableObject {
     
     fileprivate func fetchAllDunamu() { // 모든
         print(#fileID, #function, #line, "")
-        // MARK: - realm으로 기준나라코드 가져오기
-        var testBaseCountryCode = ""
-        let standardCountry = Array(realm.objects(StandardCountryModel.self))
-        if !standardCountry.isEmpty {
-            for item in standardCountry {
-                testBaseCountryCode = item.currencyCode
-                }
-            print("MARK: - realm으로 기준나라코드 가져오기 \(testBaseCountryCode)")
-        }
         
         // MARK: - FRX.(기준나라)(대상나라)
         let baseCountryCode = "KRW"
@@ -54,12 +47,25 @@ class DunamuViewModel: ObservableObject {
             .compactMap { $0.value }
             .sink(receiveCompletion: { completion in
                 print("데이터스트림 완료")
+                // 성훈 -> standardCountr == KRW 면 dunamuModels 에 KRW 없어서 매매기준율 따로 값 줘서 예외처리해야함
+                let standardCountryBasePrice = self.dunamuModels.filter{ $0.currencyCode == self.standardCountry}
+                self.standardCountryBasePrice = standardCountryBasePrice[0].basePrice
+                print("MARK: - realm으로 기준나라코드 매매기준율 가져오기 \(standardCountryBasePrice[0].basePrice)")
             }, receiveValue: { receiveValue in
                 var result = [self.koreaTemp]
                 result += receiveValue
                 print("@@@@@@@ result : \(result)")
                 self.dunamuModels = result
             }).store(in: &subsription)
+        
+        // MARK: - realm으로 기준나라코드 가져오기
+        let standardCountryArray = Array(realm.objects(StandardCountryModel.self))
+        if !standardCountryArray.isEmpty {
+            for item in standardCountryArray {
+                standardCountry = item.currencyCode
+            }
+            print("MARK: - realm으로 기준나라코드 가져오기 \(standardCountry)")
+        }
     }
     
     fileprivate func fetchMyDunamu() { // 사용자가 추가한 나라만

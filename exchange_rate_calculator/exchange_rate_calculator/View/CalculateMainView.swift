@@ -17,7 +17,7 @@ struct CalculateMainView: View {
     let mainTextSwitchTimer = Timer.publish(every: 7, on: .main, in: .common).autoconnect() // 앱 이름 <> 업데이트 날짜 바꿔주는 시간 (7초)
     
     @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
-    @ObservedObject var dunamuViewModel = DunamuViewModel()
+    @ObservedObject var dunamuViewModel: DunamuViewModel
     
     @State var inputString = "0" // textField String value
     @State var calculateValueText = "" // keyboard input하면 textField 위에 숫자나 연산자들 보여주는 text
@@ -60,15 +60,17 @@ struct CalculateMainView: View {
                 .foregroundColor(.gray)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0.5, trailing: 20))
                 HStack {
+                    ExchangeFlagView("\(dunamuViewModel.standardCountry)") // 기준나라 국기
+                        .padding(.horizontal, 20)
                     Spacer()
                     Text("\(inputString)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 20))
-                        .font(.custom("IBMPlexSansKR-Regular", size: 15))
+                        .font(.custom("IBMPlexSansKR-Regular", size: 25))
                 }
                 Rectangle().frame(height: 1) // underLine
                     .foregroundColor(Color.black)
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                CalculateCountryRowView($draggedCountry, $inputString) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
+                CalculateCountryRowView($draggedCountry, $inputString, $dunamuViewModel.standardCountry, $dunamuViewModel.standardCountryBasePrice) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
                 CalCulateKeyboardView($inputString,$calculateValueText) // custom calculate keyboard
                     .frame(
                         width: UIScreen.main.bounds.width,
@@ -124,8 +126,8 @@ struct MyDropDelegate: DropDelegate {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalculateMainView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CalculateMainView()
+//    }
+//}
