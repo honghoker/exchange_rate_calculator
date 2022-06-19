@@ -58,12 +58,12 @@ struct DunamuMainView: View {
                     .frame(maxWidth: .infinity)
                 if dunamuViewModel.dunamuModels.isEmpty == false {
                     Text("\(dunamuViewModel.dunamuModels[1].time) 한국 기준")
-                        .font(.system(size: 14))
+                        .font(.custom("IBMPlexSansKR-Regular", size: 14))
                         .foregroundColor(.black)
                         .fontWeight(.medium)
                 }
                 Text(editHelper.currencyEdit ? "취소" : "편집")
-                    .font(.system(size: 14))
+                    .font(.custom("IBMPlexSansKR-Regular", size: 14))
                     .foregroundColor(.black)
                     .fontWeight(.medium)
                     .frame(maxWidth: .infinity, alignment: .trailing)

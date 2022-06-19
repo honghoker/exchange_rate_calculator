@@ -104,12 +104,12 @@ struct DunamuRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(dunamu.currencyCode)")
                     .fontWeight(.bold)
-                    .font(.system(size : 14))
+                    .font(.custom("IBMPlexSansKR-Regular", size: 14))
                     .foregroundColor(.black)
                 
                 Text("\(countryModelList[dunamu.currencyCode]!.country) \(countryModelList[dunamu.currencyCode]!.currencyName)")
                     .fontWeight(.medium)
-                    .font(.system(size : 12))
+                    .font(.custom("IBMPlexSansKR-Regular", size: 12))
                     .foregroundColor(.gray)
             } // VStack
         }
@@ -119,12 +119,12 @@ struct DunamuRowView: View {
         if dunamu.currencyCode == "KRW" {
             Text("-")
                 .fontWeight(.bold)
-                .font(.system(size : 12))
+                .font(.custom("IBMPlexSansKR-Regular", size: 12))
                 .foregroundColor(.gray)
         } else {
             Text("\(String(format: "%.2f", dunamu.basePrice))")
                 .fontWeight(.bold)
-                .font(.system(size : 12))
+                .font(.custom("IBMPlexSansKR-Regular", size: 12))
                 .foregroundColor(.black)
         }
         
@@ -148,7 +148,7 @@ struct DunamuRowView: View {
         if dunamu.currencyCode == "KRW" {
             Text("-")
                 .fontWeight(.bold)
-                .font(.system(size : 12))
+                .font(.custom("IBMPlexSansKR-Regular", size: 12))
                 .foregroundColor(.gray)
         } else {
             if dunamu.change == "RISE" {
@@ -156,15 +156,15 @@ struct DunamuRowView: View {
                     HStack(spacing: 2) {
                         Image(systemName: "arrowtriangle.up.fill")
                             .foregroundColor(.red)
-                            .font(.system(size: 10))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 10))
                         Text("\(String(format: "%.2f", dunamu.changePrice))")
                             .fontWeight(.medium)
-                            .font(.system(size: 12))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 12))
                             .foregroundColor(.red)
                     }
                     Text("(+\(pricePercentage())%)")
                         .fontWeight(.medium)
-                        .font(.system(size: 12))
+                        .font(.custom("IBMPlexSansKR-Regular", size: 12))
                         .foregroundColor(.red)
                 }
             } else if dunamu.change == "FALL" {
@@ -172,22 +172,22 @@ struct DunamuRowView: View {
                     HStack(spacing: 2) {
                         Image(systemName: "arrowtriangle.down.fill")
                             .foregroundColor(.blue)
-                            .font(.system(size: 10))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 10))
                         Text("\(String(format: "%.2f", dunamu.changePrice))")
                             .fontWeight(.medium)
-                            .font(.system(size: 12))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 12))
                             .foregroundColor(.blue)
                     }
                     Text("(-\(pricePercentage())%)")
                         .fontWeight(.medium)
-                        .font(.system(size: 12))
+                        .font(.custom("IBMPlexSansKR-Regular", size: 12))
                         .foregroundColor(.blue)
                 }
             } else {
                 HStack(spacing: 2) {
                     Text("\(String(format: "%.2f", dunamu.changePrice))")
                         .fontWeight(.medium)
-                        .font(.system(size: 12))
+                        .font(.custom("IBMPlexSansKR-Regular", size: 12))
                         .foregroundColor(.black)
                 }
             }
