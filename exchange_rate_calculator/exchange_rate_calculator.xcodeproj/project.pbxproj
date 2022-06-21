@@ -33,7 +33,9 @@
 		51CAB425283B8C9800EA2764 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB424283B8C9800EA2764 /* Realm */; };
 		51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51CAB426283B8C9800EA2764 /* RealmSwift */; };
 		BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC123469283D087E0032FC56 /* ExchangeTextView.swift */; };
-		BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */; };
+		BC15F80D284498EA0075C4D5 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15F80C284498EA0075C4D5 /* KeyboardView.swift */; };
+		BC263AF12861836000844912 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BC263AF02861836000844912 /* GoogleMobileAds */; };
+		BC263AF32861869E00844912 /* GADBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC263AF22861869E00844912 /* GADBanner.swift */; };
 		BC2E538F2850A0CA00A0F471 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E538E2850A0CA00A0F471 /* Extensions.swift */; };
 		BC2E53912850A3DD00A0F471 /* CalculateCountryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */; };
 		BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */; };
@@ -61,7 +63,8 @@
 		51CAB42D283B8CE500EA2764 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51CAB437283B8F7C00EA2764 /* exchange-rate-calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "exchange-rate-calculator-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BC123469283D087E0032FC56 /* ExchangeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTextView.swift; sourceTree = "<group>"; };
-		BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateKeyboardView.swift; sourceTree = "<group>"; };
+		BC15F80C284498EA0075C4D5 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		BC263AF22861869E00844912 /* GADBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBanner.swift; sourceTree = "<group>"; };
 		BC2E538E2850A0CA00A0F471 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateCountryRowView.swift; sourceTree = "<group>"; };
 		BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountryModel.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 				515C36D928617A9C00A3D74A /* PopupView in Frameworks */,
 				5151DAA0283F0C9000943B14 /* FlagKit in Frameworks */,
 				51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */,
+				BC263AF12861836000844912 /* GoogleMobileAds in Frameworks */,
 				51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */,
 				51CAB41D283B8BFC00EA2764 /* FirebaseFunctions in Frameworks */,
 				51CAB41F283B8BFC00EA2764 /* FirebaseStorage in Frameworks */,
@@ -163,15 +167,10 @@
 		51CAB42B283B8CD000EA2764 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				51CAB409283B8A1500EA2764 /* CalculateMainView.swift */,
-				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
-				5139A4B628451DC000910525 /* DunamuRowView.swift */,
-				BC123469283D087E0032FC56 /* ExchangeTextView.swift */,
-				BC15F80C284498EA0075C4D5 /* CalculateKeyboardView.swift */,
-				5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */,
-				BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */,
+				BC263AF52862006A00844912 /* Dunamu */,
+				BC263AF42862004800844912 /* Calculate */,
+				BC15F80C284498EA0075C4D5 /* KeyboardView.swift */,
 				BCD5947B28491CE3002D4A05 /* TabBarView.swift */,
-				BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,11 +199,41 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
+		BC263AF42862004800844912 /* Calculate */ = {
+			isa = PBXGroup;
+			children = (
+				BC263AF62862009800844912 /* Exchange */,
+				BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */,
+				51CAB409283B8A1500EA2764 /* CalculateMainView.swift */,
+			);
+			path = Calculate;
+			sourceTree = "<group>";
+		};
+		BC263AF52862006A00844912 /* Dunamu */ = {
+			isa = PBXGroup;
+			children = (
+				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
+				5139A4B628451DC000910525 /* DunamuRowView.swift */,
+				5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */,
+			);
+			path = Dunamu;
+			sourceTree = "<group>";
+		};
+		BC263AF62862009800844912 /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				BC123469283D087E0032FC56 /* ExchangeTextView.swift */,
+				BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
 		BC2E538D2850A09700A0F471 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				51BEEA5128587C950014F4DD /* Font */,
 				BC2E538E2850A0CA00A0F471 /* Extensions.swift */,
+				BC263AF22861869E00844912 /* GADBanner.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -236,6 +265,7 @@
 				5151DA9F283F0C9000943B14 /* FlagKit */,
 				5158F08C2848DB630013ADC6 /* Introspect */,
 				515C36D828617A9C00A3D74A /* PopupView */,
+				BC263AF02861836000844912 /* GoogleMobileAds */,
 			);
 			productName = exchange_rate_calculator;
 			productReference = 51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */;
@@ -272,6 +302,7 @@
 				5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */,
 				5158F08B2848DB630013ADC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				515C36D728617A9C00A3D74A /* XCRemoteSwiftPackageReference "PopupView" */,
+				BC263AEF2861836000844912 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 51CAB405283B8A1500EA2764 /* Products */;
 			projectDirPath = "";
@@ -314,9 +345,10 @@
 				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
 				5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */,
 				BC66920E2848846E0046DC92 /* ExchangeFlagView.swift in Sources */,
+				BC263AF32861869E00844912 /* GADBanner.swift in Sources */,
 				BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */,
 				BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */,
-				BC15F80D284498EA0075C4D5 /* CalculateKeyboardView.swift in Sources */,
+				BC15F80D284498EA0075C4D5 /* KeyboardView.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 				5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */,
 			);
@@ -455,7 +487,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -486,7 +519,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -573,6 +607,14 @@
 				kind = branch;
 			};
 		};
+		BC263AEF2861836000844912 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -625,6 +667,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 51CAB423283B8C9800EA2764 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		BC263AF02861836000844912 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC263AEF2861836000844912 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,16 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>IBMPlexSansKR-Regular.otf</string>
-	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-1976572399218124~2477665895</string>
+	<key>GADIsAdManagerApp</key>
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>IBMPlexSansKR-Regular.otf</string>
+	</array>
 </dict>
 </plist>

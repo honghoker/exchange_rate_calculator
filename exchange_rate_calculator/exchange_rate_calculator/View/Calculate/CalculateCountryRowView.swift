@@ -15,6 +15,7 @@ struct CalculateCountryRowView: View {
     @Binding var inputString: String // textField String value
     @Binding var standardCountry: String // 기준 국가
     @Binding var standardCountryBasePrice: Double // 기준 국가 매매기준율
+    var testValue = ""
     
     init(_ draggedCountry: Binding<MyCountryModel>, _ inputString: Binding<String>, _ standardCountry: Binding<String>, _ standardCountryBasePrice: Binding<Double>) {
         self._draggedCountry = draggedCountry
@@ -35,10 +36,10 @@ struct CalculateCountryRowView: View {
                         VStack (alignment: .trailing){
                             ExchangeTextView(inputValue: $inputString,  $exchangeViewModel.basePrice, exchangeViewModel.myCountry.count <= number ? 0 : number, $standardCountry, $standardCountryBasePrice)
                             HStack (spacing: 5){
-                                Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.country)
+                                Text(countryModelList["\(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.country)
                                     .font(.custom("IBMPlexSansKR-Regular", size: 15))
                                     .foregroundColor(.gray)
-                                Text(countryModelList["\(exchangeViewModel.basePrice[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.currencyName)
+                                Text(countryModelList["\(exchangeViewModel.myCountry[exchangeViewModel.myCountry.count <= number ? 0 : number].currencyCode)"]!.currencyName)
                                     .font(.custom("IBMPlexSansKR-Regular", size: 15))
                                     .foregroundColor(.gray)
                             }
@@ -47,7 +48,6 @@ struct CalculateCountryRowView: View {
                         }
                     }
                     .onDrag{
-                        // print("Drag \(exchangeViewModel.myCountry[number])")
                         self.draggedCountry = exchangeViewModel.myCountry[number]
                         return NSItemProvider(item: nil, typeIdentifier: exchangeViewModel.myCountry[number].currencyCode)
                     }
