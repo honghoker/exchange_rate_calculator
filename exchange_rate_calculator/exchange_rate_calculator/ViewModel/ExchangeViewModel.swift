@@ -52,15 +52,21 @@ class ExchangeViewModel: ObservableObject {
             myCountry = Array(realm.objects(MyCountryModel.self))
             standardCountry = Array(realm.objects(StandardCountryModel.self))
         }
+        print("@@@@@@!!!!!! \(myCountry.count)")
     }
     
     func fetchExchangeBasePrice(_ currencyCode: [MyCountryModel]) { // 사용자가 추가한 나라만
+        var koreaCheck = false
         print(#fileID, #function, #line, "")
         // MARK: - realm으로 기준나라코드 가져오기
         let baseCountryCode = "KRW"
         // MARK: - realm으로 저장된 나라들 가져오기
         let resultMap = currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") })
         let codes = resultMap.joined(separator: ",")
+        
+        if currencyCode.contains(where: {$0.currencyCode == "KRW"}) {
+            koreaCheck = true
+        }
         
         print(codes)
         AF.request(Dunamu.getMy(codes: codes))
@@ -71,6 +77,9 @@ class ExchangeViewModel: ObservableObject {
             }, receiveValue: { receiveValue in
                 print("receiveValue \(receiveValue)")
                 self.basePrice = receiveValue
+                if koreaCheck {
+                    self.basePrice.append(DunamuViewModel().koreaTemp)
+                }
             }).store(in: &subscription)
     }
     
