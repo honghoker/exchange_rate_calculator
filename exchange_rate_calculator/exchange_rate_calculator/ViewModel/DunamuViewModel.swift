@@ -16,7 +16,7 @@ class DunamuViewModel: ObservableObject {
     var subsription = Set<AnyCancellable>()
     
     @Published var dunamuModels = [DunamuModel]()
-    @Published var standardCountry = ""
+    @Published var standardCountry = "KRW"
     @Published var standardCountryBasePrice = 0.0
     
     var refreshActionSubject = PassthroughSubject<(), Never>()

@@ -50,9 +50,9 @@ struct DunamuMainView: View {
     
     let refreshControlHelper = RefreshControlHelper()
 
-    init() {
-        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
-    }
+//    init() {
+//        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
+//    }
     
     @ViewBuilder func popList() -> some View {
         GeometryReader { _ in
