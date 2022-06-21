@@ -28,26 +28,23 @@ class RefreshControlHelper {
     @objc func didRefresh() {
         print(#fileID, #function, #line, "")
         guard let parentContentView = parentContentView,
-              let refreshControl = refreshControl else {
+              let parentContentRefreshControl = refreshControl else {
             print("@@@@ didRefresh error")
             return
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             print("@@@@ 리프레시 완료")
             parentContentView.dunamuViewModel.refreshActionSubject.send()
-            refreshControl.endRefreshing()
+            parentContentRefreshControl.endRefreshing()
         })
     }
 }
 
 struct DunamuMainView: View {
-    @ObservedObject var dunamuViewModel = DunamuViewModel()
+    @ObservedObject var dunamuViewModel: DunamuViewModel
     @ObservedObject var editHelper = EditHelper()
     @ObservedObject var myCountryList = BindableResults(results: try! Realm().objects(MyCountryModel.self))
-    
-    init() {
-        print("@@@@@@ realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
-    }
     
     let refreshControlHelper = RefreshControlHelper()
     
