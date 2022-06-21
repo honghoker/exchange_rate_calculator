@@ -17,7 +17,7 @@ struct DunamuMainViewHeader: View {
                     .frame(width: proxy.size.width * 0.60)
                     .overlay(
                         Text("통화")
-                            .font(.system(size: 13))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 13))
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                     )
@@ -27,7 +27,7 @@ struct DunamuMainViewHeader: View {
                     .frame(width: proxy.size.width * 0.20)
                     .overlay(
                         Text("매매기준율")
-                            .font(.system(size: 13))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 13))
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                     )
@@ -36,7 +36,7 @@ struct DunamuMainViewHeader: View {
                     .frame(width: proxy.size.width * 0.20)
                     .overlay(
                         Text("전일대비")
-                            .font(.system(size: 13))
+                            .font(.custom("IBMPlexSansKR-Regular", size: 13))
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                     )

@@ -18,6 +18,7 @@
 		5158F067284614790013ADC6 /* CalculateMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB409283B8A1500EA2764 /* CalculateMainView.swift */; };
 		5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */; };
 		5158F08D2848DB630013ADC6 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 5158F08C2848DB630013ADC6 /* Introspect */; };
+		515C36D928617A9C00A3D74A /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 515C36D828617A9C00A3D74A /* PopupView */; };
 		5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196059A284613F000A245C1 /* ExchangeViewModel.swift */; };
 		51BEEA5328587CCB0014F4DD /* IBMPlexSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51BEEA5228587CCB0014F4DD /* IBMPlexSansKR-Regular.otf */; };
 		51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */; };
@@ -75,6 +76,7 @@
 			files = (
 				51CAB425283B8C9800EA2764 /* Realm in Frameworks */,
 				5158F08D2848DB630013ADC6 /* Introspect in Frameworks */,
+				515C36D928617A9C00A3D74A /* PopupView in Frameworks */,
 				5151DAA0283F0C9000943B14 /* FlagKit in Frameworks */,
 				51CAB422283B8C1700EA2764 /* Alamofire in Frameworks */,
 				51CAB427283B8C9800EA2764 /* RealmSwift in Frameworks */,
@@ -233,6 +235,7 @@
 				51CAB426283B8C9800EA2764 /* RealmSwift */,
 				5151DA9F283F0C9000943B14 /* FlagKit */,
 				5158F08C2848DB630013ADC6 /* Introspect */,
+				515C36D828617A9C00A3D74A /* PopupView */,
 			);
 			productName = exchange_rate_calculator;
 			productReference = 51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */;
@@ -268,6 +271,7 @@
 				51CAB423283B8C9800EA2764 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5151DA9E283F0C9000943B14 /* XCRemoteSwiftPackageReference "FlagKit" */,
 				5158F08B2848DB630013ADC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				515C36D728617A9C00A3D74A /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 51CAB405283B8A1500EA2764 /* Products */;
 			projectDirPath = "";
@@ -537,6 +541,14 @@
 				minimumVersion = 0.1.4;
 			};
 		};
+		515C36D728617A9C00A3D74A /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		51CAB417283B8BFC00EA2764 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -573,6 +585,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5158F08B2848DB630013ADC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		515C36D828617A9C00A3D74A /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 515C36D728617A9C00A3D74A /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 		51CAB418283B8BFC00EA2764 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;

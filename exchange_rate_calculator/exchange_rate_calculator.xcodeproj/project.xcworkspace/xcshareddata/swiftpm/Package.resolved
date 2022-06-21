@@ -109,6 +109,15 @@
       }
     },
     {
+      "identity" : "popupview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/PopupView.git",
+      "state" : {
+        "revision" : "21197a4adfe5c2bebc55a08d9521f9211fd510d5",
+        "version" : "1.1.4"
+      }
+    },
+    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
