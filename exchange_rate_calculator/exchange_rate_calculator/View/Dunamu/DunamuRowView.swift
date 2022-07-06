@@ -18,7 +18,6 @@ struct CheckboxStyle: ToggleStyle {
                 .frame(width: 24, height: 24)
                 .foregroundColor(configuration.isOn ? .blue : .gray)
                 .font(.system(size: 20, weight: .regular, design: .default))
-            configuration.label
         }
         .onTapGesture {
             withAnimation { configuration.isOn.toggle() }
@@ -27,7 +26,6 @@ struct CheckboxStyle: ToggleStyle {
 }
 
 struct DunamuRowView: View {
-    
     var dunamu: DunamuModel
     
     let realm = try! Realm()

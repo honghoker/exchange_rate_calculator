@@ -16,6 +16,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSansKR-Regular.otf</string>
+		<string>IBMPlexSansKR-Medium.otf</string>
 	</array>
 </dict>
 </plist>
