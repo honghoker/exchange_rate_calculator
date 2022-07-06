@@ -16,7 +16,7 @@ enum Operator: String {
     case dot = "."
 }
 
-struct CalCulateKeyboardView: View {
+struct KeyboardView: View {
     
     @Binding var inputValue: String
     @Binding var calculateValueText: String
@@ -37,6 +37,7 @@ struct CalCulateKeyboardView: View {
         }
         calculateValueText += inputNumber
         inputValue = String(describing: calculate(calculateValueText))
+        dotCheck = false
     }
         
     // 연산자 입력
@@ -48,7 +49,7 @@ struct CalCulateKeyboardView: View {
             }
         }
         else {
-            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 20 {
+            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 18 {
                 calculateValueText += " \(operatorValue.rawValue) "
                 dotCheck = false
                 inputValue = String(describing: calculate(calculateValueText))
