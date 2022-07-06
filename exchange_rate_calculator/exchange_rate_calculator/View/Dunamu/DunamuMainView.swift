@@ -115,7 +115,7 @@ struct DunamuMainView: View {
             HStack{
                 Text("현재 기준 통화")
                     .fontWeight(.bold)
-                    .font(.custom("IBMPlexSansKR-Regular", size: 14))
+                    .font(.custom("IBMPlexSansKR-Medium", size: 14))
                     .foregroundColor(.black)
                     .padding(.top, 12)
                     .padding(.leading, 16)
@@ -164,8 +164,9 @@ struct DunamuMainView: View {
                 
                 Spacer().frame(width: 16)
             }
-            Divider()
+//            Divider()
         }
+        .padding(.bottom, 24)
     }
     
     @ViewBuilder func updateTimeAndEdit() -> some View {
@@ -178,7 +179,7 @@ struct DunamuMainView: View {
                     .foregroundColor(.black)
                     .fontWeight(.medium)
             }
-            Text(editHelper.currencyEdit ? "취소" : "편집")
+            Text(editHelper.currencyEdit ? "완료" : "편집")
                 .font(.custom("IBMPlexSansKR-Regular", size: 14))
                 .foregroundColor(.black)
                 .fontWeight(.medium)
@@ -189,7 +190,7 @@ struct DunamuMainView: View {
         }
         .padding(.horizontal, 16)
         .padding(.top, 12)
-        .padding(.bottom, 8)
+        .padding(.bottom, 12)
     }
     
     @ViewBuilder func currencyList() -> some View {
@@ -208,8 +209,8 @@ struct DunamuMainView: View {
     
     var body: some View {
         VStack {
-            baseCurrency()
             updateTimeAndEdit()
+            baseCurrency()
             currencyList()
         } // VStack
         .padding(0)
