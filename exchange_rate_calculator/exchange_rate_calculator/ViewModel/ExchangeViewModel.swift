@@ -4,12 +4,17 @@ import Combine
 import RealmSwift
 import FlagKit
 
+struct MyCountryBasePrice {
+    var basePrice: Double // 매매기준율 ex) 1268.00
+}
+
 class ExchangeViewModel: ObservableObject {
     let realm = try! Realm()
     var subscription = Set<AnyCancellable>()
     var realmCheck = false
     
     @Published var myCountry = [MyCountryModel]()
+    @Published var myCountryBasePrice = [Double]()
     @Published var basePrice = [DunamuModel]()
     @Published var standardCountry = [StandardCountryModel]()
     
@@ -18,7 +23,7 @@ class ExchangeViewModel: ObservableObject {
         print("realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
         fetchExchangeRate()
         fetchExchangeBasePrice(myCountry)
-//                        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
+        //                        try! FileManager.default.removeItem(at:Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     func fetchExchangeRate() {
@@ -52,7 +57,6 @@ class ExchangeViewModel: ObservableObject {
             myCountry = Array(realm.objects(MyCountryModel.self))
             standardCountry = Array(realm.objects(StandardCountryModel.self))
         }
-        print("@@@@@@!!!!!! \(myCountry.count)")
     }
     
     func fetchExchangeBasePrice(_ currencyCode: [MyCountryModel]) { // 사용자가 추가한 나라만
@@ -64,10 +68,16 @@ class ExchangeViewModel: ObservableObject {
         let resultMap = currencyCode.map({  String("FRX.\(baseCountryCode)\($0.currencyCode)") })
         let codes = resultMap.joined(separator: ",")
         
-        if currencyCode.contains(where: {$0.currencyCode == "KRW"}) {
-            koreaCheck = true
-        }
         
+        var count = 0
+        while !(count >= currencyCode.count) {
+            if currencyCode[count].currencyCode == "KRW" {
+                koreaCheck = true
+                break
+            }
+            count += 1
+        }
+
         print(codes)
         AF.request(Dunamu.getMy(codes: codes))
             .publishDecodable(type: [DunamuModel].self)
@@ -76,9 +86,19 @@ class ExchangeViewModel: ObservableObject {
                 print("데이터스트림 완료")
             }, receiveValue: { receiveValue in
                 print("receiveValue \(receiveValue)")
-                self.basePrice = receiveValue
+                var receiveCount = 0
                 if koreaCheck {
-                    self.basePrice.append(DunamuViewModel().koreaTemp)
+                    self.basePrice = []
+                    for i in 0..<receiveValue.count+1 {
+                        if i == count {
+                            self.basePrice.append(DunamuViewModel().koreaTemp)
+                        } else {
+                            self.basePrice.append(receiveValue[receiveCount])
+                            receiveCount += 1
+                        }
+                    }
+                } else {
+                    self.basePrice = receiveValue
                 }
             }).store(in: &subscription)
     }
@@ -86,7 +106,7 @@ class ExchangeViewModel: ObservableObject {
     func changeRealmView(_ from: Int, _ to: Int) {
         let realmCountry = realm.objects(MyCountryModel.self)
         let tempCur_currencyCode = realmCountry[from].currencyCode
-
+        
         try! realm.write {
             realmCountry[from].currencyCode = realmCountry[to].currencyCode
             realmCountry[to].currencyCode = tempCur_currencyCode

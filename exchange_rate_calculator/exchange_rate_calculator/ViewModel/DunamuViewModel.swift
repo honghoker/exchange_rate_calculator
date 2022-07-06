@@ -58,6 +58,8 @@ class DunamuViewModel: ObservableObject {
                 self.dunamuModels = result
             }).store(in: &subsription)
         
+        // standardCountry ->
+        
         // MARK: - realm으로 기준나라코드 가져오기
         let standardCountryArray = Array(realm.objects(StandardCountryModel.self))
         if !standardCountryArray.isEmpty {

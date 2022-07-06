@@ -10,6 +10,7 @@ import Combine
 import FlagKit
 import RealmSwift
 import Alamofire
+import GoogleMobileAds
 
 
 struct CalculateMainView: View {
@@ -71,7 +72,9 @@ struct CalculateMainView: View {
                     .foregroundColor(Color.black)
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                 CalculateCountryRowView($draggedCountry, $inputString, $dunamuViewModel.standardCountry, $dunamuViewModel.standardCountryBasePrice) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
-                CalCulateKeyboardView($inputString,$calculateValueText) // custom calculate keyboard
+                // admob
+                //                GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+                KeyboardView($inputString,$calculateValueText) // custom calculate keyboard
                     .frame(
                         width: UIScreen.main.bounds.width,
                         height: UIScreen.main.bounds.height / 3,
@@ -94,8 +97,13 @@ struct MyDropDelegate: DropDelegate {
     
     // 드랍 처리
     func performDrop(info: DropInfo) -> Bool {
-        myCountry = Array(realm.objects(MyCountryModel.self))
-        exchangeViewModel.fetchExchangeBasePrice(myCountry)
+        if draggedCountry != currentCountry {
+            let from = myCountry.firstIndex(of: draggedCountry)!
+            let to = myCountry.firstIndex(of: currentCountry)!
+            ExchangeViewModel().changeRealmView(from, to)
+            myCountry = Array(realm.objects(MyCountryModel.self))
+            exchangeViewModel.fetchExchangeBasePrice(myCountry)
+        }
         return true
     }
     
@@ -105,13 +113,8 @@ struct MyDropDelegate: DropDelegate {
     
     // 드랍 시작
     func dropEntered(info: DropInfo) {
-        if draggedCountry != currentCountry {
-            print("draggedCountry \(draggedCountry)")
-            print("currentCountry \(currentCountry)")
-            let from = myCountry.firstIndex(of: draggedCountry)!
-            let to = myCountry.firstIndex(of: currentCountry)!
-            ExchangeViewModel().changeRealmView(from, to)
-        }
+        // 여기서 changeRealmView 처리하면 드래그 하는 동안 realm이 변경돼서 변경되는 애니메이션 효과는 볼 수 있는데, 드랍하지 않았는데 realm 값이 변경돼서 2칸, 3칸 이렇게 이동하면
+        // 중간에 변경된 realm 값이 draggedCountry 로 잡혀버림
     }
     
     // 드랍 변경
