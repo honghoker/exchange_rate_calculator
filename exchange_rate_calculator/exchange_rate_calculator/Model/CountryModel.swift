@@ -12,7 +12,7 @@ struct CountryModel: Codable {
     let currencyName: String
 }
 
-let currencyCodeList = ["USD", "JPY", "EUR", "CNY", "HKD", "THB", "TWD", "PHP", "SGD", "AUD", "VND", "GBP", "CAD", "MYR", "RUB", "ZAR", "NOK", "NZD", "DKK", "MXN","MNT", "BHD", "BDT", "BRL", "BND", "SAR", "LKR", "SEK", "CHF", "AED", "DZD", "OMR", "JOD", "ILS", "EGP", "INR", "IDR", "CZK", "CLP", "KZT", "QAR", "KES", "COP", "KWD", "TZS", "TRY", "PKR", "PLN", "HUF"]
+let currencyCodeList = ["KRW", "USD", "JPY", "EUR", "CNY", "HKD", "THB", "TWD", "PHP", "SGD", "AUD", "VND", "GBP", "CAD", "MYR", "RUB", "ZAR", "NOK", "NZD", "DKK", "MXN","MNT", "BHD", "BDT", "BRL", "BND", "SAR", "LKR", "SEK", "CHF", "AED", "DZD", "OMR", "JOD", "ILS", "EGP", "INR", "IDR", "CZK", "CLP", "KZT", "QAR", "KES", "COP", "KWD", "TZS", "TRY", "PKR", "PLN", "HUF"]
 
 let countryModelList : [String: CountryModel] = [
     "KRW" : CountryModel(country: "대한민국", currencyName: "원"),

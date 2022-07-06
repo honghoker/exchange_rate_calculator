@@ -67,7 +67,7 @@ class DunamuViewModel: ObservableObject {
             print("MARK: - realm으로 기준나라코드 가져오기 \(standardCountry)")
         }
     }
-    
+
     fileprivate func fetchMyDunamu() { // 사용자가 추가한 나라만
         print(#fileID, #function, #line, "")
         // MARK: - realm으로 기준나라코드 가져오기
