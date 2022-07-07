@@ -22,6 +22,12 @@
 		5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196059A284613F000A245C1 /* ExchangeViewModel.swift */; };
 		51BEEA5328587CCB0014F4DD /* IBMPlexSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51BEEA5228587CCB0014F4DD /* IBMPlexSansKR-Regular.otf */; };
 		51C06B832875658B002BF611 /* IBMPlexSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51C06B822875658B002BF611 /* IBMPlexSansKR-Medium.otf */; };
+		51C06B8528756D18002BF611 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C06B8428756D18002BF611 /* RealmManager.swift */; };
+		51C06B872875721B002BF611 /* StandardCountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C06B862875721B002BF611 /* StandardCountryManager.swift */; };
+		51C06B9028761750002BF611 /* TestRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C06B8F2876174F002BF611 /* TestRealmManager.swift */; };
+		51C06B93287707B2002BF611 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C06B92287707B2002BF611 /* BottomSheetView.swift */; };
+		51C06B9528771917002BF611 /* BindableResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C06B9428771917002BF611 /* BindableResults.swift */; };
+		51C06B9728771A71002BF611 /* StandardCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C06B9628771A71002BF611 /* StandardCountryModel.swift */; };
 		51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */; };
 		51CAB40C283B8A1600EA2764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB40B283B8A1600EA2764 /* Assets.xcassets */; };
 		51CAB40F283B8A1600EA2764 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB40E283B8A1600EA2764 /* Preview Assets.xcassets */; };
@@ -56,6 +62,12 @@
 		5196059A284613F000A245C1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		51BEEA5228587CCB0014F4DD /* IBMPlexSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansKR-Regular.otf"; sourceTree = "<group>"; };
 		51C06B822875658B002BF611 /* IBMPlexSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansKR-Medium.otf"; sourceTree = "<group>"; };
+		51C06B8428756D18002BF611 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		51C06B862875721B002BF611 /* StandardCountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardCountryManager.swift; sourceTree = "<group>"; };
+		51C06B8F2876174F002BF611 /* TestRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRealmManager.swift; sourceTree = "<group>"; };
+		51C06B92287707B2002BF611 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		51C06B9428771917002BF611 /* BindableResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableResults.swift; sourceTree = "<group>"; };
+		51C06B9628771A71002BF611 /* StandardCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardCountryModel.swift; sourceTree = "<group>"; };
 		51CAB404283B8A1500EA2764 /* exchange_rate_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchange_rate_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CAB407283B8A1500EA2764 /* exchange_rate_calculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exchange_rate_calculatorApp.swift; sourceTree = "<group>"; };
 		51CAB409283B8A1500EA2764 /* CalculateMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateMainView.swift; sourceTree = "<group>"; };
@@ -113,6 +125,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		51C06B9128770769002BF611 /* StandardCurrencyChange */ = {
+			isa = PBXGroup;
+			children = (
+				51C06B92287707B2002BF611 /* BottomSheetView.swift */,
+			);
+			path = StandardCurrencyChange;
+			sourceTree = "<group>";
+		};
 		51CAB3FB283B8A1500EA2764 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +183,7 @@
 				5151DAA9283F643500943B14 /* Country.json */,
 				5151DAAB283F65B000943B14 /* CountryModel.swift */,
 				BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */,
+				51C06B9628771A71002BF611 /* StandardCountryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,6 +204,7 @@
 			children = (
 				5151DAAD283F686C00943B14 /* DunamuViewModel.swift */,
 				5196059A284613F000A245C1 /* ExchangeViewModel.swift */,
+				51C06B9428771917002BF611 /* BindableResults.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -198,6 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				5151DAA1283F582300943B14 /* Dunamu.swift */,
+				51C06B8428756D18002BF611 /* RealmManager.swift */,
+				51C06B862875721B002BF611 /* StandardCountryManager.swift */,
+				51C06B8F2876174F002BF611 /* TestRealmManager.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -215,6 +240,7 @@
 		BC263AF52862006A00844912 /* Dunamu */ = {
 			isa = PBXGroup;
 			children = (
+				51C06B9128770769002BF611 /* StandardCurrencyChange */,
 				5151DAA7283F63BB00943B14 /* DunamuMainView.swift */,
 				5139A4B628451DC000910525 /* DunamuRowView.swift */,
 				5158F078284739590013ADC6 /* DunamuMainViewHeader.swift */,
@@ -339,6 +365,7 @@
 			files = (
 				5158F067284614790013ADC6 /* CalculateMainView.swift in Sources */,
 				BC2E538F2850A0CA00A0F471 /* Extensions.swift in Sources */,
+				51C06B93287707B2002BF611 /* BottomSheetView.swift in Sources */,
 				5196059B284613F000A245C1 /* ExchangeViewModel.swift in Sources */,
 				5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */,
 				5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */,
@@ -346,15 +373,20 @@
 				BCD5947C28491CE3002D4A05 /* TabBarView.swift in Sources */,
 				5151DAA2283F582400943B14 /* Dunamu.swift in Sources */,
 				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
+				51C06B9528771917002BF611 /* BindableResults.swift in Sources */,
 				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
 				5151DAA8283F63BB00943B14 /* DunamuMainView.swift in Sources */,
+				51C06B8528756D18002BF611 /* RealmManager.swift in Sources */,
 				BC66920E2848846E0046DC92 /* ExchangeFlagView.swift in Sources */,
 				BC263AF32861869E00844912 /* GADBanner.swift in Sources */,
 				BC12346A283D087E0032FC56 /* ExchangeTextView.swift in Sources */,
+				51C06B9028761750002BF611 /* TestRealmManager.swift in Sources */,
 				BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */,
+				51C06B9728771A71002BF611 /* StandardCountryModel.swift in Sources */,
 				BC15F80D284498EA0075C4D5 /* KeyboardView.swift in Sources */,
 				51CAB408283B8A1500EA2764 /* exchange_rate_calculatorApp.swift in Sources */,
 				5151DAA6283F5FCB00943B14 /* DunamuModel.swift in Sources */,
+				51C06B872875721B002BF611 /* StandardCountryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

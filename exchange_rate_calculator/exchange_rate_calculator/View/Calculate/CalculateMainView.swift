@@ -19,6 +19,7 @@ struct CalculateMainView: View {
     
     @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
     @ObservedObject var dunamuViewModel: DunamuViewModel
+    @ObservedObject var standardCountryModel = BindableResults(results: RealmManager.shared.realm.objects(StandardCountryModel.self))
     
     @State var inputString = "0" // textField String value
     @State var calculateValueText = "" // keyboard input하면 textField 위에 숫자나 연산자들 보여주는 text
@@ -61,7 +62,7 @@ struct CalculateMainView: View {
                 .foregroundColor(.gray)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0.5, trailing: 20))
                 HStack {
-                    ExchangeFlagView("\(dunamuViewModel.standardCountry)") // 기준나라 국기
+                    ExchangeFlagView("\(standardCountryModel.results.first!.currencyCode)") // 기준나라 국기
                         .padding(.horizontal, 20)
                     Spacer()
                     Text("\(inputString)")
@@ -71,6 +72,7 @@ struct CalculateMainView: View {
                 Rectangle().frame(height: 1) // underLine
                     .foregroundColor(Color.black)
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                
                 CalculateCountryRowView($draggedCountry, $inputString, $dunamuViewModel.standardCountry, $dunamuViewModel.standardCountryBasePrice) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
                 // admob
                 //                GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)

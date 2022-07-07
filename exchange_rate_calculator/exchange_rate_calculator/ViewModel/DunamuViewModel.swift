@@ -50,11 +50,11 @@ class DunamuViewModel: ObservableObject {
                 // 성훈 -> standardCountr == KRW 면 dunamuModels 에 KRW 없어서 매매기준율 따로 값 줘서 예외처리해야함
                 let standardCountryBasePrice = self.dunamuModels.filter{ $0.currencyCode == self.standardCountry}
                 self.standardCountryBasePrice = standardCountryBasePrice[0].basePrice
-                print("MARK: - realm으로 기준나라코드 매매기준율 가져오기 \(standardCountryBasePrice[0].basePrice)")
+//                print("MARK: - realm으로 기준나라코드 매매기준율 가져오기 \(standardCountryBasePrice[0].basePrice)")
             }, receiveValue: { receiveValue in
                 var result = [self.koreaTemp]
                 result += receiveValue
-                print("@@@@@@@ result : \(result)")
+//                print("@@@@@@@ result : \(result)")
                 self.dunamuModels = result
             }).store(in: &subsription)
         
@@ -80,7 +80,7 @@ class DunamuViewModel: ObservableObject {
         let resultMap = myCountryCode.map({  String("FRX.\(baseCountryCode)\($0)") })
         let codes = resultMap.joined(separator: ",")
         
-        print(codes)
+//        print(codes)
         AF.request(Dunamu.getMy(codes: codes))
             .publishDecodable(type: [DunamuModel].self)
             .compactMap { $0.value }
