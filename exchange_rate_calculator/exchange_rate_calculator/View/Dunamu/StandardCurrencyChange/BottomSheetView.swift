@@ -48,7 +48,7 @@ struct ActionSheetView<Content: View>: View {
 }
 
 struct BottomSheetView: View {
-    @EnvironmentObject var standardCountryModel: StandardCountryModel
+    @ObservedObject var dunamuViewModel: DunamuViewModel
     
     @ViewBuilder func sheetItem(_ currencyCode: String) -> some View {
         let endIdx = currencyCode.index(currencyCode.startIndex, offsetBy: 1)
@@ -56,11 +56,11 @@ struct BottomSheetView: View {
         let flag = Flag(countryCode: result)
         let originalImage = flag?.originalImage
         
-        let isSelected = standardCountryModel.currencyCode == currencyCode
+        let isSelected = dunamuViewModel.standardCountry.currencyCode == currencyCode
         Button(action: {
             // 기준 통화 변경
             if isSelected == false {
-                RealmManager.shared.update(standardCountryModel, with: ["currencyCode": currencyCode])
+                dunamuViewModel.standardCountrySubject.send(currencyCode)
             }
         }, label: {
             HStack {

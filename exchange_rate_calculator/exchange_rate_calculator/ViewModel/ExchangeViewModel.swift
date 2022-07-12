@@ -9,7 +9,7 @@ struct MyCountryBasePrice {
 }
 
 class ExchangeViewModel: ObservableObject {
-    let realm = try! Realm()
+    let realm = RealmManager.shared.realm
     var subscription = Set<AnyCancellable>()
     var realmCheck = false
     

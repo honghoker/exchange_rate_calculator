@@ -16,7 +16,7 @@ struct TabBarView: View {
     
     var body: some View {
         NavigationView {
-            TabView{
+            TabView {
                 CalculateMainView(dunamuViewModel: dunamuViewModel)
                 DunamuMainView(dunamuViewModel: dunamuViewModel)
             }

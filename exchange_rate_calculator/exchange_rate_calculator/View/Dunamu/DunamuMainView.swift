@@ -44,17 +44,13 @@ class RefreshControlHelper {
 
 struct DunamuMainView: View {
     @ObservedObject var dunamuViewModel: DunamuViewModel
-    @ObservedObject var editHelper = EditHelper()
-    @ObservedObject var myCountryList = BindableResults(results: RealmManager.shared.realm.objects(MyCountryModel.self))
-    @ObservedObject var standardCountryModel = BindableResults(results: RealmManager.shared.realm.objects(StandardCountryModel.self))
+    @StateObject var editHelper = EditHelper()
     @State var showModal = false
     
     let refreshControlHelper = RefreshControlHelper()
     
     @ViewBuilder func baseCurrency() -> some View {
-        let currencyCode = standardCountryModel.results.first!.currencyCode
-        let endIdx = currencyCode.index(currencyCode.startIndex, offsetBy: 1)
-        let result = String(currencyCode[...endIdx])
+        let result = String(dunamuViewModel.standardCountry.currencyCode.dropLast())
         let flag = Flag(countryCode: result)
         let originalImage = flag?.originalImage
         
@@ -80,11 +76,11 @@ struct DunamuMainView: View {
                 }
                 Spacer().frame(width: 12)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(currencyCode)
+                    Text(dunamuViewModel.standardCountry.currencyCode)
                         .fontWeight(.bold)
                         .font(.custom("IBMPlexSansKR-Regular", size: 14))
                         .foregroundColor(.black)
-                    Text("\(countryModelList[currencyCode]!.country) \(countryModelList[currencyCode]!.currencyName)")
+                    Text("\(countryModelList[dunamuViewModel.standardCountry.currencyCode]!.country) \(countryModelList[dunamuViewModel.standardCountry.currencyCode]!.currencyName)")
                         .fontWeight(.medium)
                         .font(.custom("IBMPlexSansKR-Regular", size: 12))
                         .foregroundColor(.gray)
@@ -141,7 +137,7 @@ struct DunamuMainView: View {
     @ViewBuilder func currencyList() -> some View {
         Section(header: DunamuMainViewHeader()) {
             List(dunamuViewModel.dunamuModels) { dunamu in
-                DunamuRowView(dunamu, $editHelper.currencyEdit, $myCountryList.results.wrappedValue.contains { $0.currencyCode == dunamu.currencyCode })
+                DunamuRowView(dunamuViewModel, dunamu, $editHelper.currencyEdit)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             } // List
@@ -160,8 +156,7 @@ struct DunamuMainView: View {
         } // VStack
         .padding(0)
         .popup(isPresented: $showModal, type: .toast, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
-            BottomSheetView()
-                .environmentObject(standardCountryModel.results.first!)
+            BottomSheetView(dunamuViewModel: dunamuViewModel)
         }
     } // body
 }

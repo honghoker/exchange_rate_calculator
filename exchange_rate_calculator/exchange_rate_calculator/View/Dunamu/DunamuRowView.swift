@@ -26,15 +26,16 @@ struct CheckboxStyle: ToggleStyle {
 }
 
 struct DunamuRowView: View {
+    @ObservedObject var dunamuViewModel: DunamuViewModel
     var dunamu: DunamuModel
     @State var checked: Bool = false // 국가 리스트에 있는지 체크
     @Binding var editEnable: Bool // checkBox show / hide
-    @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
-    
-    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ check: Bool) {
+
+    init(_ dunamuViewModel: DunamuViewModel, _ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false) ) {
+        self.dunamuViewModel = dunamuViewModel
         self.dunamu = dunamu
         _editEnable = editEnable
-        _checked = State(initialValue: check)
+        _checked = State(initialValue: dunamuViewModel.myDunamuModels.contains { $0.currencyCode == dunamu.currencyCode})
     }
     
     @ViewBuilder func checkBox() -> some View {
@@ -46,22 +47,15 @@ struct DunamuRowView: View {
                     // MARK: - realm에 추가, 삭제
                     if value == true {
                         // MARK: - 추가
-                        let myCountry = MyCountryModel()
-                        myCountry.currencyCode = dunamu.currencyCode
-                        
-                        RealmManager.shared.create(myCountry)
-                        
-                        exchangeViewModel.fetchExchangeRate()
-                        exchangeViewModel.fetchExchangeBasePrice(Array(RealmManager.shared.realm.objects(MyCountryModel.self)))
+                        MyCountryModel.createMyCountry(dunamu.currencyCode)
+                        dunamuViewModel.myCountrySubject.send()
                     } else {
                         // MARK: - 삭제
                         let data = RealmManager.shared.realm.objects(MyCountryModel.self).filter({$0.currencyCode == dunamu.currencyCode})
                         for d in data {
                             RealmManager.shared.delete(d)
                         }
-                        
-                        exchangeViewModel.fetchExchangeRate()
-                        exchangeViewModel.fetchExchangeBasePrice(Array(RealmManager.shared.realm.objects(MyCountryModel.self)))
+                        dunamuViewModel.myCountrySubject.send()
                     }
                 }
         }
@@ -89,7 +83,9 @@ struct DunamuRowView: View {
                     .font(.custom("IBMPlexSansKR-Regular", size: 14))
                     .foregroundColor(.black)
                 
-                Text("\(countryModelList[dunamu.currencyCode]!.country) \(countryModelList[dunamu.currencyCode]!.currencyName)")
+                Text("\(countryModelList[dunamu.currencyCode]!.country) \(["JPY", "VND", "IDR"].contains(dunamu.currencyCode) ? "100" + countryModelList[dunamu.currencyCode]!.currencyName : countryModelList[dunamu.currencyCode]!.currencyName)")
+                
+                     
                     .fontWeight(.medium)
                     .font(.custom("IBMPlexSansKR-Regular", size: 12))
                     .foregroundColor(.gray)

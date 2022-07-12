@@ -11,8 +11,9 @@ import SwiftUI
 extension NumberFormatter {
     static var decimal: NumberFormatter {
         let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 3
+//        formatter.minimumFractionDigits = 3
         formatter.numberStyle = .decimal
+        
         return formatter
     }
 }
