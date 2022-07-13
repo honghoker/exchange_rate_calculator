@@ -1,10 +1,3 @@
-//
-//  TestCalculateMainView.swift
-//  exchange_rate_calculator
-//
-//  Created by 홍은표 on 2022/07/12.
-//
-
 import Foundation
 import SwiftUI
 import Combine

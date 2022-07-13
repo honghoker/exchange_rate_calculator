@@ -1,10 +1,3 @@
-//
-//  ExchangeFlagView.swift
-//  exchange_rate_calculator
-//
-//  Created by 김성훈 on 2022/06/02.
-//
-
 import Foundation
 import SwiftUI
 import FlagKit
@@ -30,6 +23,5 @@ struct ExchangeFlagView: View {
                 .scaledToFit()
                 .frame(width: 50, height: 50)
         }
-        
     }
 }

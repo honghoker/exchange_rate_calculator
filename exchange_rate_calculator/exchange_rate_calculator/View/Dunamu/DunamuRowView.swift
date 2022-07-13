@@ -1,10 +1,3 @@
-//
-//  DunamuListView.swift
-//  exchange_rate_calculator
-//
-//  Created by 홍은표 on 2022/05/31.
-//
-
 import Foundation
 import SwiftUI
 import FlagKit

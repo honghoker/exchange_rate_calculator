@@ -1,16 +1,8 @@
-//
-//  CalculateCountryRowView.swift
-//  exchange_rate_calculator
-//
-//  Created by 김성훈 on 2022/06/08.
-//
-
 import Foundation
 import SwiftUI
 import Introspect
 
 struct PullToRefresh: View {
-    
     var coordinateSpaceName: String
     var onRefresh: ()->Void
     

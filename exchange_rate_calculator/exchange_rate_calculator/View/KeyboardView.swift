@@ -1,10 +1,3 @@
-//
-//  CalculateKeyboardView.swift
-//  exchange_rate_calculator
-//
-//  Created by 김성훈 on 2022/05/30.
-//
-
 import Foundation
 import SwiftUI
 
