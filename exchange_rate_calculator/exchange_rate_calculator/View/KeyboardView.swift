@@ -35,24 +35,30 @@ struct KeyboardView: View {
         inputValue = String(describing: calculate(calculateValueText))
         dotCheck = false
     }
-        
+    
     // 연산자 입력
     fileprivate func onOperatorTapGesture(_ operatorValue: Operator) {
         if operatorValue == Operator.dot {
-            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && !dotCheck{
+            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && !dotCheck {
                 calculateValueText += "."
                 dotCheck = true
             }
         }
         else {
-            if calculateValueText != "" && calculateValueText.last != " "{
-                calculateValueText += " \(operatorValue.rawValue) "
+            if calculateValueText != "" {
+                if calculateValueText.last == " " {
+                    calculateValueText.removeLast(3)
+                    calculateValueText += " \(operatorValue.rawValue) "
+                    inputValue = String(describing: calculate(calculateValueText))
+                } else {
+                    calculateValueText += " \(operatorValue.rawValue) "
+                    inputValue = String(describing: calculate(calculateValueText))
+                }
                 dotCheck = false
-                inputValue = String(describing: calculate(calculateValueText))
             }
         }
     }
-
+    
     var body: some View {
         VStack (alignment: .trailing){
             HStack{
@@ -168,8 +174,6 @@ struct KeyboardView: View {
                                 inputValue = String(describing: calculate(calculateValueText))
                             }
                         }
-                        print(calculateValueText)
-                        print("calculateValueText last \(String(describing: calculateValueText.last))")
                     }
                 Image(systemName: "divide")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -48,8 +48,6 @@ struct CalculateMainView: View {
         .padding()
     }
     
-
-    
     @ViewBuilder func standardCurrencyTextField() -> some View {
         let numberFormatter = NumberFormatter.decimal
         HStack{
@@ -57,7 +55,7 @@ struct CalculateMainView: View {
             Text("\(calculateValueText)")
                 .font(.custom("IBMPlexSansKR-Regular", size: 15))
                 .lineLimit(1)
-                .fixedSize(horizontal: true, vertical: false)
+                .truncationMode(.head)
         } // HStack
         .foregroundColor(.gray)
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0.5, trailing: 20))

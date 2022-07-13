@@ -34,11 +34,7 @@ struct PullToRefresh: View {
             }
             HStack {
                 Spacer()
-                if needRefresh {
-                    ProgressView()
-                } else {
-                    ProgressView()
-                }
+                ProgressView()
                 Spacer()
             }
         }.padding(.top, -50)
