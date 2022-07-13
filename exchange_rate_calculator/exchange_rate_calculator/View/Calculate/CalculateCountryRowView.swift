@@ -15,7 +15,6 @@ struct CalculateCountryRowView: View {
     @Binding var inputString: String // textField String value
     @Binding var standardCountry: String // 기준 국가
     @Binding var standardCountryBasePrice: Double // 기준 국가 매매기준율
-    var testValue = ""
     
     init(_ draggedCountry: Binding<MyCountryModel>, _ inputString: Binding<String>, _ standardCountry: Binding<String>, _ standardCountryBasePrice: Binding<Double>) {
         self._draggedCountry = draggedCountry

@@ -36,17 +36,21 @@ struct ExchangeTextView: View {
                 if basePrices[number].currencyCode == "JPY" || basePrices[number].currencyCode == "VND" || basePrices[number].currencyCode == "IDR" {
                     Text("\(Double((standardCountryBasePrice / basePrices[number].basePrice) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                         .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                        .lineLimit(1)
                 } else {
                     Text("\(Double((standardCountryBasePrice / basePrices[number].basePrice / 100) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                         .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                        .lineLimit(1)
                 }
             } else {
                 if basePrices[number].currencyCode == "JPY" || basePrices[number].currencyCode == "VND" || basePrices[number].currencyCode == "IDR" {
                     Text("\(Double((standardCountryBasePrice / basePrices[number].basePrice * 100) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                         .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                        .lineLimit(1)
                 } else {
                     Text("\(Double((standardCountryBasePrice / basePrices[number].basePrice) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                         .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                        .lineLimit(1)
                 }
             }
         }

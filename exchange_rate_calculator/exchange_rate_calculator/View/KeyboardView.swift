@@ -30,11 +30,12 @@ struct KeyboardView: View {
     
     // 숫자 입력
     fileprivate func onNumberTapGesture(_ inputNumber: String) {
-        if calculateValueText.count > 20 {
-            calculateValueText = String(calculateValueText.prefix(20))
-        } else if calculateValueText == "" {
-            inputValue += inputNumber
-        }
+//        if calculateValueText.count > 20 {
+//            calculateValueText = String(calculateValueText.prefix(20))
+//        } else if calculateValueText == "" {
+//            inputValue += inputNumber
+//        }
+        inputValue += inputNumber
         calculateValueText += inputNumber
         inputValue = String(describing: calculate(calculateValueText))
         dotCheck = false
@@ -43,13 +44,15 @@ struct KeyboardView: View {
     // 연산자 입력
     fileprivate func onOperatorTapGesture(_ operatorValue: Operator) {
         if operatorValue == Operator.dot {
-            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && calculateValueText.count < 20 && !dotCheck{
+//            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && calculateValueText.count < 20 && !dotCheck{
+                if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && !dotCheck{
                 calculateValueText += "."
                 dotCheck = true
             }
         }
         else {
-            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 18 {
+//            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.count < 18 {
+                if calculateValueText != "" && calculateValueText.last != " " {
                 calculateValueText += " \(operatorValue.rawValue) "
                 dotCheck = false
                 inputValue = String(describing: calculate(calculateValueText))
