@@ -29,7 +29,7 @@ struct PullToRefresh: View {
                 ProgressView()
                 Spacer()
             }
-        }.padding(.top, -50)
+        }.padding(.top, -20)
     }
 }
 

@@ -23,7 +23,7 @@ class DunamuViewModel: ObservableObject {
     
     init() {
         print(#fileID, #function, #line, "")
-        print("realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
+//        print("realm URL : \(Realm.Configuration.defaultConfiguration.fileURL!)" )
         initStandardCountry()
         
         fetchAllDunamu()

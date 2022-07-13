@@ -10,11 +10,9 @@ enum Operator: String {
 }
 
 struct KeyboardView: View {
-    
+    @State var operatorArr = [String]()
     @Binding var inputValue: String
     @Binding var calculateValueText: String
-    
-    @State var dotCheck = false
     
     init(_ inputValue: Binding<String>, _ calculateValueText: Binding<String>) {
         self._inputValue = inputValue
@@ -26,28 +24,37 @@ struct KeyboardView: View {
         inputValue += inputNumber
         calculateValueText += inputNumber
         inputValue = String(describing: calculate(calculateValueText))
-        dotCheck = false
     }
     
     // 연산자 입력
     fileprivate func onOperatorTapGesture(_ operatorValue: Operator) {
         if operatorValue == Operator.dot {
-            if calculateValueText != "" && calculateValueText.last != " " && calculateValueText.last != "." && !dotCheck {
-                calculateValueText += "."
-                dotCheck = true
+            if calculateValueText.last != " " && operatorArr.last != "." {
+                if calculateValueText != "" {
+                    calculateValueText += "."
+                } else {
+                    calculateValueText += "0."
+                }
+                inputValue = String(describing: calculate(calculateValueText))
+                operatorArr.append(operatorValue.rawValue)
             }
         }
         else {
             if calculateValueText != "" {
+                if calculateValueText.last == "." {
+                    calculateValueText += "0"
+                }
                 if calculateValueText.last == " " {
                     calculateValueText.removeLast(3)
                     calculateValueText += " \(operatorValue.rawValue) "
                     inputValue = String(describing: calculate(calculateValueText))
+                    operatorArr.removeLast()
+                    operatorArr.append(operatorValue.rawValue)
                 } else {
                     calculateValueText += " \(operatorValue.rawValue) "
                     inputValue = String(describing: calculate(calculateValueText))
+                    operatorArr.append(operatorValue.rawValue)
                 }
-                dotCheck = false
             }
         }
     }
@@ -137,14 +144,13 @@ struct KeyboardView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        print("calculateValueText \(calculateValueText)")
                         onOperatorTapGesture(Operator.dot)
                     }
                 Text("0")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     .onTapGesture {
-                        if ((calculateValueText.last != "0" || calculateValueText.count != 1) && calculateValueText.count < 20){
+                        if (calculateValueText.last != "0" || calculateValueText.count != 1){
                             calculateValueText += "0"
                             inputValue = String(describing: calculate(calculateValueText))
                         }
@@ -154,19 +160,26 @@ struct KeyboardView: View {
                     .background(Color.white)
                     .onTapGesture {
                         if calculateValueText.last == " " {
-                            calculateValueText.removeLast()
-                            calculateValueText.removeLast()
-                            calculateValueText.removeLast()
+                            calculateValueText.removeLast(3)
                             inputValue = String(describing: calculate(calculateValueText))
+                            operatorArr.removeLast()
                         } else {
+                            if calculateValueText.last == "." {
+                                operatorArr.removeLast()
+                            }
                             if calculateValueText.count == 1 {
                                 calculateValueText.removeLast()
                                 inputValue = String(describing: calculate("0"))
-                            } else if calculateValueText != ""{
+                            } else if calculateValueText != "" {
                                 calculateValueText.removeLast()
                                 inputValue = String(describing: calculate(calculateValueText))
                             }
                         }
+                    }
+                    .onLongPressGesture {
+                        calculateValueText = ""
+                        inputValue = "0"
+                        operatorArr = []
                     }
                 Image(systemName: "divide")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -204,9 +217,3 @@ func calculate(_ calculateValueText: String) -> String {
     }
     return result.cleanValue
 }
-
-//struct CalCulateKeyboardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CalCulateKeyboardView()
-//    }
-//}
