@@ -16,7 +16,7 @@ struct exchange_rate_calculatorApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabBarView().environmentObject(ExchangeViewModel())
+            TabbarView()
         }
     }
 }

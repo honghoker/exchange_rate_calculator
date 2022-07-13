@@ -11,8 +11,6 @@ import FlagKit
 
 struct ExchangeFlagView: View {
     var currencyCode: String
-    // MARK: - realm으로 기준나라코드 가져오기
-    let baseCountryCode = "KRW"
     
     init(_ currencyCode: String) {
         self.currencyCode = currencyCode

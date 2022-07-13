@@ -8,31 +8,23 @@
 import Foundation
 import RealmSwift
 
-class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {
-
-    @Published var results: Results<Element>
-    private var token: NotificationToken!
-
-    init(results: Results<Element>) {
-        self.results = results
-        lateInit()
-    }
-    
-    func lateInit() {
-        token = results.observe { [weak self] _ in
-            self?.objectWillChange.send()
-        }
-    }
-    
-    deinit {
-        token.invalidate()
-    }
-}
-
 class MyCountryModel: Object {
+    @objc dynamic var idx: Int = 1
     @objc dynamic var currencyCode = "" // 통화코드 ex) "USD"
-}
-
-class StandardCountryModel: Object {
-    @objc dynamic var currencyCode = "" // 통화코드 ex) "USD"
+    
+    override static func primaryKey() -> String? {
+        return "idx"
+    }
+    
+    class func createMyCountry(_ currencyCode: String) {
+        var idx = 1
+        if let lastCountry = RealmManager.shared.realm.objects(MyCountryModel.self).last {
+            idx = lastCountry.idx + 1
+        }
+        let myCountry = MyCountryModel()
+        myCountry.idx = idx
+        myCountry.currencyCode = currencyCode
+        
+        RealmManager.shared.create(myCountry)
+    }
 }

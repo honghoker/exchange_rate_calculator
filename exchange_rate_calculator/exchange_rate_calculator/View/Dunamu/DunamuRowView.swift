@@ -10,78 +10,57 @@ import SwiftUI
 import FlagKit
 import RealmSwift
 
-struct CheckboxStyle: ToggleStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        return HStack {
-            Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .foregroundColor(configuration.isOn ? .blue : .gray)
-                .font(.system(size: 20, weight: .regular, design: .default))
-        }
-        .onTapGesture {
-            withAnimation { configuration.isOn.toggle() }
-        }
-    }
-}
-
 struct DunamuRowView: View {
+    @ObservedObject var dunamuViewModel: DunamuViewModel
     var dunamu: DunamuModel
+    @State var checked: Bool = false // 국가 리스트에 있는지 체크
+    @Binding var editEnable: Bool // checkBox show / hide
+    @Binding var showToast: Bool
     
-    let realm = try! Realm()
-    
-    @State var checked: Bool = false
-    @Binding var editEnable: Bool
-    @Binding var myCountryList: Results<MyCountryModel>
-    
-//    @StateObject var exchangeViewModel = ExchangeViewModel() // 내가 추가한 메인에 보이는 국가 리스트
-    @EnvironmentObject var exchangeViewModel: ExchangeViewModel // 내가 추가한 메인에 보이는 국가 리스트
-
-//    @Binding var myCountry: [MyCountryModel]
-    
-    init(_ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ myCountryList: Binding<Results<MyCountryModel>>) {
+    init(_ dunamuViewModel: DunamuViewModel, _ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ showToast: Binding<Bool> = .constant(false) ) {
+        self.dunamuViewModel = dunamuViewModel
         self.dunamu = dunamu
         _editEnable = editEnable
-        _myCountryList = myCountryList
-        _checked = State(initialValue: checkListEmpty())
-    }
-    
-    func checkListEmpty() -> Bool {
-        !myCountryList.filter { $0.currencyCode == dunamu.currencyCode }.isEmpty
+        _checked = State(initialValue: dunamuViewModel.myDunamuModels.contains { $0.currencyCode == dunamu.currencyCode})
+        _showToast = showToast
     }
     
     @ViewBuilder func checkBox() -> some View {
-        
         if editEnable == true {
-            Toggle("", isOn: $checked)
-                .toggleStyle(CheckboxStyle())
-                .padding(.leading, 16)
-                .onChange(of: checked){ value in
-                    // MARK: - realm에 추가, 삭제
-                    if value == true {
+            let isSelect = dunamuViewModel.myDunamuModels.contains { $0.currencyCode == dunamu.currencyCode}
+            HStack {
+                Image(systemName: isSelect ? "checkmark.square" : "square")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(isSelect ? .blue : .gray)
+                    .font(.system(size: 20, weight: .regular, design: .default))
+            }
+            .onTapGesture {
+                // MARK: - realm에 추가, 삭제
+                withAnimation {
+                    if isSelect == false {
                         // MARK: - 추가
-                        let myCountry = MyCountryModel()
-                        myCountry.currencyCode = dunamu.currencyCode
-                        try! realm.write {
-                            realm.add(myCountry)
-                        }
-                        print("edit add")
-                        exchangeViewModel.fetchExchangeRate()
-                        exchangeViewModel.fetchExchangeBasePrice(Array(realm.objects(MyCountryModel.self)))
+                        MyCountryModel.createMyCountry(dunamu.currencyCode)
+                        dunamuViewModel.myCountrySubject.send()
                     } else {
                         // MARK: - 삭제
-                        if let data = realm.objects(MyCountryModel.self).filter({$0.currencyCode == dunamu.currencyCode}) .first {
-                            try! realm.write {
-                                realm.delete(data)
+                        let objects = RealmManager.shared.realm.objects(MyCountryModel.self)
+                        
+                        if objects.count == 1 {
+                            showToast = true
+                        } else {
+                            let data = objects.filter({$0.currencyCode == dunamu.currencyCode})
+                            for d in data {
+                                RealmManager.shared.delete(d)
                             }
-                            print("edit delete")
-                            exchangeViewModel.fetchExchangeRate()
-                            exchangeViewModel.fetchExchangeBasePrice(Array(realm.objects(MyCountryModel.self)))
+                            dunamuViewModel.myCountrySubject.send()
                         }
                     }
                 }
+            }
         }
     }
+    
     
     @ViewBuilder func currency() -> some View {
         let endIdx = dunamu.currencyCode.index(dunamu.currencyCode.startIndex, offsetBy: 1)
@@ -105,7 +84,9 @@ struct DunamuRowView: View {
                     .font(.custom("IBMPlexSansKR-Regular", size: 14))
                     .foregroundColor(.black)
                 
-                Text("\(countryModelList[dunamu.currencyCode]!.country) \(countryModelList[dunamu.currencyCode]!.currencyName)")
+                Text("\(countryModelList[dunamu.currencyCode]!.country) \(["JPY", "VND", "IDR"].contains(dunamu.currencyCode) ? "100" + countryModelList[dunamu.currencyCode]!.currencyName : countryModelList[dunamu.currencyCode]!.currencyName)")
+                
+                
                     .fontWeight(.medium)
                     .font(.custom("IBMPlexSansKR-Regular", size: 12))
                     .foregroundColor(.gray)
@@ -180,14 +161,14 @@ struct DunamuRowView: View {
                         .fontWeight(.medium)
                         .font(.custom("IBMPlexSansKR-Regular", size: 12))
                         .foregroundColor(.blue)
-                }
+                } // VStack
             } else {
                 HStack(spacing: 2) {
                     Text("\(String(format: "%.2f", dunamu.changePrice))")
                         .fontWeight(.medium)
                         .font(.custom("IBMPlexSansKR-Regular", size: 12))
                         .foregroundColor(.black)
-                }
+                } // HStack
             }
         }
     }
