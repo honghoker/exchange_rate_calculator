@@ -20,17 +20,21 @@ struct ExchangeTextView: View {
             if standardCountry == "JPY" || standardCountry == "VND" || standardCountry == "IDR" {
                 Text("\(Double((standardCountryBasePrice / dunamuModel.basePrice) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                     .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                    .lineLimit(1)
             } else {
                 Text("\(Double((standardCountryBasePrice / dunamuModel.basePrice * 100) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                     .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                    .lineLimit(1)
             }
         } else {
             if standardCountry == "JPY" || standardCountry == "VND" || standardCountry == "IDR" {
                 Text("\(Double((standardCountryBasePrice / dunamuModel.basePrice * 100) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                     .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                    .lineLimit(1)
             } else {
                 Text("\(Double((standardCountryBasePrice / dunamuModel.basePrice) * Double(inputValue == "" ? "0" : inputValue)!), specifier: "%.2f")")
                     .font(.custom("IBMPlexSansKR-Regular", size: 20))
+                    .lineLimit(1)
             }
         }
     }
