@@ -44,14 +44,6 @@ struct CalculateMainView: View {
                     }
             }
             Spacer()
-            Image(systemName: "arrow.triangle.2.circlepath")
-                .resizable()
-                .frame(width: 28, height: 24)
-                .foregroundColor(.black)
-                .font(.system(size: 20, weight: .regular, design: .default))
-                .onTapGesture {
-                    dunamuViewModel.refreshActionSubject.send()
-                }
         } // HStack
         .padding()
     }
@@ -80,7 +72,7 @@ struct CalculateMainView: View {
     }
     
     @ViewBuilder func myCurrencyList() -> some View {
-        CalculateCountryRowView(dunamuViewModel: dunamuViewModel, draggedCountry: $draggedCountry, inputString: $inputString) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
+        CalculateCountryListView(dunamuViewModel: dunamuViewModel, draggedCountry: $draggedCountry, inputString: $inputString) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
     }
     
     @ViewBuilder func admob() -> some View {

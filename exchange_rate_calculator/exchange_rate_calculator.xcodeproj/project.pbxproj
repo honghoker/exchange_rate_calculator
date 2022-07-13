@@ -40,7 +40,7 @@
 		BC263AF12861836000844912 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BC263AF02861836000844912 /* GoogleMobileAds */; };
 		BC263AF32861869E00844912 /* GADBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC263AF22861869E00844912 /* GADBanner.swift */; };
 		BC2E538F2850A0CA00A0F471 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E538E2850A0CA00A0F471 /* Extensions.swift */; };
-		BC2E53912850A3DD00A0F471 /* CalculateCountryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */; };
+		BC2E53912850A3DD00A0F471 /* CalculateCountryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E53902850A3DD00A0F471 /* CalculateCountryListView.swift */; };
 		BC54476E283F375E00C0E2B0 /* MyCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */; };
 		BC66920E2848846E0046DC92 /* ExchangeFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */; };
 /* End PBXBuildFile section */
@@ -71,7 +71,7 @@
 		BC15F80C284498EA0075C4D5 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		BC263AF22861869E00844912 /* GADBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBanner.swift; sourceTree = "<group>"; };
 		BC2E538E2850A0CA00A0F471 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateCountryRowView.swift; sourceTree = "<group>"; };
+		BC2E53902850A3DD00A0F471 /* CalculateCountryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateCountryListView.swift; sourceTree = "<group>"; };
 		BC54476D283F375E00C0E2B0 /* MyCountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountryModel.swift; sourceTree = "<group>"; };
 		BC66920D2848846E0046DC92 /* ExchangeFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFlagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				BC263AF62862009800844912 /* Exchange */,
-				BC2E53902850A3DD00A0F471 /* CalculateCountryRowView.swift */,
+				BC2E53902850A3DD00A0F471 /* CalculateCountryListView.swift */,
 				515A0531287CC1D700AC5FD4 /* CalculateMainView.swift */,
 			);
 			path = Calculate;
@@ -344,7 +344,7 @@
 				51C06B93287707B2002BF611 /* BottomSheetView.swift in Sources */,
 				5158F079284739590013ADC6 /* DunamuMainViewHeader.swift in Sources */,
 				5151DAAC283F65B000943B14 /* CountryModel.swift in Sources */,
-				BC2E53912850A3DD00A0F471 /* CalculateCountryRowView.swift in Sources */,
+				BC2E53912850A3DD00A0F471 /* CalculateCountryListView.swift in Sources */,
 				5151DAA2283F582400943B14 /* Dunamu.swift in Sources */,
 				5151DAAE283F686C00943B14 /* DunamuViewModel.swift in Sources */,
 				5139A4B728451DC000910525 /* DunamuRowView.swift in Sources */,
@@ -416,7 +416,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "환율계산기";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -471,7 +471,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "환율계산기";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
