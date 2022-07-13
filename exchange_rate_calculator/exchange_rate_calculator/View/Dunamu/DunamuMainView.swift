@@ -1,10 +1,3 @@
-//
-//  jsonTest.swift
-//  exchange_rate_calculator
-//
-//  Created by 홍은표 on 2022/05/26.
-//
-
 import SwiftUI
 import FlagKit
 import Introspect

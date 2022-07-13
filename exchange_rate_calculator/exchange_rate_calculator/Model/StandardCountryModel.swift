@@ -1,10 +1,3 @@
-//
-//  StandardCountryModel.swift
-//  exchange_rate_calculator
-//
-//  Created by 홍은표 on 2022/07/07.
-//
-
 import Foundation
 import RealmSwift
 
