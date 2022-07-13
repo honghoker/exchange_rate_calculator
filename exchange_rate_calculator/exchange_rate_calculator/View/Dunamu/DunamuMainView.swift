@@ -46,7 +46,7 @@ struct DunamuMainView: View {
     @ObservedObject var dunamuViewModel: DunamuViewModel
     @StateObject var editHelper = EditHelper()
     @State var showModal = false
-    
+    @State var showToast = false
     let refreshControlHelper = RefreshControlHelper()
     
     @ViewBuilder func baseCurrency() -> some View {
@@ -137,7 +137,7 @@ struct DunamuMainView: View {
     @ViewBuilder func currencyList() -> some View {
         Section(header: DunamuMainViewHeader()) {
             List(dunamuViewModel.dunamuModels) { dunamu in
-                DunamuRowView(dunamuViewModel, dunamu, $editHelper.currencyEdit)
+                DunamuRowView(dunamuViewModel, dunamu, $editHelper.currencyEdit, $showToast)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             } // List
@@ -157,6 +157,18 @@ struct DunamuMainView: View {
         .padding(0)
         .popup(isPresented: $showModal, type: .toast, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
             BottomSheetView(dunamuViewModel: dunamuViewModel)
+        }
+        .popup(isPresented: $showToast, type: .floater(verticalPadding: 0, useSafeAreaInset: true), autohideIn: 2) {
+            HStack(spacing: 8) {
+                Text("더 이상 삭제할 수 없습니다.")
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(Color(hex: "474850")
+            .cornerRadius(12))
+            .padding(.horizontal, 16)
         }
     } // body
 }

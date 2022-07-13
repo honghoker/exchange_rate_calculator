@@ -10,56 +10,57 @@ import SwiftUI
 import FlagKit
 import RealmSwift
 
-struct CheckboxStyle: ToggleStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        return HStack {
-            Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .foregroundColor(configuration.isOn ? .blue : .gray)
-                .font(.system(size: 20, weight: .regular, design: .default))
-        }
-        .onTapGesture {
-            withAnimation { configuration.isOn.toggle() }
-        }
-    }
-}
-
 struct DunamuRowView: View {
     @ObservedObject var dunamuViewModel: DunamuViewModel
     var dunamu: DunamuModel
     @State var checked: Bool = false // 국가 리스트에 있는지 체크
     @Binding var editEnable: Bool // checkBox show / hide
-
-    init(_ dunamuViewModel: DunamuViewModel, _ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false) ) {
+    @Binding var showToast: Bool
+    
+    init(_ dunamuViewModel: DunamuViewModel, _ dunamu: DunamuModel, _ editEnable: Binding<Bool> = .constant(false), _ showToast: Binding<Bool> = .constant(false) ) {
         self.dunamuViewModel = dunamuViewModel
         self.dunamu = dunamu
         _editEnable = editEnable
         _checked = State(initialValue: dunamuViewModel.myDunamuModels.contains { $0.currencyCode == dunamu.currencyCode})
+        _showToast = showToast
     }
     
     @ViewBuilder func checkBox() -> some View {
         if editEnable == true {
-            Toggle("", isOn: $checked)
-                .toggleStyle(CheckboxStyle())
-                .padding(.leading, 16)
-                .onChange(of: checked){ value in
-                    // MARK: - realm에 추가, 삭제
-                    if value == true {
+            let isSelect = dunamuViewModel.myDunamuModels.contains { $0.currencyCode == dunamu.currencyCode}
+            HStack {
+                Image(systemName: isSelect ? "checkmark.square" : "square")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(isSelect ? .blue : .gray)
+                    .font(.system(size: 20, weight: .regular, design: .default))
+            }
+            .onTapGesture {
+                // MARK: - realm에 추가, 삭제
+                withAnimation {
+                    if isSelect == false {
                         // MARK: - 추가
                         MyCountryModel.createMyCountry(dunamu.currencyCode)
                         dunamuViewModel.myCountrySubject.send()
                     } else {
                         // MARK: - 삭제
-                        let data = RealmManager.shared.realm.objects(MyCountryModel.self).filter({$0.currencyCode == dunamu.currencyCode})
-                        for d in data {
-                            RealmManager.shared.delete(d)
+                        let objects = RealmManager.shared.realm.objects(MyCountryModel.self)
+                        
+                        if objects.count == 1 {
+                            showToast = true
+                        } else {
+                            let data = objects.filter({$0.currencyCode == dunamu.currencyCode})
+                            for d in data {
+                                RealmManager.shared.delete(d)
+                            }
+                            dunamuViewModel.myCountrySubject.send()
                         }
-                        dunamuViewModel.myCountrySubject.send()
                     }
                 }
+            }
         }
     }
+    
     
     @ViewBuilder func currency() -> some View {
         let endIdx = dunamu.currencyCode.index(dunamu.currencyCode.startIndex, offsetBy: 1)
@@ -85,7 +86,7 @@ struct DunamuRowView: View {
                 
                 Text("\(countryModelList[dunamu.currencyCode]!.country) \(["JPY", "VND", "IDR"].contains(dunamu.currencyCode) ? "100" + countryModelList[dunamu.currencyCode]!.currencyName : countryModelList[dunamu.currencyCode]!.currencyName)")
                 
-                     
+                
                     .fontWeight(.medium)
                     .font(.custom("IBMPlexSansKR-Regular", size: 12))
                     .foregroundColor(.gray)
