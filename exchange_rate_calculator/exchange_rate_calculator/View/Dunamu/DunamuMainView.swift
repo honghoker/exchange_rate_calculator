@@ -22,7 +22,7 @@ class EditHelper: ObservableObject {
     }
 }
 
-class RefreshControlHelper {
+class DunamuMainRefreshControlHelper {
     var parentContentView: DunamuMainView?
     var refreshControl: UIRefreshControl?
     
@@ -47,7 +47,7 @@ struct DunamuMainView: View {
     @StateObject var editHelper = EditHelper()
     @State var showModal = false
     @State var showToast = false
-    let refreshControlHelper = RefreshControlHelper()
+    let refreshControlHelper = DunamuMainRefreshControlHelper()
     
     @ViewBuilder func baseCurrency() -> some View {
         let result = String(dunamuViewModel.standardCountry.currencyCode.dropLast())
