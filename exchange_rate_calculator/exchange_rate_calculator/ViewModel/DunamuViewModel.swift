@@ -72,7 +72,6 @@ class DunamuViewModel: ObservableObject {
             .publishDecodable(type: [DunamuModel].self)
             .compactMap { $0.value }
             .sink(receiveCompletion: { completion in
-                // 성훈 -> standardCountr == KRW 면 dunamuModels 에 KRW 없어서 매매기준율 따로 값 줘서 예외처리해야함
                 let standardCountryBasePrice = self.dunamuModels.filter{ $0.currencyCode == self.standardCountry.currencyCode}
                 // MARK: - 매매 기준율 세팅
                 self.standardCountryBasePrice = standardCountryBasePrice[0].basePrice
@@ -104,7 +103,7 @@ class DunamuViewModel: ObservableObject {
         let currencyCodeArr = myCountry.map { String($0.currencyCode) }
         
         var arr = [DunamuModel]()
-        // MARK: - 은표 개선 필요
+        // MARK: - 개선 필요
         for code in currencyCodeArr {
             let a = self.dunamuModels.filter { $0.currencyCode == code }
             arr.append(contentsOf: a)
