@@ -72,8 +72,8 @@ struct CalculateMainView: View {
     }
     
     @ViewBuilder func admob() -> some View {
-        // admob
-        //                GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+//         admob
+//                        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
     }
     
     
@@ -94,8 +94,8 @@ struct CalculateMainView: View {
                 header()
                 standardCurrencyTextField()
                 myCurrencyList()
-                admob()
                 keyBoard()
+//                admob()
             } // VStack
         } // ZStack
     } // body
