@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import GoogleMobileAds
 
 struct CalculateMainView: View {
     let realm = RealmManager.shared.realm
@@ -72,8 +73,8 @@ struct CalculateMainView: View {
     }
     
     @ViewBuilder func admob() -> some View {
-//         admob
-//                        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+        //         admob
+        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
     }
     
     
@@ -95,7 +96,7 @@ struct CalculateMainView: View {
                 standardCurrencyTextField()
                 myCurrencyList()
                 keyBoard()
-//                admob()
+                admob()
             } // VStack
         } // ZStack
     } // body

@@ -4,6 +4,7 @@ import Introspect
 import UIKit
 import RealmSwift
 import PopupView
+import GoogleMobileAds
 
 class EditHelper: ObservableObject {
     @Published var currencyEdit: Bool = false
@@ -141,11 +142,17 @@ struct DunamuMainView: View {
         } // Section
     }
     
+    @ViewBuilder func admob() -> some View {
+        //         admob
+        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+    }
+    
     var body: some View {
         VStack {
             updateTimeAndEdit()
             baseCurrency()
             currencyList()
+            admob()
         } // VStack
         .padding(0)
         .popup(isPresented: $showModal, type: .toast, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
