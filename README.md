@@ -2,7 +2,7 @@
 
 개발기간 : 2022.05 ~ 2022.07
 
-[![appStore](https://user-images.githubusercontent.com/50910456/173174832-7d395623-ceb3-4796-b718-22e550af6934.svg)]()
+[![appStore](https://user-images.githubusercontent.com/50910456/173174832-7d395623-ceb3-4796-b718-22e550af6934.svg)](https://apps.apple.com/app/%ED%99%98%EC%9C%A8%EA%B3%84%EC%82%B0%EA%B8%B0-%EB%B9%A0%EB%A5%B4%EA%B3%A0-%EC%89%AC%EC%9A%B4-%ED%99%98%EC%9C%A8-%EA%B3%84%EC%82%B0%EA%B8%B0/id1634926556)
 
 ## [About]
 
