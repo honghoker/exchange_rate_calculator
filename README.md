@@ -18,6 +18,7 @@
 
 ## [Update]
 - version 1.0.0 : 앱 스토어 출시 ( 22.07.16 )
+- version 1.0.1 : Google AdMob 추가 ( 22.07.18 )
 
 ## [ Develop Environment ]
 - Language : Swift 5.6.1
