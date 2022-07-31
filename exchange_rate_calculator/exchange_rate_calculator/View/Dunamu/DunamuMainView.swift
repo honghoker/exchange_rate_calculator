@@ -142,17 +142,17 @@ struct DunamuMainView: View {
         } // Section
     }
     
-    @ViewBuilder func admob() -> some View {
-        //         admob
-        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
-    }
+    //    @ViewBuilder func admob() -> some View {
+    //        // admob
+    //        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+    //    }
     
     var body: some View {
         VStack {
             updateTimeAndEdit()
             baseCurrency()
             currencyList()
-            admob()
+            // admob()
         } // VStack
         .padding(0)
         .popup(isPresented: $showModal, type: .toast, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
@@ -167,7 +167,7 @@ struct DunamuMainView: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
             .background(Color(hex: "474850")
-            .cornerRadius(12))
+                .cornerRadius(12))
             .padding(.horizontal, 16)
         }
     } // body

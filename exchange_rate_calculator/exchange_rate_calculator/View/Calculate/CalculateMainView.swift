@@ -72,10 +72,10 @@ struct CalculateMainView: View {
         CalculateCountryListView(dunamuViewModel: dunamuViewModel, draggedCountry: $draggedCountry, inputString: $inputString) // 내가 추가한 국가들 리스트 뷰 (스크롤 뷰로 구현)
     }
     
-    @ViewBuilder func admob() -> some View {
-        //         admob
-        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
-    }
+    //    @ViewBuilder func admob() -> some View {
+    //        // admob
+    //        GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+    //    }
     
     
     @ViewBuilder func keyBoard() -> some View {
@@ -96,7 +96,7 @@ struct CalculateMainView: View {
                 standardCurrencyTextField()
                 myCurrencyList()
                 keyBoard()
-                admob()
+                // admob()
             } // VStack
         } // ZStack
     } // body
